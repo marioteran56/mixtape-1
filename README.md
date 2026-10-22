@@ -1,134 +1,94 @@
-# Playlist Romántica Interactiva • Carta Digital Privada (`Paper Mixtape`)
+# Playlist #1 • Carta Digital Privada (`Paper Mixtape`)
 
-Aplicación web privada que transforma el diseño **Playlist Romántica Interactiva** de Google Stitch (`projects/3351798792530970780`) en una carta digital interactiva protegida por contraseña y conectada dinámicamente a la API oficial de Spotify.
-
----
-
-## 1. Decisión de Arquitectura y Stack
-
-Se eligió **Vite + TypeScript + Tailwind CSS v4** junto con **Cloudflare Pages Functions** (`functions/`) por tres razones clave:
-
-1. **Seguridad Real sin Sobreingeniería:** Las Pages Functions se ejecutan en el borde de Cloudflare dentro del mismo proyecto sin necesidad de mantener un servidor Node adicional, bases de datos ni CMS. La carta privada y el mapa de dedicatorias residen exclusivamente en `src/server/editorial-content.ts` y solo se entregan tras validar una cookie de sesión `HttpOnly` firmada con HMAC-SHA256.
-2. **Fidelidad Exacta a Google Stitch:** El diseño original en Stitch está construido sobre tokens de color y tipografía *Paper Mixtape* (`Epilogue`, `Literata`, `Plus Jakarta Sans`, `Playfair Display`, `Caveat`). Usar Tailwind CSS con los tokens exactos permite reproducir tanto el sobre postal interactivo de acceso como las 6 plantillas distintas de tarjetas de canción estilo scrapbook.
-3. **Cero Exposición de Secretos:** El bundle estático (`dist/`) contiene únicamente el cascarón visual del sobre de acceso y las funciones de renderizado vacías. Una prueba automatizada (`tests/security-bundle.test.ts`) verifica en cada build que ningún texto privado ni credencial se filtre al cliente.
+Aplicación web privada de carta digital y mixtape interactivo basada en el sistema de diseño **Paper Mixtape** de Google Stitch (`projects/3351798792530970780`), protegida con sesión firmada del lado servidor y sincronizada con la playlist oficial de Spotify (`0EJqoSBZPUYuKNj36TKNxt`).
 
 ---
 
-## 2. Requisitos Previos
+## 1. Arquitectura y Características Principales
 
-- **Node.js** `>= 20.x` y `npm` `>= 10.x`.
-- Una cuenta en [Spotify Developer Dashboard](https://developer.spotify.com/dashboard) para obtener `SPOTIFY_CLIENT_ID` y `SPOTIFY_CLIENT_SECRET`.
-- Una cuenta de **Cloudflare** (plan gratuito o superior) para desplegar en Cloudflare Pages.
+El proyecto utiliza **Vite + TypeScript + Tailwind CSS v4** para el frontend y **Cloudflare Pages Functions** (`functions/`) para la autenticación y entrega protegida del contenido.
+
+- **Seguridad Real del Lado Servidor:**
+  - `index.html` y el bundle público (`dist/`) solo contienen el sobre postal cerrado (`#loginView`) y un contenedor vacío (`#mixtapeView`).
+  - La carta privada, las 30 canciones y sus dedicatorias viven exclusivamente en el servidor ([`src/server/editorial-content.ts`](./src/server/editorial-content.ts) y [`src/server/playlist-catalog.json`](./src/server/playlist-catalog.json)) y solo se entregan a través de `GET /api/mixtape` tras validar una cookie `HttpOnly` firmada con `HMAC-SHA256` ([`src/server/auth.ts`](./src/server/auth.ts)).
+  - El test [`tests/security-bundle.test.ts`](./tests/security-bundle.test.ts) verifica en cada compilación que ningún fragmento privado ni mapa de código (`.map`) se filtre al navegador.
+- **Sincronización Manual de Spotify sin Llaves ni Variables de Entorno (`npm run sync:playlist`):**
+  - El comando `npm run sync:playlist` ejecuta [`scripts/sync-playlist.ts`](./scripts/sync-playlist.ts), que consulta la playlist pública de Spotify y sus portadas oficiales `1:1` vía oEmbed.
+  - Actualiza [`src/server/playlist-catalog.json`](./src/server/playlist-catalog.json) respetando estrictamente el orden de las canciones en la playlist (`1` a `30`) **sin sobrescribir** las dedicatorias configuradas en [`src/server/editorial-content.ts`](./src/server/editorial-content.ts).
+- **Sobre Postal Interactivo y Animaciones:**
+  - Portada personalizada (**Para: Camila**, **Remitente: Mario**) con notas decorativas en el fondo (*"♪ I got a girl crush"*, *"No hay nada como ella..."*).
+  - **Transición de apertura del sobre:** al tocar el sobre o el sello de lacre, el sello se rompe con animación y emerge suavemente la tarjeta interior para ingresar la **Clave Secreta**.
+  - **Transición de desbloqueo con zoom:** al validar la clave secreta, el sobre realiza un acercamiento hacia el lector mientras la carta y las dedicatorias se despliegan en pantalla.
+- **Navegación Superior e Inferior Reacomodada:**
+  - **Cabecera superior fija:** cinta *washi* con la leyenda **`Para ti`**, contador de pistas (`30 pistas`) y botón directo a la playlist en Spotify.
+  - **Barra inferior flotante (4 columnas):** navegación suave por orden de lectura (**`Intro`** → **`Dedicadas`** → **`Último mensaje`**) junto al botón **`Cerrar sobre`** perfectamente integrado.
 
 ---
 
-## 3. Instalación y Ejecución Local
+## 2. Diseños y Plantillas de Canción (`src/client/render-mixtape.ts`)
+
+Las 30 canciones se presentan bajo el encabezado **`Mis dedicatorias`** respetando su orden exacto en la playlist y alternando entre **9 plantillas editoriales** con animaciones continuas en los discos de vinilo y carretes de casete:
+
+1. **`polaroid` (alias `dedication`):** Marco Polaroid clásico con cinta *washi* menta, portada oficial `1:1` sin recortar, disco de vinilo giratorio y nota *Post-it* amarilla.
+2. **`post-it`:** Tarjeta en cuarzo rosa con recorte cuadrado estilo revista, vinilo giratorio y nota manuscrita.
+3. **`cassette`:** Carcasa de casete C-60 con ventana central de **carretes giratorios animados**, número de pista (`PISTA #XX`) y nota en servilleta.
+4. **`ticket` (alias `short-note`):** Boleto de concierto / pase especial con línea punteada y recuadro de dedicatoria.
+5. **`double-polaroid` (alias `quote`):** Collage de dos piezas con un **marco Polaroid a la izquierda** y una **Sticky Note amarilla inclinada a la derecha** que agrupa título, frase destacada y dedicatoria (ej. *"Your Song"* de Elton John o *"Sparks"* de Coldplay).
+6. **`postcard`:** Tarjeta postal aérea con franja *airmail*, estampilla con la portada `1:1`, cita y mensaje postal.
+7. **`vinyl-sleeve`:** Funda de vinilo de estudio con un disco de vinilo giratorio asomando por el costado y ficha de edición.
+8. **`honorable-mention` (Apartado Especial — Pistas #15 y #16):** Las canciones **#15 (*Amarte A La Antigua* — Pedro Fernández)** y **#16 (*like my father* — Jax)** se agrupan en el contenedor especial **`Menciones Honoríficas`**, donde cada una cuenta con su tarjeta dorada y su recuadro individual **`¿Por qué es mención honorífica?`**.
+9. **`collector` (Cierre de la Playlist — Pista #30):** Diseño especial tipo trofeo/certificado para la canción **#30 (*Coleccionista de Canciones* — Camila)** como referencia humorística a que ella (**Camila**) ya es toda una *Coleccionista de Canciones* tras las 30 pistas de la lista.
+
+*(Además, existe la plantilla compacta `minimal` como reserva automática en caso de agregar canciones nuevas a la playlist antes de asignarles dedicatoria).*
+
+---
+
+## 3. Instalación y Uso en Desarrollo Local
 
 1. **Instalar dependencias:**
    ```bash
    npm install
    ```
 
-2. **Configurar variables de entorno locales:**
-   Copia el archivo de ejemplo a `.dev.vars` (o `.env`):
-   ```bash
-   cp .dev.vars.example .dev.vars
+2. **Configurar la clave secreta local (`.dev.vars`):**
+   El archivo `.dev.vars` define la contraseña local de acceso (por defecto `mixtape28`):
+   ```ini
+   SITE_PASSWORD=mixtape28
+   SESSION_SECRET=reemplaza-con-una-cadena-aleatoria-de-al-menos-32-caracteres-seguros
    ```
-   Edita `.dev.vars` con tu contraseña deseada y tus credenciales de Spotify.
+   > El plugin local en [`vite.config.ts`](./vite.config.ts) lee `.dev.vars` en tiempo real en cada petición, por lo que cualquier cambio de contraseña se aplica al instante.
 
 3. **Iniciar el servidor de desarrollo:**
    ```bash
    npm run dev
    ```
-   > `vite.config.ts` incluye un middleware local que monta automáticamente todos los endpoints de `functions/` (`/api/auth/login`, `/api/auth/logout`, `/api/auth/session`, `/api/mixtape` y `/carta`). Si aún no has configurado tus credenciales de Spotify y tienes `ALLOW_DEMO_FIXTURE=true`, el servidor te mostrará las canciones del fixture de demostración extraído de Stitch indicando claramente que está en modo demo.
 
-4. **Probar con el runtime local de Cloudflare Pages (opcional):**
+4. **Sincronizar manualmente la playlist de Spotify (cuando agregues o reordenes canciones):**
    ```bash
-   npm run pages:dev
+   npm run sync:playlist
    ```
 
 ---
 
-## 4. Variables de Entorno
+## 4. Cómo Editar la Carta y las Dedicatorias
 
-| Variable | Obligatoria | Dónde se usa | Descripción |
-| :--- | :--- | :--- | :--- |
-| `SITE_PASSWORD` | **Sí** | Solo Servidor | Contraseña compartida única para desbloquear el sobre postal. |
-| `SESSION_SECRET` | **Sí** | Solo Servidor | Cadena aleatoria de al menos 32 caracteres para firmar las sesiones HMAC-SHA256. |
-| `SPOTIFY_CLIENT_ID` | **Sí** | Solo Servidor | Client ID de tu app en Spotify Developer Dashboard. |
-| `SPOTIFY_CLIENT_SECRET` | **Sí** | Solo Servidor | Client Secret de tu app en Spotify (nunca se expone al navegador). |
-| `SPOTIFY_PLAYLIST_ID` | **Sí** | Solo Servidor | ID de la playlist de Spotify (ej. `0EJqoSBZPUYuKNj36TKNxt`) o su URL. |
-| `SPOTIFY_MARKET` | No | Solo Servidor | Código ISO de país de 2 letras (por defecto `MX`). |
-| `SPOTIFY_REFRESH_TOKEN` | Condicional | Solo Servidor | Necesario si la playlist es privada, colaborativa o restringida al propietario. |
-| `ALLOW_DEMO_FIXTURE` | No | Solo Servidor | `true` en desarrollo para permitir el fixture de demostración si faltan credenciales; `false` en producción. |
-
-Para generar un `SESSION_SECRET` seguro desde tu terminal:
-```bash
-node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
-```
+Todo el contenido personal se edita en un único archivo del servidor:
+- [`src/server/editorial-content.ts`](./src/server/editorial-content.ts)
+  - **`PRIVATE_LETTER_CONTENT`:** Textos de la carta de introducción (`title`, `subtitle`, `paragraphs`, `signOffLabel`, `signature`) y del último mensaje de despedida (`closingTitle`, `closingBody`, `closingHighlight`, `footerStamp`).
+  - **`EDITORIAL_TRACK_ENTRIES`:** Arreglo con las 30 canciones enlazadas por su `trackId` de Spotify (`template`, `washiLabel`, `memoryTag`, `noteTitle`, `quote`, `dedication`, `footerTag`).
 
 ---
 
-## 5. Configuración de Spotify y Obtención de `SPOTIFY_REFRESH_TOKEN`
-
-### Caso A: Playlist Pública Accesible con Client Credentials
-1. Entra a [Spotify Developer Dashboard](https://developer.spotify.com/dashboard) y crea una aplicación.
-2. Copia el **Client ID** y **Client Secret** en `SPOTIFY_CLIENT_ID` y `SPOTIFY_CLIENT_SECRET`.
-3. Coloca el ID de tu playlist en `SPOTIFY_PLAYLIST_ID`.
-
-### Caso B: Playlist Privada o que Requiere Permisos del Propietario (OAuth Refresh Token)
-Si tu playlist es privada o la API de Spotify devuelve `403` / `404` con Client Credentials:
-1. En la configuración de tu app en Spotify Developer Dashboard, agrega `http://127.0.0.1:8888/callback` en **Redirect URIs** y guarda.
-2. Abre en tu navegador la siguiente URL (reemplazando `TU_CLIENT_ID`):
-   ```text
-   https://accounts.spotify.com/authorize?client_id=TU_CLIENT_ID&response_type=code&redirect_uri=http%3A%2F%2F127.0.0.1%3A8888%2Fcallback&scope=playlist-read-private%20playlist-read-collaborative
-   ```
-3. Tras autorizar, Spotify te redirigirá a `http://127.0.0.1:8888/callback?code=CODIGO_AQUI`. Copia el valor de `code`.
-4. Canjea el código por un `refresh_token` desde tu terminal:
-   ```bash
-   curl -X POST https://accounts.spotify.com/api/token \
-     -H "Content-Type: application/x-www-form-urlencoded" \
-     -u "TU_CLIENT_ID:TU_CLIENT_SECRET" \
-     -d "grant_type=authorization_code&code=CODIGO_AQUI&redirect_uri=http://127.0.0.1:8888/callback"
-   ```
-5. Guarda el campo `"refresh_token"` de la respuesta en la variable secreta `SPOTIFY_REFRESH_TOKEN`. El servidor renovará automáticamente los tokens de acceso cuando expiren.
-
----
-
-## 6. Cómo Editar la Carta y el Mapa de Dedicatorias
-
-Abre el archivo [`src/server/editorial-content.ts`](./src/server/editorial-content.ts):
-
-1. **Editar la Carta Principal y Despedida:**
-   Modifica el objeto `PRIVATE_LETTER_CONTENT` (`title`, `subtitle`, `paragraphs`, `signature`, `closingTitle`, `closingBody`, `closingHighlight`, `replyUrl`).
-
-2. **Asignar o Editar Dedicatorias por Canción:**
-   En `EDITORIAL_TRACK_ENTRIES`, cada entrada se enlaza mediante el `trackId` estable de Spotify:
-   ```ts
-   {
-     trackId: '4WefXOf8I4gMjdj2kBJgkl', // ID de 22 caracteres o URI spotify:track:...
-     template: 'polaroid',              // 'polaroid' | 'post-it' | 'cassette' | 'ticket' | 'double-polaroid' | 'minimal'
-     washiLabel: 'Track 01 ♡',
-     memoryTag: 'Vibes de fin de semana',
-     noteTitle: 'VIBRA / DE ESAS ROLAS',
-     dedication: '“Tu dedicatoria personal aquí...”',
-     quote: '“Frase breve opcional elegida por ti...”',
-     footerTag: 'Nuestra favorita',
-     side: 'A',                         // 'A' o 'B'
-     isDemoContent: false,
-   }
-   ```
-   > **Tip:** Si agregas canciones nuevas a tu playlist de Spotify y aún no las configuras en `EDITORIAL_TRACK_ENTRIES`, aparecerán automáticamente con la plantilla compacta `minimal` mostrando su `trackId` en una etiqueta discreta para que puedas copiarlo fácilmente.
-
----
-
-## 7. Pruebas, Verificación de Tipos y Build
+## 5. Comandos de Verificación y Pruebas
 
 ```bash
+# Sincronizar catálogo de canciones desde Spotify (sin llaves API)
+npm run sync:playlist
+
 # Verificar tipos TypeScript
 npm run typecheck
 
-# Ejecutar todas las pruebas automatizadas (Autenticación, Mapeo, Spotify, Seguridad del Bundle)
+# Ejecutar las 4 suites de pruebas (Auth, Mapeo y Plantillas, Spotify, Seguridad del Bundle)
 npm test
 
 # Compilar para producción en dist/
@@ -137,42 +97,20 @@ npm run build
 
 ---
 
-## 8. Despliegue Paso a Paso en Cloudflare Pages
+## 6. Despliegue en Cloudflare Pages (`playlist-1`)
 
-### Opción 1: Despliegue Conectado a Git (Recomendado)
-1. Sube este repositorio a tu cuenta de GitHub o GitLab.
-2. En el panel de Cloudflare, ve a **Workers & Pages > Create application > Pages > Connect to Git**.
-3. Configura los ajustes de compilación:
-   - **Framework preset:** `None` (o `Vite`)
-   - **Build command:** `npm run build`
-   - **Build output directory:** `dist`
-4. Antes o después del primer despliegue, ve a **Settings > Environment variables** y configura para **Production** y **Preview**:
-   - **Secrets (Encrypted):**
-     - `SITE_PASSWORD`
-     - `SESSION_SECRET`
-     - `SPOTIFY_CLIENT_SECRET`
-     - `SPOTIFY_REFRESH_TOKEN` *(si aplica)*
-   - **Variables:**
-     - `SPOTIFY_CLIENT_ID`
-     - `SPOTIFY_PLAYLIST_ID` (ej. `0EJqoSBZPUYuKNj36TKNxt`)
-     - `SPOTIFY_MARKET` (`MX`)
-     - `ALLOW_DEMO_FIXTURE` (`false` en Production)
+No necesitas configurar llaves de Spotify en producción ya que el catálogo sincronizado viaja del lado servidor junto con las Pages Functions. Solo necesitas configurar tus 2 secretos de acceso:
 
-### Opción 2: Despliegue Directo con Wrangler CLI
+### variables requeridas en Cloudflare Pages (**Settings → Environment variables**)
+
+| Variable | Tipo | Descripción |
+| :--- | :--- | :--- |
+| `SITE_PASSWORD` | **Secret** | La clave secreta para desbloquear el sobre postal. |
+| `SESSION_SECRET` | **Secret** | Cadena aleatoria de al menos 32 caracteres para firmar la cookie `HttpOnly` con HMAC-SHA256. |
+
+Para desplegar desde la terminal con Wrangler:
 ```bash
-# 1. Compilar y desplegar archivos estáticos + Pages Functions (carpeta functions/)
 npm run pages:deploy
-
-# 2. Configurar los secretos en Cloudflare Pages
-npx wrangler pages secret put SITE_PASSWORD --project-name playlist-romantica-interactiva
-npx wrangler pages secret put SESSION_SECRET --project-name playlist-romantica-interactiva
-npx wrangler pages secret put SPOTIFY_CLIENT_SECRET --project-name playlist-romantica-interactiva
-npx wrangler pages secret put SPOTIFY_CLIENT_ID --project-name playlist-romantica-interactiva
-npx wrangler pages secret put SPOTIFY_PLAYLIST_ID --project-name playlist-romantica-interactiva
+npx wrangler pages secret put SITE_PASSWORD --project-name playlist-1
+npx wrangler pages secret put SESSION_SECRET --project-name playlist-1
 ```
-
-### Verificación Post-Despliegue
-1. Abre la URL de tu proyecto en Cloudflare Pages: verás el **Sobre Postal Cerrado**.
-2. Comprueba que visitar `/api/mixtape` directamente en una ventana de incógnito devuelve `401 Unauthorized` y que visitar `/carta` redirige a `/`.
-3. Haz clic en el sobre para romper el sello de lacre, ingresa tu `SITE_PASSWORD` y verifica que se despliega la carta junto con las canciones de Spotify y sus plantillas de Stitch.
-4. Haz clic en **Cerrar sobre** en la esquina superior derecha y confirma que la sesión se cierra inmediatamente.
