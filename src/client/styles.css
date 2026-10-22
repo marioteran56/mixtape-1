@@ -1,0 +1,265 @@
+@import "tailwindcss";
+
+@theme {
+  /* Paper Mixtape Color Palette (Extraído de Google Stitch) */
+  --color-surface: #fff8f4;
+  --color-surface-bright: #fff8f4;
+  --color-surface-dim: #edd6c1;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #fff1e6;
+  --color-surface-container: #ffead7;
+  --color-surface-container-high: #fbe4cf;
+  --color-surface-container-highest: #f5dfc9;
+  --color-surface-variant: #f5dfc9;
+
+  --color-background: #fff8f4;
+  --color-on-background: #25190c;
+  --color-on-surface: #25190c;
+  --color-on-surface-variant: #57423d;
+
+  --color-inverse-surface: #3b2e1f;
+  --color-inverse-on-surface: #ffeedf;
+  --color-inverse-primary: #ffb4a3;
+
+  --color-primary: #9e3c26;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #be543c;
+  --color-on-primary-container: #fffbff;
+  --color-primary-fixed: #ffdad2;
+  --color-primary-fixed-dim: #ffb4a3;
+  --color-on-primary-fixed: #3d0600;
+  --color-on-primary-fixed-variant: #822714;
+
+  --color-secondary: #a43073;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #fc79bd;
+  --color-on-secondary-container: #76014e;
+  --color-secondary-fixed: #ffd8e7;
+  --color-secondary-fixed-dim: #ffafd3;
+  --color-on-secondary-fixed: #3d0026;
+  --color-on-secondary-fixed-variant: #85145a;
+
+  --color-tertiary: #3d6700;
+  --color-on-tertiary: #ffffff;
+  --color-tertiary-container: #528115;
+  --color-on-tertiary-container: #f9ffea;
+  --color-tertiary-fixed: #bbf37c;
+  --color-tertiary-fixed-dim: #a0d663;
+  --color-on-tertiary-fixed: #0f2000;
+  --color-on-tertiary-fixed-variant: #2e4f00;
+
+  --color-error: #ba1a1a;
+  --color-on-error: #ffffff;
+  --color-error-container: #ffdad6;
+  --color-on-error-container: #93000a;
+
+  --color-outline: #8a726c;
+  --color-outline-variant: #ddc0ba;
+  --color-surface-tint: #a13e28;
+
+  /* Envelope Specific Tokens (Portada Sobre Postal) */
+  --color-envelope-base: #fff1e6;
+  --color-envelope-flap: #fae3d1;
+  --color-envelope-dim: #edd6c1;
+  --color-envelope-accent: #e06d53;
+  --color-envelope-dark: #3d251e;
+  --color-envelope-wax: #c84732;
+
+  /* Typography Families */
+  --font-sans: 'Epilogue', system-ui, -apple-system, sans-serif;
+  --font-headline: 'Epilogue', system-ui, -apple-system, sans-serif;
+  --font-body: 'Literata', Georgia, serif;
+  --font-label: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-serif-display: 'Playfair Display', Georgia, serif;
+  --font-hand: 'Caveat', cursive;
+}
+
+@layer base {
+  html,
+  body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #fff8f4;
+    color: #25190c;
+    overflow-x: hidden;
+  }
+
+  body {
+    font-family: var(--font-body);
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  :focus-visible {
+    outline: 2px solid #e06d53;
+    outline-offset: 2px;
+  }
+}
+
+/* Acotado estricto para Material Symbols para evitar desbordamientos y sobreescribir el 24px por defecto de Google Fonts */
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.1em;
+  height: 1.1em;
+  overflow: hidden;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  flex-shrink: 0;
+  vertical-align: middle;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+.material-symbols-outlined.text-\[10px\] { font-size: 10px; }
+.material-symbols-outlined.text-\[11px\] { font-size: 11px; }
+.material-symbols-outlined.text-\[12px\] { font-size: 12px; }
+.material-symbols-outlined.text-\[13px\] { font-size: 13px; }
+.material-symbols-outlined.text-\[14px\] { font-size: 14px; }
+.material-symbols-outlined.text-\[15px\] { font-size: 15px; }
+.material-symbols-outlined.text-\[16px\] { font-size: 16px; }
+.material-symbols-outlined.text-\[17px\] { font-size: 17px; }
+.material-symbols-outlined.text-\[18px\] { font-size: 18px; }
+.material-symbols-outlined.text-\[20px\] { font-size: 20px; }
+.material-symbols-outlined.text-\[28px\] { font-size: 28px; }
+.material-symbols-outlined.text-\[32px\] { font-size: 32px; }
+
+/* Patrón de papel punteado Kraft */
+.kraft-bg {
+  background-color: #fff8f4;
+  background-image:
+    radial-gradient(#edd6c1 0.85px, transparent 0.85px),
+    radial-gradient(#eeddcf 0.85px, #fff8f4 0.85px);
+  background-size: 24px 24px;
+  background-position: 0 0, 12px 12px;
+}
+
+/* Franja postal Airmail */
+.airmail-strip {
+  background: repeating-linear-gradient(
+    -45deg,
+    #e06d53,
+    #e06d53 10px,
+    #fff8f4 10px,
+    #fff8f4 20px,
+    #4f7797 20px,
+    #4f7797 30px,
+    #fff8f4 30px,
+    #fff8f4 40px
+  );
+}
+
+/* Renglones sutiles de libreta para tarjetas Post-it */
+.lined-note-bg {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent 23px,
+    rgba(87, 72, 56, 0.07) 24px
+  );
+}
+
+/* Textura de reflejo diagonal para discos de vinilo giratorios */
+.vinyl-surface {
+  background:
+    radial-gradient(circle at center, transparent 30%, rgba(255, 248, 244, 0.08) 31%, transparent 33%, transparent 52%, rgba(255, 248, 244, 0.08) 53%, transparent 55%),
+    conic-gradient(
+      from 0deg,
+      #1f1610 0deg,
+      #3b2e1f 35deg,
+      #594633 55deg,
+      #3b2e1f 75deg,
+      #1f1610 180deg,
+      #3b2e1f 215deg,
+      #594633 235deg,
+      #3b2e1f 255deg,
+      #1f1610 360deg
+    );
+}
+
+/* Animaciones del sobre y sello de lacre */
+@keyframes subtleFloat {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-6px) rotate(1deg);
+  }
+}
+
+.ambient-envelope {
+  animation: subtleFloat 5s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0%,
+  100% {
+    box-shadow: 0 4px 14px rgba(200, 71, 50, 0.35);
+  }
+  50% {
+    box-shadow: 0 6px 22px rgba(200, 71, 50, 0.6);
+  }
+}
+
+.wax-pulse {
+  animation: pulseGlow 2.5s infinite ease-in-out;
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20%,
+  60% {
+    transform: translateX(-6px);
+  }
+  40%,
+  80% {
+    transform: translateX(6px);
+  }
+}
+
+.shake-anim {
+  animation: shake 0.4s ease-in-out;
+}
+
+/* Animación continua de giro para los carretes del casete y los discos de vinilo */
+@keyframes continuousSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.cassette-reel-spin {
+  animation: continuousSpin 4s linear infinite;
+  transform-origin: center center;
+}
+
+.vinyl-disc-spin {
+  animation: continuousSpin 5.5s linear infinite;
+  transform-origin: center center;
+}
+
+.letter-sheet {
+  transition:
+    transform 0.45s cubic-bezier(0.34, 1.45, 0.64, 1),
+    opacity 0.35s ease;
+}
+
+.letter-extracted {
+  transform: translateY(-8px);
+}

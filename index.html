@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Acceso Secreto • Para ti</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Epilogue:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;1,7..72,400&family=Playfair+Display:ital,wght@0,600;1,500&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-surface text-on-surface antialiased min-h-screen">
+    <!-- ======================================================================
+         VISTA 1: PANTALLA PÚBLICA DE ACCESO (Portada Sobre Postal • Stitch)
+         ====================================================================== -->
+    <div
+      id="loginView"
+      class="kraft-bg min-h-screen text-[#3d251e] flex flex-col items-center justify-between p-4 sm:p-6 overflow-x-hidden relative font-[Epilogue]"
+    >
+      <!-- Notas y sellos decorativos de fondo -->
+      <div class="absolute inset-0 pointer-events-none overflow-hidden opacity-45 z-0" aria-hidden="true">
+        <div
+          class="hidden sm:flex absolute top-10 left-6 sm:left-16 -rotate-6 bg-white/75 p-2 rounded shadow-2xs border border-[#edd6c1]/70 items-center gap-2"
+        >
+          <span class="font-[Caveat] text-[#c84732] text-lg">♪ Una pista en cada canción...</span>
+        </div>
+        <div
+          class="hidden sm:block absolute top-16 right-6 sm:right-20 rotate-6 bg-white/80 p-2.5 rounded-lg border border-[#edd6c1] shadow-2xs text-center"
+        >
+          <span class="text-[10px] tracking-widest text-[#a87462] block font-mono">PAR AVION</span>
+          <span class="text-sm">📮</span>
+        </div>
+        <div
+          class="hidden sm:block absolute bottom-20 left-10 rotate-3 bg-[#fff1e6] border border-[#d6a992]/40 px-3 py-1.5 rounded font-[Caveat] text-base text-[#7d5041]"
+        >
+          "canciones que solo tú vas a entender"
+        </div>
+        <div
+          class="hidden sm:block absolute bottom-24 right-10 -rotate-6 bg-white/75 p-2 rounded border border-[#edd6c1] shadow-2xs"
+        >
+          <div
+            class="w-9 h-9 rounded-full border-2 border-dashed border-[#e06d53]/50 flex items-center justify-center text-[10px] text-[#e06d53] font-mono font-bold"
+          >
+            ♥ MIX
+          </div>
+        </div>
+      </div>
+
+      <!-- Cabecera del sobre postal -->
+      <header class="w-full max-w-md pt-2 flex items-center justify-between z-10 relative">
+        <div
+          class="flex items-center gap-2 bg-white/85 backdrop-blur-xs px-3 py-1.5 rounded-full border border-[#edd6c1] shadow-2xs"
+        >
+          <span class="w-2.5 h-2.5 rounded-full bg-[#e06d53] animate-ping"></span>
+          <span class="text-xs font-semibold tracking-wide uppercase text-[#7d5041]">URGENTE</span>
+        </div>
+        <div class="flex items-center gap-1.5 text-[#a87462] font-[Caveat] text-xl">
+          <span>Playlist #1</span>
+          <span class="text-[#e06d53]">♡</span>
+        </div>
+      </header>
+
+      <!-- Escena central interactiva del Sobre Postal -->
+      <main
+        id="mainScene"
+        class="w-full max-w-md flex-1 flex flex-col items-center justify-center my-4 z-20"
+      >
+        <!-- Instrucción de estado sobre el sobre -->
+        <div id="statusInstruction" class="text-center mb-5 transition-all duration-300">
+          <p class="text-xs uppercase tracking-widest text-[#a87462] font-semibold mb-1">
+            CORRESPONDENCIA PRIVADA
+          </p>
+          <h1
+            id="envelopeHeading"
+            class="text-xl sm:text-2xl font-[Playfair_Display] font-semibold text-[#2c1813] flex items-center justify-center gap-1.5"
+          >
+            Tienes un correo sin abrir <span>💌</span>
+          </h1>
+          <p id="subInstruction" class="text-xs text-[#7d5041] mt-1">
+            Toca el sobre o el sello de lacre para abrir e ingresar tu clave
+          </p>
+        </div>
+
+        <!-- COMPONENTE DEL SOBRE POSTAL -->
+        <div
+          id="envelopeCard"
+          class="ambient-envelope relative w-full max-w-[380px] min-h-[295px] transition-transform duration-300"
+        >
+          <!-- Sombra suave inferior -->
+          <div
+            class="absolute inset-x-4 -bottom-4 h-8 bg-[#edd6c1]/70 blur-md rounded-full pointer-events-none"
+            aria-hidden="true"
+          ></div>
+
+          <!-- Base del sobre -->
+          <div
+            class="relative w-full min-h-[295px] bg-[#fff1e6] rounded-2xl shadow-xl border border-[#e8ceb7] overflow-visible flex flex-col justify-between"
+          >
+            <!-- Borde superior Airmail -->
+            <div class="h-2.5 w-full airmail-strip rounded-t-2xl"></div>
+
+            <!-- ESTADO 1: PORTADA DEL SOBRE CERRADO (#frontDecorative) -->
+            <div
+              id="frontDecorative"
+              role="button"
+              tabindex="0"
+              aria-label="Abrir sobre postal para escribir la contraseña secreta"
+              class="p-5 flex-1 flex flex-col justify-between cursor-pointer select-none focus-visible:ring-2 focus-visible:ring-[#e06d53] rounded-xl transition-opacity duration-300 z-10"
+            >
+              <div class="flex justify-between items-start">
+                <!-- Estampilla de corazón -->
+                <div
+                  class="bg-white p-1 rounded-xs shadow-2xs border border-[#e06d53]/30 -rotate-3 flex flex-col items-center"
+                >
+                  <div
+                    class="w-9 h-11 border border-dashed border-[#e06d53]/40 bg-[#fff5f0] flex flex-col items-center justify-center p-1"
+                  >
+                    <span class="text-[#e06d53] text-sm">♥</span>
+                    <span class="text-[8px] font-mono text-[#a87462] mt-0.5">POSTAL</span>
+                  </div>
+                </div>
+
+                <!-- Matasellos circular -->
+                <div class="rotate-6 opacity-80 mt-0.5 mr-1">
+                  <div
+                    class="border-2 border-[#a87462]/60 rounded-full w-12 h-12 flex flex-col items-center justify-center text-[7px] font-mono text-[#7d5041] leading-tight"
+                  >
+                    <span>MIX•TAPE</span>
+                    <span class="text-[9px] font-bold">PRIVADO</span>
+                    <span>FOR YOU</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Sello de lacre central (#waxSeal) -->
+              <div class="my-2 flex justify-center">
+                <div
+                  id="waxSeal"
+                  class="wax-pulse w-14 h-14 rounded-full bg-[#c84732] border-2 border-[#a63321] flex items-center justify-center shadow-lg relative hover:scale-105 transition-transform"
+                >
+                  <div
+                    class="w-10 h-10 rounded-full border border-dashed border-[#fcd5ce]/50 flex items-center justify-center"
+                  >
+                    <span class="text-white text-lg font-serif">♫</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Destinatario -->
+              <div
+                class="bg-white/75 backdrop-blur-xs p-3 rounded-lg border border-[#edd6c1] shadow-2xs mx-0.5"
+              >
+                <div class="text-[9px] tracking-widest uppercase font-semibold text-[#a87462]">
+                  Para:
+                </div>
+                <div
+                  class="font-[Caveat] text-2xl text-[#2c1813] font-bold leading-tight flex items-center justify-between"
+                >
+                  <span>Para ti ✨</span>
+                  <span
+                    class="text-[11px] font-[Plus_Jakarta_Sans] font-semibold text-[#e06d53] bg-[#fff1e6] px-2 py-0.5 rounded-full border border-[#e06d53]/30"
+                  >
+                    Confidencial
+                  </span>
+                </div>
+                <div
+                  class="text-[10px] text-[#7d5041] font-mono mt-1 border-t border-dashed border-[#edd6c1] pt-1 flex justify-between"
+                >
+                  <span>REMITENTE: DETALLE CONFIDENCIAL</span>
+                  <span>MIXTAPE</span>
+                </div>
+              </div>
+
+              <!-- Botón indicador para abrir -->
+              <div class="text-center mt-3">
+                <span
+                  class="inline-flex items-center gap-1.5 bg-[#e06d53] hover:bg-[#c84732] text-white text-xs font-semibold px-4 py-1.5 rounded-full shadow-xs transition-colors"
+                >
+                  <span>Toca para abrir el sobre</span>
+                  <span class="material-symbols-outlined text-[15px]">mail</span>
+                </span>
+              </div>
+            </div>
+
+            <!-- ESTADO 2: TARJETA INTERIOR DE ACCESO (#letterCard) -->
+            <div
+              id="letterCard"
+              class="hidden bg-white rounded-xl shadow-md border border-[#edd6c1] m-3 pt-5 px-4 pb-4 sm:px-5 flex-col justify-between letter-sheet relative z-20"
+            >
+              <!-- Cinta Washi superior centrada -->
+              <div
+                class="absolute -top-2.5 left-1/2 -translate-x-1/2 w-24 h-4 bg-[#edd6c1]/85 backdrop-blur-xs border-y border-[#d8beaa]/60 rotate-1 shadow-2xs pointer-events-none"
+                aria-hidden="true"
+              ></div>
+
+              <div class="flex-1 flex flex-col justify-between">
+                <div>
+                  <div
+                    class="flex items-center justify-between border-b border-[#f3e5d8] pb-1.5 mb-2.5"
+                  >
+                    <span
+                      class="text-[10px] uppercase tracking-wider font-bold text-[#e06d53] flex items-center gap-1.5"
+                    >
+                      <span class="w-1.5 h-1.5 rounded-full bg-[#e06d53]"></span>
+                      Acceso a la Playlist
+                    </span>
+                    <span class="font-[Caveat] text-base text-[#7d5041]">acceso limitado</span>
+                  </div>
+
+                  <p class="text-xs text-[#52332a] leading-relaxed mb-3">
+                    Ingresa tu clave secreta para verificar tu identidad y desbloquear esta carta:
+                  </p>
+
+                  <!-- Formulario de Autenticación Real -->
+                  <form id="authForm" class="space-y-3" novalidate>
+                    <div>
+                      <label
+                        for="passInput"
+                        class="block text-[10px] font-semibold uppercase tracking-wider text-[#7d5041] mb-1"
+                      >
+                        Contraseña / Clave Secreta
+                      </label>
+                      <div class="relative">
+                        <input
+                          id="passInput"
+                          name="password"
+                          type="password"
+                          required
+                          maxlength="256"
+                          autocomplete="current-password"
+                          placeholder="Escribe tu clave aquí"
+                          class="w-full bg-[#fff8f4] border border-[#e8ceb7] focus:border-[#e06d53] focus:ring-1 focus:ring-[#e06d53] text-xs rounded-lg px-3 py-2 text-[#2c1813] outline-none font-medium transition-all pr-9"
+                        />
+                        <button
+                          id="btnTogglePass"
+                          type="button"
+                          aria-label="Mostrar u ocultar contraseña"
+                          class="absolute right-2 top-1.5 p-1 text-xs text-[#a87462] hover:text-[#2c1813] cursor-pointer"
+                        >
+                          👁
+                        </button>
+                      </div>
+                    </div>
+
+                    <!-- Estado de error -->
+                    <div
+                      id="authError"
+                      role="alert"
+                      aria-live="assertive"
+                      class="text-[11px] text-rose-800 bg-rose-50 border border-rose-200 px-2.5 py-1.5 rounded-lg flex items-center gap-1.5 hidden"
+                    >
+                      <span class="font-bold">✕</span>
+                      <span id="authErrorMessage"
+                        >Debes ingresar la contraseña correcta para continuar.</span
+                      >
+                    </div>
+
+                    <!-- Estado de éxito / carga -->
+                    <div
+                      id="authFeedback"
+                      role="status"
+                      aria-live="polite"
+                      class="text-[11px] text-emerald-800 bg-emerald-50 border border-emerald-200 px-2.5 py-1.5 rounded-lg flex items-center gap-1.5 hidden"
+                    >
+                      <span>✓</span>
+                      <span id="authFeedbackText"
+                        >Acceso verificado con cariño. Desbloqueando...</span
+                      >
+                    </div>
+
+                    <!-- Botón de envío -->
+                    <button
+                      id="btnUnlock"
+                      type="submit"
+                      class="w-full mt-1 bg-[#e06d53] hover:bg-[#c84732] active:scale-[0.99] disabled:opacity-60 text-white text-xs font-semibold py-2.5 px-3 rounded-lg shadow-xs flex items-center justify-center gap-1.5 transition-all cursor-pointer"
+                    >
+                      <span id="btnUnlockText">Desbloquear y abrir carta</span>
+                      <span class="material-symbols-outlined text-[16px]">lock_open</span>
+                    </button>
+                  </form>
+                </div>
+
+                <!-- Nota al pie de la tarjeta interior -->
+                <div
+                  class="border-t border-dashed border-[#ecd5c3] pt-2 mt-3 flex justify-between items-center text-[10px] text-[#a87462]"
+                >
+                  <span>Pide una pista al remitente para acceder</span>
+                  <span class="font-[Caveat] text-base text-[#e06d53]">De mí para ti ♡</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Borde inferior Airmail -->
+            <div class="h-2.5 w-full airmail-strip rounded-b-2xl"></div>
+          </div>
+        </div>
+
+        <!-- Insignia de seguridad bajo el sobre -->
+        <div class="mt-6 flex flex-col items-center gap-1.5 z-20 text-center">
+          <div
+            class="flex items-center gap-1.5 text-xs text-[#7d5041] font-medium bg-white/70 px-3.5 py-1 rounded-full border border-[#edd6c1]/80 shadow-2xs"
+          >
+            <span class="material-symbols-outlined text-[15px] text-[#e06d53]">lock</span>
+            <span>Correspondencia protegida con sesión privada</span>
+          </div>
+        </div>
+      </main>
+
+      <!-- Pie de página de la pantalla de acceso -->
+      <footer class="w-full max-w-md pb-2 text-center text-[11px] text-[#a87462] z-10">
+        <p>Hecho con amor y música • Paper Mixtape</p>
+      </footer>
+    </div>
+
+    <!-- ======================================================================
+         VISTA 2: CONTENEDOR DINÁMICO DE LA CARTA Y MIXTAPE (Solo Autenticado)
+         ====================================================================== -->
+    <div id="mixtapeView" class="hidden min-h-screen"></div>
+
+    <script type="module" src="/src/client/main.ts"></script>
+  </body>
+</html>

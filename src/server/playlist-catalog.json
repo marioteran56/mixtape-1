@@ -1,0 +1,561 @@
+{
+  "playlistId": "0EJqoSBZPUYuKNj36TKNxt",
+  "playlistName": "Playlist #1",
+  "playlistUrl": "https://open.spotify.com/playlist/0EJqoSBZPUYuKNj36TKNxt",
+  "ownerName": "Mario Teran",
+  "syncedAt": "2026-10-22T05:09:52.495Z",
+  "tracks": [
+    {
+      "trackId": "2rYjkYQWpn66nf5Ihk7SHJ",
+      "uri": "spotify:track:2rYjkYQWpn66nf5Ihk7SHJ",
+      "title": "Ángel",
+      "artists": "Elefante",
+      "artistList": [
+        {
+          "name": "Elefante"
+        }
+      ],
+      "albumName": "",
+      "albumArtUrl": "https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e02033b8c6b300fb711d4d7b499",
+      "durationMs": 289600,
+      "durationFormatted": "4:50",
+      "spotifyUrl": "https://open.spotify.com/track/2rYjkYQWpn66nf5Ihk7SHJ",
+      "playlistOrder": 1,
+      "isAvailable": true
+    },
+    {
+      "trackId": "4WefXOf8I4gMjdj2kBJgkl",
+      "uri": "spotify:track:4WefXOf8I4gMjdj2kBJgkl",
+      "title": "Patadas de Ahogado",
+      "artists": "LATIN MAFIA, HUMBE",
+      "artistList": [
+        {
+          "name": "LATIN MAFIA"
+        },
+        {
+          "name": "HUMBE"
+        }
+      ],
+      "albumName": "",
+      "albumArtUrl": "https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e023542ee7aa1fae36968cc180b",
+      "durationMs": 224835,
+      "durationFormatted": "3:45",
+      "spotifyUrl": "https://open.spotify.com/track/4WefXOf8I4gMjdj2kBJgkl",
+      "playlistOrder": 2,
+      "isAvailable": true
+    },
+    {
+      "trackId": "7BqBn9nzAq8spo5e7cZ0dJ",
+      "uri": "spotify:track:7BqBn9nzAq8spo5e7cZ0dJ",
+      "title": "Just the Way You Are",
+      "artists": "Bruno Mars",
+      "artistList": [
+        {
+          "name": "Bruno Mars"
+        }
+      ],
+      "albumName": "",
+      "albumArtUrl": "https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e027039c1c841fc3dfa2ad8a0d8",
+      "durationMs": 220734,
+      "durationFormatted": "3:41",
+      "spotifyUrl": "https://open.spotify.com/track/7BqBn9nzAq8spo5e7cZ0dJ",
+      "playlistOrder": 3,
+      "isAvailable": true
+    },
+    {
+      "trackId": "38zsOOcu31XbbYj9BIPUF1",
+      "uri": "spotify:track:38zsOOcu31XbbYj9BIPUF1",
+      "title": "Your Song",
+      "artists": "Elton John",
+      "artistList": [
+        {
+          "name": "Elton John"
+        }
+      ],
+      "albumName": "",
+      "albumArtUrl": "https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e024b292ed7c7360a04d3d6b74a",
+      "durationMs": 241786,
+      "durationFormatted": "4:02",
+      "spotifyUrl": "https://open.spotify.com/track/38zsOOcu31XbbYj9BIPUF1",
+      "playlistOrder": 4,
+      "isAvailable": true
+    },
+    {
+      "trackId": "4YutJsNwBBInE8vemufpQ8",
+      "uri": "spotify:track:4YutJsNwBBInE8vemufpQ8",
+      "title": "Girl Crush - Recorded at Metropolis Studios, London",
+      "artists": "Harry Styles",
+      "artistList": [
+        {
+          "name": "Harry Styles"
+        }
+      ],
+      "albumName": "",
+      "albumArtUrl": "https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e02828f29c88bf2b2ac07cfd3a7",
+      "durationMs": 243804,
+      "durationFormatted": "4:04",
+      "spotifyUrl": "https://open.spotify.com/track/4YutJsNwBBInE8vemufpQ8",
+      "playlistOrder": 5,
+      "isAvailable": true
+    },
+    {
+      "trackId": "0AcFsf9FGjL1Al2RBQ1Crq",
+      "uri": "spotify:track:0AcFsf9FGjL1Al2RBQ1Crq",
+      "title": "Kilómetros",
+      "artists": "Sin Bandera",
+      "artistList": [
+        {
+          "name": "Sin Bandera"
+        }
+      ],
+      "albumName": "",
+      "albumArtUrl": "https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e02a1f3d1bb9473eb66a7b426cd",
+      "durationMs": 221560,
+      "durationFormatted": "3:42",
+      "spotifyUrl": "https://open.spotify.com/track/0AcFsf9FGjL1Al2RBQ1Crq",
+      "playlistOrder": 6,
+      "isAvailable": true
+    },
+    {
+      "trackId": "0vR9p1X1ZDbHPzVEgHfMm6",
+      "uri": "spotify:track:0vR9p1X1ZDbHPzVEgHfMm6",
+      "title": "Quién Dice",
+      "artists": "Marcos Menchaca",
+      "artistList": [
+        {
+          "name": "Marcos Menchaca"
+        }
+      ],
+      "albumName": "",
+      "albumArtUrl": "https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e0220c5b6656be429809fbcd351",
+      "durationMs": 229480,
+      "durationFormatted": "3:49",
+      "spotifyUrl": "https://open.spotify.com/track/0vR9p1X1ZDbHPzVEgHfMm6",
+      "playlistOrder": 7,
+      "isAvailable": true
+    },
+    {
+      "trackId": "1nULBrlzWatdcjA2ZctIMv",
+      "uri": "spotify:track:1nULBrlzWatdcjA2ZctIMv",
+      "title": "Labios Rotos - En Vivo Desde México / 2010",
+      "artists": "Zoé",
+      "artistList": [
+        {
+          "name": "Zoé"
+        }
+      ],
+      "albumName": "",
+      "albumArtUrl": "https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e029abba2e4a7600af6c16988a9",
+      "durationMs": 243040,
+      "durationFormatted": "4:03",
+      "spotifyUrl": "https://open.spotify.com/track/1nULBrlzWatdcjA2ZctIMv",
+      "playlistOrder": 8,
+      "isAvailable": true
+    },
+    {
+      "trackId": "0ll8uFnc0nANY35E0Lfxvg",
+      "uri": "spotify:track:0ll8uFnc0nANY35E0Lfxvg",
+      "title": "Somewhere Only We Know",
+      "artists": "Keane",
+      "artistList": [
+        {
+          "name": "Keane"
+        }
+      ],
+      "albumName": "",
+      "albumArtUrl": "https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e02045d0a38105fbe7bde43c490",
+      "durationMs": 236160,
+      "durationFormatted": "3:56",
+      "spotifyUrl": "https://open.spotify.com/track/0ll8uFnc0nANY35E0Lfxvg",
+      "playlistOrder": 9,
+      "isAvailable": true
+    },
+    {
+      "trackId": "44AyOl4qVkzS48vBsbNXaC",
+      "uri": "spotify:track:44AyOl4qVkzS48vBsbNXaC",
+      "title": "Can't Help Falling in Love",
+      "artists": "Elvis Presley",
+      "artistList": [
+        {
+          "name": "Elvis Presley"
+        }
+      ],
+      "albumName": "",
+      "albumArtUrl": "https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e02b184226408f981e3dd17c606",
+      "durationMs": 185877,
+      "durationFormatted": "3:06",
+      "spotifyUrl": "https://open.spotify.com/track/44AyOl4qVkzS48vBsbNXaC",
+      "playlistOrder": 10,
+      "isAvailable": true
+    },
+    {
+      "trackId": "2HafqoJbgXdtjwCOvNEF14",
+      "uri": "spotify:track:2HafqoJbgXdtjwCOvNEF14",
+      "title": "Si No Estás",
+      "artists": "Íñigo Quintero",
+      "artistList": [
+        {
+          "name": "Íñigo Quintero"
+        }
+      ],
+      "albumName": "",
+      "albumArtUrl": "https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e02c0a5c14b34a02f242af03359",
+      "durationMs": 184061,
+      "durationFormatted": "3:04",
+      "spotifyUrl": "https://open.spotify.com/track/2HafqoJbgXdtjwCOvNEF14",
+      "playlistOrder": 11,
+      "isAvailable": true
+    },
+    {
+      "trackId": "3G9RQLOSjsXVUDyQSv2PQR",
+      "uri": "spotify:track:3G9RQLOSjsXVUDyQSv2PQR",
+      "title": "Vivir Sin Aire",
+      "artists": "Maná",
+      "artistList": [
+        {
+          "name": "Maná"
+        }
+      ],
+      "albumName": "",
+      "albumArtUrl": "https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e0263f3b7f5abf86ad483b57b77",
+      "durationMs": 291493,
+      "durationFormatted": "4:51",
+      "spotifyUrl": "https://open.spotify.com/track/3G9RQLOSjsXVUDyQSv2PQR",
+      "playlistOrder": 12,
+      "isAvailable": true
+    },
+    {
+      "trackId": "4LfCY65LvojKjWEnU7fNN4",
+      "uri": "spotify:track:4LfCY65LvojKjWEnU7fNN4",
+      "title": "stupid song",
+      "artists": "Olivia Rodrigo",
+      "artistList": [
+        {
+          "name": "Olivia Rodrigo"
+        }
+      ],
+      "albumName": "",
+      "albumArtUrl": "https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e025cf234eeb7a2edf44bf64a46",
+      "durationMs": 209680,
+      "durationFormatted": "3:30",
+      "spotifyUrl": "https://open.spotify.com/track/4LfCY65LvojKjWEnU7fNN4",
+      "playlistOrder": 13,
+      "isAvailable": true
+    },
+    {
+      "trackId": "4lO57zZGFcj7vSY4QhfVDq",
+      "uri": "spotify:track:4lO57zZGFcj7vSY4QhfVDq",
+      "title": "She's The One",
+      "artists": "Robbie Williams",
+      "artistList": [
+        {
+          "name": "Robbie Williams"
+        }
+      ],
+      "albumName": "",
+      "albumArtUrl": "https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e02ddd516e8d9114e683c69493d",
+      "durationMs": 258026,
+      "durationFormatted": "4:18",
+      "spotifyUrl": "https://open.spotify.com/track/4lO57zZGFcj7vSY4QhfVDq",
+      "playlistOrder": 14,
+      "isAvailable": true
+    },
+    {
+      "trackId": "7y4HLPy4f0TJpmX3rqDjHH",
+      "uri": "spotify:track:7y4HLPy4f0TJpmX3rqDjHH",
+      "title": "Amarte A La Antigua",
+      "artists": "Pedro Fernández",
+      "artistList": [
+        {
+          "name": "Pedro Fernández"
+        }
+      ],
+      "albumName": "",
+      "albumArtUrl": "https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e02329aefb12d0657a9cc5c5984",
+      "durationMs": 218533,
+      "durationFormatted": "3:39",
+      "spotifyUrl": "https://open.spotify.com/track/7y4HLPy4f0TJpmX3rqDjHH",
+      "playlistOrder": 15,
+      "isAvailable": true
+    },
+    {
+      "trackId": "5YVmHTAsdWnoanWXB7AwZX",
+      "uri": "spotify:track:5YVmHTAsdWnoanWXB7AwZX",
+      "title": "like my father",
+      "artists": "Jax",
+      "artistList": [
+        {
+          "name": "Jax"
+        }
+      ],
+      "albumName": "",
+      "albumArtUrl": "https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e02efa3cbe349ba5c09046c7b52",
+      "durationMs": 183133,
+      "durationFormatted": "3:03",
+      "spotifyUrl": "https://open.spotify.com/track/5YVmHTAsdWnoanWXB7AwZX",
+      "playlistOrder": 16,
+      "isAvailable": true
+    },
+    {
+      "trackId": "1qBdJHxR2qY0dFad0ZI8sj",
+      "uri": "spotify:track:1qBdJHxR2qY0dFad0ZI8sj",
+      "title": "Vámonos a Marte",
+      "artists": "Kevin Kaarl",
+      "artistList": [
+        {
+          "name": "Kevin Kaarl"
+        }
+      ],
+      "albumName": "",
+      "albumArtUrl": "https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e028263f65e6d0efe2083e417b0",
+      "durationMs": 179096,
+      "durationFormatted": "2:59",
+      "spotifyUrl": "https://open.spotify.com/track/1qBdJHxR2qY0dFad0ZI8sj",
+      "playlistOrder": 17,
+      "isAvailable": true
+    },
+    {
+      "trackId": "4yEJ1SNpgfK5GPx3Y0YhIU",
+      "uri": "spotify:track:4yEJ1SNpgfK5GPx3Y0YhIU",
+      "title": "Motivos",
+      "artists": "Luis Miguel",
+      "artistList": [
+        {
+          "name": "Luis Miguel"
+        }
+      ],
+      "albumName": "",
+      "albumArtUrl": "https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e02d7d95fdd960f6d2ec2370ae2",
+      "durationMs": 212440,
+      "durationFormatted": "3:32",
+      "spotifyUrl": "https://open.spotify.com/track/4yEJ1SNpgfK5GPx3Y0YhIU",
+      "playlistOrder": 18,
+      "isAvailable": true
+    },
+    {
+      "trackId": "1dGr1c8CrMLDpV6mPbImSI",
+      "uri": "spotify:track:1dGr1c8CrMLDpV6mPbImSI",
+      "title": "Lover",
+      "artists": "Taylor Swift",
+      "artistList": [
+        {
+          "name": "Taylor Swift"
+        }
+      ],
+      "albumName": "",
+      "albumArtUrl": "https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e02e787cffec20aa2a396a61647",
+      "durationMs": 221306,
+      "durationFormatted": "3:41",
+      "spotifyUrl": "https://open.spotify.com/track/1dGr1c8CrMLDpV6mPbImSI",
+      "playlistOrder": 19,
+      "isAvailable": true
+    },
+    {
+      "trackId": "7D0RhFcb3CrfPuTJ0obrod",
+      "uri": "spotify:track:7D0RhFcb3CrfPuTJ0obrod",
+      "title": "Sparks",
+      "artists": "Coldplay",
+      "artistList": [
+        {
+          "name": "Coldplay"
+        }
+      ],
+      "albumName": "",
+      "albumArtUrl": "https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e029164bafe9aaa168d93f4816a",
+      "durationMs": 227093,
+      "durationFormatted": "3:47",
+      "spotifyUrl": "https://open.spotify.com/track/7D0RhFcb3CrfPuTJ0obrod",
+      "playlistOrder": 20,
+      "isAvailable": true
+    },
+    {
+      "trackId": "05iMQqncVBIm4AE26EvaTL",
+      "uri": "spotify:track:05iMQqncVBIm4AE26EvaTL",
+      "title": "Andar Conmigo",
+      "artists": "Julieta Venegas",
+      "artistList": [
+        {
+          "name": "Julieta Venegas"
+        }
+      ],
+      "albumName": "",
+      "albumArtUrl": "https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e02c0071a27b79e46c09eef7caa",
+      "durationMs": 193373,
+      "durationFormatted": "3:13",
+      "spotifyUrl": "https://open.spotify.com/track/05iMQqncVBIm4AE26EvaTL",
+      "playlistOrder": 21,
+      "isAvailable": true
+    },
+    {
+      "trackId": "5qlJg0Wbj3sslxfwiaRNpq",
+      "uri": "spotify:track:5qlJg0Wbj3sslxfwiaRNpq",
+      "title": "I Don't Want To Miss A Thing - From \"Armageddon\" Soundtrack",
+      "artists": "Aerosmith",
+      "artistList": [
+        {
+          "name": "Aerosmith"
+        }
+      ],
+      "albumName": "",
+      "albumArtUrl": "https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e02f039d2a6afcfab0827bb9bc0",
+      "durationMs": 299723,
+      "durationFormatted": "5:00",
+      "spotifyUrl": "https://open.spotify.com/track/5qlJg0Wbj3sslxfwiaRNpq",
+      "playlistOrder": 22,
+      "isAvailable": true
+    },
+    {
+      "trackId": "3IPJg1sdqLj12kFIndaonN",
+      "uri": "spotify:track:3IPJg1sdqLj12kFIndaonN",
+      "title": "No Hay Nadie Más",
+      "artists": "Sebastian Yatra",
+      "artistList": [
+        {
+          "name": "Sebastian Yatra"
+        }
+      ],
+      "albumName": "",
+      "albumArtUrl": "https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e02a04e5df68ea4c891a4252c7e",
+      "durationMs": 199733,
+      "durationFormatted": "3:20",
+      "spotifyUrl": "https://open.spotify.com/track/3IPJg1sdqLj12kFIndaonN",
+      "playlistOrder": 23,
+      "isAvailable": true
+    },
+    {
+      "trackId": "7nE9H4e4uPOis5sJY39fOc",
+      "uri": "spotify:track:7nE9H4e4uPOis5sJY39fOc",
+      "title": "Volare",
+      "artists": "Danny Ocean",
+      "artistList": [
+        {
+          "name": "Danny Ocean"
+        }
+      ],
+      "albumName": "",
+      "albumArtUrl": "https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e02219973bcf027114a95e7996b",
+      "durationMs": 147598,
+      "durationFormatted": "2:28",
+      "spotifyUrl": "https://open.spotify.com/track/7nE9H4e4uPOis5sJY39fOc",
+      "playlistOrder": 24,
+      "isAvailable": true
+    },
+    {
+      "trackId": "3zNcn4BaVfKORyx3uDfruW",
+      "uri": "spotify:track:3zNcn4BaVfKORyx3uDfruW",
+      "title": "Aprender A Quererte",
+      "artists": "Morat",
+      "artistList": [
+        {
+          "name": "Morat"
+        }
+      ],
+      "albumName": "",
+      "albumArtUrl": "https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e020c929d54495f38b910f48643",
+      "durationMs": 229213,
+      "durationFormatted": "3:49",
+      "spotifyUrl": "https://open.spotify.com/track/3zNcn4BaVfKORyx3uDfruW",
+      "playlistOrder": 25,
+      "isAvailable": true
+    },
+    {
+      "trackId": "5QSYWruQQ7kBCHScI4xJ9g",
+      "uri": "spotify:track:5QSYWruQQ7kBCHScI4xJ9g",
+      "title": "Bajo El Agua",
+      "artists": "Manuel Medrano",
+      "artistList": [
+        {
+          "name": "Manuel Medrano"
+        }
+      ],
+      "albumName": "",
+      "albumArtUrl": "https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e028195fefecfd1ba1918971352",
+      "durationMs": 225838,
+      "durationFormatted": "3:46",
+      "spotifyUrl": "https://open.spotify.com/track/5QSYWruQQ7kBCHScI4xJ9g",
+      "playlistOrder": 26,
+      "isAvailable": true
+    },
+    {
+      "trackId": "2h0iSG7htO0V4IvuwbTBf3",
+      "uri": "spotify:track:2h0iSG7htO0V4IvuwbTBf3",
+      "title": "Entra en Mi Vida",
+      "artists": "Sin Bandera",
+      "artistList": [
+        {
+          "name": "Sin Bandera"
+        }
+      ],
+      "albumName": "",
+      "albumArtUrl": "https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e02a1f3d1bb9473eb66a7b426cd",
+      "durationMs": 248760,
+      "durationFormatted": "4:09",
+      "spotifyUrl": "https://open.spotify.com/track/2h0iSG7htO0V4IvuwbTBf3",
+      "playlistOrder": 27,
+      "isAvailable": true
+    },
+    {
+      "trackId": "4go2M6us50x9TQ1NvsB4vt",
+      "uri": "spotify:track:4go2M6us50x9TQ1NvsB4vt",
+      "title": "Aqui Estoy Yo",
+      "artists": "Luis Fonsi, Aleks Syntek, Noel Schajris, David Bisbal",
+      "artistList": [
+        {
+          "name": "Luis Fonsi"
+        },
+        {
+          "name": "Aleks Syntek"
+        },
+        {
+          "name": "Noel Schajris"
+        },
+        {
+          "name": "David Bisbal"
+        }
+      ],
+      "albumName": "",
+      "albumArtUrl": "https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e02103c561a93cff10ff32903a1",
+      "durationMs": 251520,
+      "durationFormatted": "4:12",
+      "spotifyUrl": "https://open.spotify.com/track/4go2M6us50x9TQ1NvsB4vt",
+      "playlistOrder": 28,
+      "isAvailable": true
+    },
+    {
+      "trackId": "4YjjNHtEsTX6Af4mCTupT5",
+      "uri": "spotify:track:4YjjNHtEsTX6Af4mCTupT5",
+      "title": "Bless The Broken Road",
+      "artists": "Rascal Flatts",
+      "artistList": [
+        {
+          "name": "Rascal Flatts"
+        }
+      ],
+      "albumName": "",
+      "albumArtUrl": "https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e02d1ca2ddde8ff17e3991de83d",
+      "durationMs": 226680,
+      "durationFormatted": "3:47",
+      "spotifyUrl": "https://open.spotify.com/track/4YjjNHtEsTX6Af4mCTupT5",
+      "playlistOrder": 29,
+      "isAvailable": true
+    },
+    {
+      "trackId": "28Ct4qwkQXY2W5yyNCLuVI",
+      "uri": "spotify:track:28Ct4qwkQXY2W5yyNCLuVI",
+      "title": "Coleccionista de Canciones",
+      "artists": "Camila",
+      "artistList": [
+        {
+          "name": "Camila"
+        }
+      ],
+      "albumName": "",
+      "albumArtUrl": "https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e027e0721f90f91d37de250788f",
+      "durationMs": 306986,
+      "durationFormatted": "5:07",
+      "spotifyUrl": "https://open.spotify.com/track/28Ct4qwkQXY2W5yyNCLuVI",
+      "playlistOrder": 30,
+      "isAvailable": true
+    }
+  ]
+}

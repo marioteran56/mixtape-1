@@ -1,0 +1,14 @@
+# ============================================================================
+# Variables de entorno para Cloudflare Pages Functions (Wrangler local)
+# Copia este archivo a `.dev.vars` para usar con `npx wrangler pages dev`.
+# NUNCA versiones `.dev.vars` con secretos reales.
+# ============================================================================
+
+SITE_PASSWORD=cambia-esta-clave-secreta
+SESSION_SECRET=reemplaza-con-una-cadena-aleatoria-de-al-menos-32-caracteres-seguros
+SPOTIFY_CLIENT_ID=tu_spotify_client_id_aqui
+SPOTIFY_CLIENT_SECRET=tu_spotify_client_secret_aqui
+SPOTIFY_PLAYLIST_ID=0EJqoSBZPUYuKNj36TKNxt
+SPOTIFY_MARKET=MX
+SPOTIFY_REFRESH_TOKEN=
+ALLOW_DEMO_FIXTURE=true

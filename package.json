@@ -1,0 +1,27 @@
+{
+  "name": "playlist-romantica-interactiva",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Carta digital privada y mixtape interactivo basado en el sistema de diseño Paper Mixtape de Google Stitch y Spotify Web API",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "sync:playlist": "node scripts/sync-playlist.ts",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "pages:dev": "npm run build && npx wrangler pages dev dist",
+    "pages:deploy": "npm run build && npx wrangler pages deploy dist",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
+    "lint": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.4",
+    "@types/node": "^22.14.0",
+    "tailwindcss": "^4.1.4",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.2",
+    "vitest": "^3.1.2"
+  }
+}
