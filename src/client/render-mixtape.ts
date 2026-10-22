@@ -373,7 +373,7 @@ function renderCassetteCard(item: MergedTrackItem): string {
             ${escapeHtml(editorial.washiLabel || 'C-60 HIGH FIDELITY')}
           </span>
           <span class="font-[Plus_Jakarta_Sans] text-[10px] font-bold text-primary-fixed uppercase tracking-widest">
-            SIDE ${escapeHtml(editorial.side)} • ${escapeHtml(spotify.durationFormatted)}
+            PISTA #${item.displayNumber.toString().padStart(2, '0')} • ${escapeHtml(spotify.durationFormatted)}
           </span>
         </div>
 
@@ -636,6 +636,392 @@ function renderDoublePolaroidCard(item: MergedTrackItem): string {
 }
 
 /**
+ * PLANTILLA 6: `postcard` ("Tarjeta Postal Aérea con Estampilla y Matasellos")
+ */
+function renderPostcardCard(item: MergedTrackItem): string {
+  const { spotify, editorial } = item;
+  const noteText =
+    editorial.dedication ||
+    editorial.quote ||
+    'Enviada como una postal musical especialmente para ti.';
+
+  return `
+    <article
+      data-template="postcard"
+      data-category="recuerdos notas"
+      data-track-id="${escapeHtml(item.trackId)}"
+      class="relative mt-2 bg-[#fffdf8] rounded-xl shadow-[0_8px_20px_-3px_rgba(87,72,56,0.12)] overflow-hidden border border-[#ddc0ba]"
+    >
+      <!-- Franja superior Airmail -->
+      <div class="airmail-strip h-1.5 w-full"></div>
+
+      <div class="p-4 sm:p-5">
+        <!-- Encabezado de Postal con Sello y Matasellos -->
+        <div class="flex items-center justify-between gap-2 pb-3 mb-3.5 border-b border-dashed border-[#edd6c1]">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary text-[16px]">local_post_office</span>
+            <span class="font-[Plus_Jakarta_Sans] text-[10px] font-bold uppercase tracking-widest text-primary">
+              ${escapeHtml(editorial.washiLabel || `Postal Musical • #${item.displayNumber.toString().padStart(2, '0')}`)}
+            </span>
+          </div>
+          <span class="bg-surface-container-low text-on-surface-variant font-[Plus_Jakarta_Sans] text-[10px] font-bold px-2.5 py-0.5 rounded-full border border-[#edd6c1]">
+            #${item.displayNumber.toString().padStart(2, '0')} • ${escapeHtml(spotify.durationFormatted)}
+          </span>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-4 items-center sm:items-start">
+          <!-- Estampa con Portada 1:1 -->
+          <div class="w-36 shrink-0 bg-surface-container-low p-2 rounded-md border border-dashed border-[#ddc0ba] shadow-2xs flex flex-col items-center gap-1.5">
+            ${renderUncroppedAlbumArt(item)}
+            <span class="font-[Caveat] text-[14px] text-[#7d5041] font-bold">
+              ${escapeHtml(editorial.memoryTag || 'Correo especial')}
+            </span>
+          </div>
+
+          <!-- Cuerpo de la Postal -->
+          <div class="flex-1 min-w-0 w-full sm:border-l sm:border-dashed sm:border-[#edd6c1] sm:pl-4">
+            <h3 class="font-[Epilogue] text-[18px] font-semibold text-on-surface leading-snug">
+              <a href="${escapeHtml(spotify.spotifyUrl)}" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors">
+                ${escapeHtml(spotify.title)}
+              </a>
+            </h3>
+            <p class="font-[Literata] text-[12px] text-on-surface-variant italic">
+              ${escapeHtml(spotify.artists)}
+            </p>
+            ${renderStatusBadges(item)}
+
+            ${
+              editorial.quote
+                ? `<p class="mt-2 font-[Literata] text-[12px] text-secondary font-medium italic bg-secondary-fixed/30 px-2.5 py-1.5 rounded-md border-l-2 border-secondary">
+                    ${escapeHtml(editorial.quote)}
+                  </p>`
+                : ''
+            }
+
+            <div class="mt-2.5">
+              <span class="font-[Plus_Jakarta_Sans] text-[10px] font-bold uppercase text-primary tracking-wider block mb-0.5">
+                ${escapeHtml(editorial.noteTitle || 'MENSAJE POSTAL')}
+              </span>
+              <p class="font-[Literata] text-[13px] text-on-surface italic leading-relaxed">
+                ${escapeHtml(noteText)}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-3.5 pt-2.5 border-t border-[#edd6c1]/70 flex flex-wrap items-center justify-between gap-2">
+          <span class="font-[Plus_Jakarta_Sans] text-[11px] font-semibold text-outline inline-flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-[14px] text-primary">verified</span>
+            <span>${escapeHtml(editorial.footerTag || 'Envío certificado')}</span>
+          </span>
+          <a
+            class="bg-surface-container-high hover:bg-surface-container-highest text-on-surface px-3.5 py-1.5 rounded-full font-[Plus_Jakarta_Sans] text-[11px] font-bold inline-flex items-center gap-1.5 transition-colors shadow-2xs"
+            href="${escapeHtml(spotify.spotifyUrl)}"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            ${spotifyLogoSvg('w-3.5 h-3.5 text-[#1DB954]')}
+            <span>Escuchar en Spotify</span>
+          </a>
+        </div>
+      </div>
+    </article>
+  `;
+}
+
+/**
+ * PLANTILLA 7: `vinyl-sleeve` ("Funda de Disco de Vinilo con Disco Giratorio Asomando")
+ */
+function renderVinylSleeveCard(item: MergedTrackItem): string {
+  const { spotify, editorial } = item;
+  const noteText =
+    editorial.dedication ||
+    editorial.quote ||
+    'Edición en vinilo seleccionada especialmente para esta lista.';
+
+  return `
+    <article
+      data-template="vinyl-sleeve"
+      data-category="mixtape recuerdos"
+      data-track-id="${escapeHtml(item.trackId)}"
+      class="relative mt-2 bg-surface-container pt-6 px-4 pb-4 sm:px-5 sm:pb-5 rounded-xl shadow-[0_8px_20px_-3px_rgba(87,72,56,0.12)] border border-[#ddc0ba]"
+    >
+      <!-- Washi Tape Superior -->
+      <div class="absolute -top-2.5 left-8 px-3 h-5 bg-tertiary-fixed/90 -rotate-1 rounded-[2px] shadow-2xs z-10 flex items-center justify-center pointer-events-none">
+        <span class="font-[Plus_Jakarta_Sans] text-[9px] font-bold uppercase tracking-wider text-on-tertiary-fixed">
+          ${escapeHtml(editorial.washiLabel || `Edición Vinilo • #${item.displayNumber.toString().padStart(2, '0')}`)}
+        </span>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-4 items-center sm:items-start">
+        <!-- Funda 1:1 con Vinilo Giratorio Asomando -->
+        <div class="flex items-center shrink-0 pr-2">
+          <div class="w-32 h-32 bg-surface-container-lowest p-1.5 rounded-md shadow-md z-10 border border-[#edd6c1]">
+            ${renderUncroppedAlbumArt(item)}
+          </div>
+          <div class="-ml-7 z-0">
+            ${renderSpinningVinylDisc('w-24 h-24', '#9e3c26')}
+          </div>
+        </div>
+
+        <!-- Ficha de Estudio / Dedicatoria -->
+        <div class="flex-1 min-w-0 w-full">
+          <div class="flex items-center justify-between gap-2">
+            <span class="font-[Plus_Jakarta_Sans] text-[10px] font-bold uppercase tracking-wider text-primary">
+              #${item.displayNumber.toString().padStart(2, '0')} • ${escapeHtml(editorial.memoryTag || '45 RPM Stereo')}
+            </span>
+            <span class="font-[Plus_Jakarta_Sans] text-[11px] font-bold text-outline">
+              ${escapeHtml(spotify.durationFormatted)}
+            </span>
+          </div>
+
+          <h3 class="font-[Epilogue] text-[18px] font-semibold text-on-surface mt-0.5 leading-snug">
+            <a href="${escapeHtml(spotify.spotifyUrl)}" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors">
+              ${escapeHtml(spotify.title)}
+            </a>
+          </h3>
+          <p class="font-[Literata] text-[12px] text-on-surface-variant italic">
+            ${escapeHtml(spotify.artists)}
+          </p>
+          ${renderStatusBadges(item)}
+
+          ${
+            editorial.quote
+              ? `<p class="mt-2 font-[Literata] text-[12px] text-secondary italic">
+                  ${escapeHtml(editorial.quote)}
+                </p>`
+              : ''
+          }
+
+          <div class="mt-2.5 bg-surface-container-lowest/90 p-3 rounded-lg border border-[#edd6c1] shadow-2xs">
+            <span class="font-[Plus_Jakarta_Sans] text-[10px] font-bold uppercase text-primary tracking-wider block mb-0.5">
+              ${escapeHtml(editorial.noteTitle || 'NOTA DE EDICIÓN')}
+            </span>
+            <p class="font-[Literata] text-[13px] text-on-surface italic leading-relaxed">
+              ${escapeHtml(noteText)}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-3.5 pt-2.5 border-t border-[#ddc0ba]/60 flex flex-wrap items-center justify-between gap-2">
+        <span class="font-[Plus_Jakarta_Sans] text-[11px] font-bold text-on-surface-variant inline-flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-[15px] text-primary">album</span>
+          <span>${escapeHtml(editorial.footerTag || 'Vinilo de colección')}</span>
+        </span>
+        <a
+          class="bg-primary hover:bg-primary-container text-on-primary px-3.5 py-1.5 rounded-full font-[Plus_Jakarta_Sans] text-[11px] font-bold inline-flex items-center gap-1.5 shadow-2xs transition-colors"
+          href="${escapeHtml(spotify.spotifyUrl)}"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          ${spotifyLogoSvg('w-3.5 h-3.5')}
+          <span>Escuchar en Spotify</span>
+        </a>
+      </div>
+    </article>
+  `;
+}
+
+/**
+ * PLANTILLA 8: `honorable-mention` ("Tarjeta de Mención Honorífica — Canciones #15 y #16")
+ */
+function renderHonorableMentionCard(item: MergedTrackItem): string {
+  const { spotify, editorial } = item;
+  const reasonText =
+    editorial.dedication ||
+    'Canción con mención honorífica especial dentro de esta carta.';
+
+  return `
+    <article
+      data-template="honorable-mention"
+      data-category="recuerdos notas"
+      data-track-id="${escapeHtml(item.trackId)}"
+      class="relative bg-[#fffaf0] pt-6 px-4 pb-4 sm:px-5 sm:pb-5 rounded-xl shadow-[0_8px_22px_-4px_rgba(158,60,38,0.14)] border-2 border-[#e5c489]"
+    >
+      <!-- Cinta dorada / ámbar de Mención Honorífica -->
+      <div class="absolute -top-3 left-5 px-3.5 h-6 bg-[#f7dfa8] text-[#5c3d08] border border-[#dfc07b] -rotate-1 rounded-[3px] shadow-2xs z-10 flex items-center gap-1.5 pointer-events-none">
+        <span class="material-symbols-outlined text-[13px]" style="font-size: 13px; font-variation-settings: 'FILL' 1;">workspace_premium</span>
+        <span class="font-[Plus_Jakarta_Sans] text-[10px] font-bold uppercase tracking-wider">
+          ${escapeHtml(editorial.washiLabel || `Mención Honorífica • #${item.displayNumber}`)}
+        </span>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-4 items-center sm:items-start">
+        <!-- Portada 1:1 sin recortar con sello de pista -->
+        <div class="w-32 sm:w-36 shrink-0 bg-surface-container-lowest p-2 rounded-lg shadow-sm border border-[#e5c489] flex flex-col items-center gap-2">
+          ${renderUncroppedAlbumArt(item)}
+          <div class="w-full flex items-center justify-between px-1">
+            <span class="font-[Plus_Jakarta_Sans] text-[10px] font-bold text-[#7a5210] uppercase">
+              Pista #${item.displayNumber}
+            </span>
+            <span class="font-[Plus_Jakarta_Sans] text-[10px] font-semibold text-outline">
+              ${escapeHtml(spotify.durationFormatted)}
+            </span>
+          </div>
+        </div>
+
+        <!-- Información y espacio dedicado para explicar por qué es Mención Honorífica -->
+        <div class="flex-1 min-w-0 w-full">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <span class="bg-[#faecc8] text-[#694506] font-[Plus_Jakarta_Sans] text-[10px] font-bold px-2.5 py-0.5 rounded-full border border-[#e5c489]">
+              ${escapeHtml(editorial.memoryTag || 'Mención Especial')}
+            </span>
+          </div>
+
+          <h3 class="font-[Epilogue] text-[18px] font-semibold text-on-surface mt-1 leading-snug">
+            <a href="${escapeHtml(spotify.spotifyUrl)}" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors">
+              ${escapeHtml(spotify.title)}
+            </a>
+          </h3>
+          <p class="font-[Literata] text-[12px] text-on-surface-variant italic">
+            ${escapeHtml(spotify.artists)}
+          </p>
+          ${renderStatusBadges(item)}
+
+          ${
+            editorial.quote
+              ? `<blockquote class="mt-2.5 pl-3 py-1 pr-2 bg-surface-container-lowest/90 border-l-3 border-[#d49a35] rounded-r-md">
+                  <p class="font-[Literata] text-[12px] text-[#694506] italic">
+                    ${escapeHtml(editorial.quote)}
+                  </p>
+                </blockquote>`
+              : ''
+          }
+
+          <!-- Espacio dedicado para decir por qué es Mención Honorífica -->
+          <div class="mt-2.5 bg-surface-container-lowest p-3.5 rounded-lg border border-[#e5c489]/90 shadow-2xs">
+            <p class="font-[Plus_Jakarta_Sans] text-[10px] font-bold uppercase tracking-wider text-[#8c5a08] mb-1 flex items-center gap-1">
+              <span class="material-symbols-outlined text-[13px]" style="font-size: 13px;">stars</span>
+              <span>${escapeHtml(editorial.noteTitle || '¿Por qué es mención honorífica?')}</span>
+            </p>
+            <p class="font-[Literata] text-[13px] text-on-surface italic leading-relaxed">
+              ${escapeHtml(reasonText)}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-3.5 pt-2.5 border-t border-dashed border-[#e5c489] flex flex-wrap items-center justify-between gap-2">
+        <span class="font-[Plus_Jakarta_Sans] text-[11px] font-bold text-[#7a5210]">
+          ${escapeHtml(editorial.footerTag || `Mención Honorífica • Pista #${item.displayNumber}`)}
+        </span>
+        <a
+          class="bg-[#8c5a08] hover:bg-[#6e4605] text-white px-3.5 py-1.5 rounded-full font-[Plus_Jakarta_Sans] text-[11px] font-bold inline-flex items-center gap-1.5 shadow-2xs transition-colors"
+          href="${escapeHtml(spotify.spotifyUrl)}"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          ${spotifyLogoSvg('w-3.5 h-3.5')}
+          <span>Escuchar en Spotify</span>
+        </a>
+      </div>
+    </article>
+  `;
+}
+
+/**
+ * PLANTILLA 9: `collector` ("Certificado / Chiste Final — Camila, Coleccionista de Canciones")
+ */
+function renderCollectorCard(item: MergedTrackItem): string {
+  const { spotify, editorial } = item;
+  const jokeText =
+    editorial.dedication ||
+    'Referencia obligatoria al final de la playlist.';
+
+  return `
+    <article
+      data-template="collector"
+      data-category="mixtape notas"
+      data-track-id="${escapeHtml(item.trackId)}"
+      class="relative mt-3 bg-gradient-to-br from-[#fff9ee] via-[#fff2e2] to-[#ffe6d4] pt-7 px-4 pb-5 sm:px-6 rounded-2xl shadow-[0_10px_26px_-4px_rgba(158,60,38,0.18)] border-2 border-dashed border-[#e06d53]"
+    >
+      <!-- Washi Tape Superior de Bonus / Chiste -->
+      <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-4 h-6 bg-secondary-fixed text-on-secondary-fixed rotate-1 rounded-[3px] shadow-xs z-10 flex items-center gap-1.5 pointer-events-none border border-[#ffafd3]">
+        <span class="font-[Plus_Jakarta_Sans] text-[10px] font-bold uppercase tracking-wider whitespace-nowrap">
+          ${escapeHtml(editorial.washiLabel || 'Pista #30 • El Chiste Final 😂')}
+        </span>
+      </div>
+
+      <!-- Encabezado tipo Certificado de Coleccionista -->
+      <div class="flex flex-wrap items-center justify-between gap-2 pb-3 mb-4 border-b border-[#edd6c1]">
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary text-[18px]" style="font-variation-settings: 'FILL' 1;">emoji_events</span>
+          <span class="font-[Plus_Jakarta_Sans] text-[11px] font-bold uppercase tracking-wider text-primary">
+            ${escapeHtml(editorial.memoryTag || 'Logro desbloqueado al llegar a la pista #30')}
+          </span>
+        </div>
+        <span class="bg-surface-container-lowest text-on-surface font-[Plus_Jakarta_Sans] text-[10px] font-bold px-2.5 py-0.5 rounded-full border border-[#ddc0ba]">
+          Pista Final #${item.displayNumber} • ${escapeHtml(spotify.durationFormatted)}
+        </span>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-4 items-center sm:items-start">
+        <!-- Portada 1:1 de Camila + Vinilo Giratorio -->
+        <div class="w-36 shrink-0 bg-surface-container-lowest p-2.5 rounded-xl shadow-md -rotate-1 border border-[#edd6c1] flex flex-col items-center gap-2">
+          ${renderUncroppedAlbumArt(item)}
+          <div class="flex items-center gap-1.5">
+            ${renderSpinningVinylDisc('w-5 h-5', '#a43073')}
+            <span class="font-[Caveat] text-[15px] font-bold text-secondary">
+              ¡30 de 30 canciones!
+            </span>
+          </div>
+        </div>
+
+        <!-- Explicación del chiste malo -->
+        <div class="flex-1 min-w-0 w-full">
+          <h3 class="font-[Epilogue] text-[19px] font-bold text-on-surface leading-snug">
+            <a href="${escapeHtml(spotify.spotifyUrl)}" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors">
+              ${escapeHtml(spotify.title)}
+            </a>
+          </h3>
+          <p class="font-[Literata] text-[13px] text-secondary font-semibold italic">
+            ${escapeHtml(spotify.artists)}
+          </p>
+          ${renderStatusBadges(item)}
+
+          ${
+            editorial.quote
+              ? `<div class="mt-2.5 bg-surface-container-lowest/90 px-3 py-2 rounded-lg border border-[#edd6c1] shadow-2xs">
+                  <p class="font-[Literata] text-[12px] text-on-surface font-medium italic">
+                    ${escapeHtml(editorial.quote)}
+                  </p>
+                </div>`
+              : ''
+          }
+
+          <div class="mt-2.5 bg-[#fef9dc] p-3.5 rounded-xl border border-[#e6d79c] shadow-2xs lined-note-bg">
+            <p class="font-[Plus_Jakarta_Sans] text-[10px] font-bold uppercase tracking-wider text-primary mb-1 flex items-center gap-1">
+              <span class="material-symbols-outlined text-[13px]" style="font-size: 13px;">sentiment_very_satisfied</span>
+              <span>${escapeHtml(editorial.noteTitle || 'REFERENCIA FINAL')}</span>
+            </p>
+            <p class="font-[Literata] text-[13px] text-on-surface italic leading-relaxed">
+              ${escapeHtml(jokeText)}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-4 pt-3 border-t border-[#edd6c1] flex flex-wrap items-center justify-between gap-2">
+        <span class="font-[Plus_Jakarta_Sans] text-[11px] font-bold text-secondary inline-flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+          <span>${escapeHtml(editorial.footerTag || 'Coleccionista Oficial de Canciones')}</span>
+        </span>
+        <a
+          class="bg-primary hover:bg-primary-container text-on-primary px-4 py-1.5 rounded-full font-[Plus_Jakarta_Sans] text-[11px] font-bold inline-flex items-center gap-1.5 shadow-2xs transition-colors"
+          href="${escapeHtml(spotify.spotifyUrl)}"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          ${spotifyLogoSvg('w-3.5 h-3.5')}
+          <span>Escuchar en Spotify</span>
+        </a>
+      </div>
+    </article>
+  `;
+}
+
+/**
  * PLANTILLA 6 DE STITCH: `minimal` ("La Canción Bonus Secreta" y Canciones de la Playlist)
  * Respaldada por Track 6 en `5883e91f37bb4aabaf7a59ffae1247d7`
  */
@@ -736,6 +1122,14 @@ export function renderTrackCard(item: MergedTrackItem): string {
       return renderTicketCard(item);
     case 'double-polaroid':
       return renderDoublePolaroidCard(item);
+    case 'postcard':
+      return renderPostcardCard(item);
+    case 'vinyl-sleeve':
+      return renderVinylSleeveCard(item);
+    case 'honorable-mention':
+      return renderHonorableMentionCard(item);
+    case 'collector':
+      return renderCollectorCard(item);
     case 'minimal':
     default:
       return renderMinimalCard(item);
@@ -772,8 +1166,15 @@ export function renderMixtapeScrapbook(
 ): string {
   const { letter, playlistStatus, tracks, removedConfiguredTracks } = data;
 
-  const sideATracks = tracks.filter((t) => t.editorial.side === 'A');
-  const sideBTracks = tracks.filter((t) => t.editorial.side === 'B');
+  const firstPartTracks = tracks.filter(
+    (t) => t.editorial.side === 'A' && t.resolvedTemplate !== 'honorable-mention'
+  );
+  const honorableMentionTracks = tracks.filter(
+    (t) => t.resolvedTemplate === 'honorable-mention'
+  );
+  const secondPartTracks = tracks.filter(
+    (t) => t.editorial.side === 'B' && t.resolvedTemplate !== 'honorable-mention'
+  );
 
   const emptyPlaylistHtml =
     tracks.length === 0
@@ -796,10 +1197,10 @@ export function renderMixtapeScrapbook(
       <div class="max-w-xl mx-auto h-14 px-4 sm:px-6 flex items-center justify-between relative">
         <!-- Identificador de la carta a la izquierda (Estilo cinta Washi) -->
         <div class="flex items-center gap-2.5 min-w-0">
-          <div class="bg-secondary-fixed/85 px-2.5 py-0.5 -rotate-1 rounded-[2px] shadow-[0_1px_2px_rgba(87,66,61,0.14)] inline-flex items-center gap-1.5 shrink-0">
-            <span class="material-symbols-outlined text-secondary text-[13px]" style="font-size: 13px; font-variation-settings: 'FILL' 1;">favorite</span>
-            <span class="font-[Plus_Jakarta_Sans] text-[10px] font-bold uppercase text-on-secondary-fixed tracking-widest">
-              Para ti · mixtape
+          <div class="bg-secondary-fixed/85 px-3.5 py-1 -rotate-1 rounded-[2px] shadow-[0_1px_2px_rgba(87,66,61,0.14)] inline-flex items-center gap-1.5 shrink-0">
+            <span class="material-symbols-outlined text-secondary text-[14px]" style="font-size: 14px; font-variation-settings: 'FILL' 1;">favorite</span>
+            <span class="font-[Plus_Jakarta_Sans] text-[12px] sm:text-[13px] font-bold uppercase text-on-secondary-fixed tracking-wider">
+              Para ti
             </span>
           </div>
         </div>
@@ -906,9 +1307,9 @@ export function renderMixtapeScrapbook(
 
         ${emptyPlaylistHtml}
 
-        <!-- 2. SECCIÓN DE PISTAS: LADO A -->
+        <!-- 2. PRIMERA SECCIÓN DE CANCIONES (#01 a #14) -->
         ${
-          sideATracks.length > 0
+          firstPartTracks.length > 0
             ? `
               <div id="section-mixtape" class="scroll-mt-18 flex items-center justify-center gap-3 my-1">
                 <div class="h-[1px] w-12 bg-outline-variant"></div>
@@ -918,25 +1319,47 @@ export function renderMixtapeScrapbook(
                 <div class="h-[1px] w-12 bg-outline-variant"></div>
               </div>
               <div class="flex flex-col gap-6">
-                ${sideATracks.map((track) => renderTrackCard(track)).join('')}
+                ${firstPartTracks.map((track) => renderTrackCard(track)).join('')}
               </div>
             `
             : ''
         }
 
-        <!-- 3. SECCIÓN DE PISTAS: LADO B -->
+        <!-- APARTADO ESPECIAL: MENCIONES HONORÍFICAS (CANCIONES #15 Y #16 SEGUIDAS) -->
         ${
-          sideBTracks.length > 0
+          honorableMentionTracks.length > 0
             ? `
-              <div class="flex items-center justify-center gap-3 my-2">
-                <div class="h-[1px] w-12 bg-outline-variant"></div>
-                <span class="font-[Plus_Jakarta_Sans] text-[11px] font-bold uppercase tracking-widest text-on-surface-variant bg-surface-container-high px-3.5 py-1 rounded-[3px] shadow-2xs">
-                  ${escapeHtml(letter.sideBTitle)}
-                </span>
-                <div class="h-[1px] w-12 bg-outline-variant"></div>
-              </div>
+              <section
+                id="section-honorificas"
+                class="relative my-3 bg-gradient-to-b from-[#fffbf2] to-[#fff5e4] p-4 sm:p-5 rounded-2xl border-2 border-dashed border-[#dfc07b] shadow-[0_10px_24px_-4px_rgba(140,90,8,0.12)]"
+              >
+                <div class="flex flex-col items-center text-center mb-5">
+                  <span class="inline-flex items-center gap-1.5 bg-[#faecc8] text-[#694506] font-[Plus_Jakarta_Sans] text-[10px] font-bold uppercase tracking-widest px-3.5 py-1 rounded-full border border-[#e5c489] shadow-2xs">
+                    <span class="material-symbols-outlined text-[14px]" style="font-size: 14px; font-variation-settings: 'FILL' 1;">military_tech</span>
+                    <span>Apartado Especial • Pistas #15 y #16</span>
+                  </span>
+                  <h2 class="font-[Epilogue] text-[20px] sm:text-[22px] font-semibold text-on-surface mt-2">
+                    Menciones Honoríficas
+                  </h2>
+                  <p class="font-[Literata] text-[12px] sm:text-[13px] text-on-surface-variant italic mt-0.5 max-w-md">
+                    Dos canciones seguidas que tienen un lugar aparte en esta lista por lo que representan.
+                  </p>
+                </div>
+
+                <div class="flex flex-col gap-6">
+                  ${honorableMentionTracks.map((track) => renderTrackCard(track)).join('')}
+                </div>
+              </section>
+            `
+            : ''
+        }
+
+        <!-- 3. CONTINUACIÓN DE DEDICATORIAS (#17 a #30) -->
+        ${
+          secondPartTracks.length > 0
+            ? `
               <div class="flex flex-col gap-6">
-                ${sideBTracks.map((track) => renderTrackCard(track)).join('')}
+                ${secondPartTracks.map((track) => renderTrackCard(track)).join('')}
               </div>
             `
             : ''
@@ -966,9 +1389,9 @@ export function renderMixtapeScrapbook(
           class="scroll-mt-18 relative mt-3 bg-surface-container-lowest pt-7 px-5 pb-5 sm:px-6 sm:pb-6 rounded-xl shadow-[0_12px_28px_-4px_rgba(87,72,56,0.15)] mb-4 border border-[#edd6c1]"
         >
           <!-- Top Washi Mint Center -->
-          <div class="absolute -top-3 left-1/2 -translate-x-1/2 w-32 h-5 bg-tertiary-fixed/95 rotate-1 rounded-[2px] shadow-2xs z-10 flex items-center justify-center pointer-events-none">
-            <span class="font-[Plus_Jakarta_Sans] text-[9px] font-bold uppercase tracking-wider text-on-tertiary-fixed">
-              Fin del Lado B ♡
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-4 h-5 bg-tertiary-fixed/95 rotate-1 rounded-[2px] shadow-2xs z-10 flex items-center justify-center pointer-events-none">
+            <span class="font-[Plus_Jakarta_Sans] text-[9px] font-bold uppercase tracking-wider text-on-tertiary-fixed whitespace-nowrap">
+              Hasta la última canción ♡
             </span>
           </div>
 

@@ -254,12 +254,97 @@
   transform-origin: center center;
 }
 
-.letter-sheet {
-  transition:
-    transform 0.45s cubic-bezier(0.34, 1.45, 0.64, 1),
-    opacity 0.35s ease;
+/* Transición 1: Apertura del sobre (Portada -> Tarjeta de Clave Secreta) */
+@keyframes sealBreakOut {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+  40% {
+    transform: scale(1.18) rotate(-8deg);
+  }
+  100% {
+    transform: scale(0.75) rotate(12deg);
+    opacity: 0;
+  }
+}
+
+@keyframes envelopeFrontExit {
+  0% {
+    opacity: 1;
+    transform: perspective(800px) rotateX(0deg) translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: perspective(800px) rotateX(14deg) translateY(-14px) scale(0.96);
+  }
+}
+
+@keyframes letterSlideOutOfEnvelope {
+  0% {
+    opacity: 0;
+    transform: translateY(34px) scale(0.92) rotate(-1deg);
+  }
+  65% {
+    opacity: 1;
+    transform: translateY(-10px) scale(1.01) rotate(0.4deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(-6px) scale(1) rotate(0deg);
+  }
+}
+
+.wax-seal-opening {
+  animation: sealBreakOut 0.32s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.envelope-front-closing {
+  animation: envelopeFrontExit 0.32s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  pointer-events: none;
+}
+
+.envelope-front-enter {
+  animation: letterSlideOutOfEnvelope 0.42s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 .letter-extracted {
-  transform: translateY(-8px);
+  animation: letterSlideOutOfEnvelope 0.52s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Transición 2: Desbloqueo con Clave Secreta -> Zoom de apertura de la carta completa */
+@keyframes unlockEnvelopeZoomOut {
+  0% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    filter: blur(0px);
+  }
+  35% {
+    opacity: 1;
+    transform: scale(0.97) translateY(6px);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.22) translateY(-24px);
+    filter: blur(4px);
+  }
+}
+
+@keyframes mixtapeLetterUnfoldEnter {
+  0% {
+    opacity: 0;
+    transform: scale(0.92) translateY(28px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.login-unlock-zoom {
+  animation: unlockEnvelopeZoomOut 0.58s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  pointer-events: none;
+}
+
+.mixtape-unfold-enter {
+  animation: mixtapeLetterUnfoldEnter 0.68s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }

@@ -1,8 +1,8 @@
 {
-  // Configuración de Cloudflare Pages para "Playlist Romántica Interactiva"
+  // Configuración de Cloudflare Pages para "Playlist 1"
   // Documentación: https://developers.cloudflare.com/pages/functions/wrangler-configuration/
   // IMPORTANTE: No guardes secretos aquí. Usa `wrangler pages secret put` o el panel de Cloudflare Pages.
-  "name": "playlist-romantica-interactiva",
+  "name": "playlist-1",
   "pages_build_output_dir": "dist",
   "compatibility_date": "2025-03-01",
   "vars": {

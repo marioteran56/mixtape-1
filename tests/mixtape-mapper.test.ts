@@ -120,13 +120,17 @@ describe('Mapeo Editorial de Canciones y Plantillas de Stitch', () => {
     expect(result.removedConfiguredTracks[0].spotify.title).toBe('Canción que antes estaba');
   });
 
-  it('renderiza las 6 plantillas de Stitch sin recortar portadas y con atribución oficial a Spotify', () => {
+  it('renderiza todas las plantillas de Stitch y sus variantes sin recortar portadas y con atribución oficial a Spotify', () => {
     const templates = [
       'polaroid',
       'post-it',
       'cassette',
       'ticket',
       'double-polaroid',
+      'postcard',
+      'vinyl-sleeve',
+      'honorable-mention',
+      'collector',
       'minimal',
       'dedication',
       'quote',

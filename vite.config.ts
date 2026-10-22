@@ -36,53 +36,57 @@ function loadDevVarsFile(rootDir: string): Record<string, string> {
  * (`functions/_middleware.ts` y `functions/api/**`) dentro de `vite dev` y `vite preview`.
  */
 function cloudflarePagesFunctionsDevPlugin(mode: string): Plugin {
-  let envBindings: EnvBindings = {};
+  let rootDir = process.cwd();
+  let viteEnv: Record<string, string> = {};
+
+  function getEnvBindings(): EnvBindings {
+    const devVars = loadDevVarsFile(rootDir);
+    return {
+      SITE_PASSWORD:
+        devVars.SITE_PASSWORD ||
+        viteEnv.SITE_PASSWORD ||
+        process.env.SITE_PASSWORD ||
+        'mixtape28',
+      SESSION_SECRET:
+        devVars.SESSION_SECRET ||
+        viteEnv.SESSION_SECRET ||
+        process.env.SESSION_SECRET ||
+        'dev-only-session-secret-key-with-32-plus-chars',
+      SPOTIFY_CLIENT_ID:
+        devVars.SPOTIFY_CLIENT_ID ||
+        viteEnv.SPOTIFY_CLIENT_ID ||
+        process.env.SPOTIFY_CLIENT_ID,
+      SPOTIFY_CLIENT_SECRET:
+        devVars.SPOTIFY_CLIENT_SECRET ||
+        viteEnv.SPOTIFY_CLIENT_SECRET ||
+        process.env.SPOTIFY_CLIENT_SECRET,
+      SPOTIFY_PLAYLIST_ID:
+        devVars.SPOTIFY_PLAYLIST_ID ||
+        viteEnv.SPOTIFY_PLAYLIST_ID ||
+        process.env.SPOTIFY_PLAYLIST_ID ||
+        '0EJqoSBZPUYuKNj36TKNxt',
+      SPOTIFY_MARKET:
+        devVars.SPOTIFY_MARKET ||
+        viteEnv.SPOTIFY_MARKET ||
+        process.env.SPOTIFY_MARKET ||
+        'MX',
+      SPOTIFY_REFRESH_TOKEN:
+        devVars.SPOTIFY_REFRESH_TOKEN ||
+        viteEnv.SPOTIFY_REFRESH_TOKEN ||
+        process.env.SPOTIFY_REFRESH_TOKEN,
+      ALLOW_DEMO_FIXTURE:
+        devVars.ALLOW_DEMO_FIXTURE ||
+        viteEnv.ALLOW_DEMO_FIXTURE ||
+        process.env.ALLOW_DEMO_FIXTURE ||
+        'true',
+    };
+  }
 
   return {
     name: 'cloudflare-pages-functions-local',
     configResolved(config) {
-      const viteEnv = loadEnv(mode, config.root, '');
-      const devVars = loadDevVarsFile(config.root);
-
-      envBindings = {
-        SITE_PASSWORD:
-          devVars.SITE_PASSWORD ||
-          viteEnv.SITE_PASSWORD ||
-          process.env.SITE_PASSWORD ||
-          'mixtape28',
-        SESSION_SECRET:
-          devVars.SESSION_SECRET ||
-          viteEnv.SESSION_SECRET ||
-          process.env.SESSION_SECRET ||
-          'dev-only-session-secret-key-with-32-plus-chars',
-        SPOTIFY_CLIENT_ID:
-          devVars.SPOTIFY_CLIENT_ID ||
-          viteEnv.SPOTIFY_CLIENT_ID ||
-          process.env.SPOTIFY_CLIENT_ID,
-        SPOTIFY_CLIENT_SECRET:
-          devVars.SPOTIFY_CLIENT_SECRET ||
-          viteEnv.SPOTIFY_CLIENT_SECRET ||
-          process.env.SPOTIFY_CLIENT_SECRET,
-        SPOTIFY_PLAYLIST_ID:
-          devVars.SPOTIFY_PLAYLIST_ID ||
-          viteEnv.SPOTIFY_PLAYLIST_ID ||
-          process.env.SPOTIFY_PLAYLIST_ID ||
-          '0EJqoSBZPUYuKNj36TKNxt',
-        SPOTIFY_MARKET:
-          devVars.SPOTIFY_MARKET ||
-          viteEnv.SPOTIFY_MARKET ||
-          process.env.SPOTIFY_MARKET ||
-          'MX',
-        SPOTIFY_REFRESH_TOKEN:
-          devVars.SPOTIFY_REFRESH_TOKEN ||
-          viteEnv.SPOTIFY_REFRESH_TOKEN ||
-          process.env.SPOTIFY_REFRESH_TOKEN,
-        ALLOW_DEMO_FIXTURE:
-          devVars.ALLOW_DEMO_FIXTURE ||
-          viteEnv.ALLOW_DEMO_FIXTURE ||
-          process.env.ALLOW_DEMO_FIXTURE ||
-          'true',
-      };
+      rootDir = config.root;
+      viteEnv = loadEnv(mode, config.root, '');
     },
     configureServer(server) {
       server.middlewares.use(async (req, res, next) => {
@@ -125,6 +129,8 @@ function cloudflarePagesFunctionsDevPlugin(mode: string): Plugin {
             headers,
             body: method !== 'GET' && method !== 'HEAD' && bodyBuffer.length > 0 ? bodyBuffer : undefined,
           });
+
+          const envBindings = getEnvBindings();
 
           const dispatchRoute = async (): Promise<Response> => {
             if (pathname === '/api/auth/login') {

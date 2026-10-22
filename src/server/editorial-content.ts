@@ -39,8 +39,8 @@ export const PRIVATE_LETTER_CONTENT: PrivateLetterContent = {
   ],
   signOffLabel: 'Con amor y dedicación',
   signature: 'Yo pues quien mas :)',
-  sideATitle: 'Canciones de Amor',
-  sideBTitle: 'Recuerdos y Notas',
+  sideATitle: 'Mis dedicatorias',
+  sideBTitle: '',
   closingBadge: 'Un último mensaje',
   closingTitle: 'Ojalá te hayan gustado todas estas canciones 🫶🏻',
   closingBody:
@@ -49,7 +49,7 @@ export const PRIVATE_LETTER_CONTENT: PrivateLetterContent = {
   replyUrl:
     'https://wa.me/?text=Me%20encant%C3%B3%20much%C3%ADsimo%20el%20mixtape%20de%20canciones%20%E2%99%A1',
   replyLabel: 'Agradecer al remitente',
-  footerStamp: 'Hecho con amor • Playlist No. 01',
+  footerStamp: 'Hecho con amor • Playlist #1',
   isDemoContent: false,
 };
 
@@ -193,7 +193,7 @@ export const EDITORIAL_TRACK_ENTRIES: EditorialEntry[] = [
     template: 'ticket',
     side: 'A',
     washiLabel: 'ADMIT ONE: MIXTAPE PASS',
-    memoryTag: 'SEC: RECUERDOS • ROW: 09',
+    memoryTag: 'SEC: DEDICATORIA • ROW: 09',
     dedication:
       '“Para nuestro propio rincón tranquilo cuando el mundo va demasiado rápido. Siempre me da paz escuchar ese piano.”',
     footerTag: 'Piano Rock',

@@ -23,6 +23,7 @@ const loginView = document.getElementById('loginView') as HTMLElement | null;
 const mixtapeView = document.getElementById('mixtapeView') as HTMLElement | null;
 const envelopeCard = document.getElementById('envelopeCard') as HTMLElement | null;
 const frontDecorative = document.getElementById('frontDecorative') as HTMLElement | null;
+const waxSeal = document.getElementById('waxSeal') as HTMLElement | null;
 const letterCard = document.getElementById('letterCard') as HTMLElement | null;
 const envelopeHeading = document.getElementById('envelopeHeading') as HTMLElement | null;
 const subInstruction = document.getElementById('subInstruction') as HTMLElement | null;
@@ -36,45 +37,67 @@ const authErrorMessage = document.getElementById('authErrorMessage') as HTMLElem
 const authFeedback = document.getElementById('authFeedback') as HTMLElement | null;
 const authFeedbackText = document.getElementById('authFeedbackText') as HTMLElement | null;
 
-function openEnvelope(): void {
+function openEnvelope(instant = false): void {
   if (isEnvelopeOpen) {
     return;
   }
   isEnvelopeOpen = true;
 
   envelopeCard?.classList.remove('ambient-envelope');
-  frontDecorative?.classList.add('hidden');
-  if (letterCard) {
-    letterCard.classList.remove('hidden');
-    letterCard.classList.add('flex', 'letter-extracted');
+
+  const revealInnerLetter = (): void => {
+    frontDecorative?.classList.add('hidden');
+    frontDecorative?.classList.remove('envelope-front-closing');
+    waxSeal?.classList.remove('wax-seal-opening');
+
+    if (letterCard) {
+      letterCard.classList.remove('hidden');
+      letterCard.classList.add('flex', 'letter-extracted');
+    }
+
+    if (envelopeHeading) {
+      envelopeHeading.textContent = 'Sello abierto con éxito';
+    }
+    if (subInstruction) {
+      subInstruction.textContent = 'Ingresa la clave secreta para desbloquear el sobre';
+    }
+
+    setTimeout(() => {
+      passInput?.focus();
+    }, 120);
+  };
+
+  if (instant) {
+    revealInnerLetter();
+    return;
   }
 
-  if (envelopeHeading) {
-    envelopeHeading.innerHTML = 'Sello abierto con éxito <span>💌</span>';
-  }
-  if (subInstruction) {
-    subInstruction.textContent = 'Ingresa la clave secreta para desbloquear el sobre';
-  }
-
-  setTimeout(() => {
-    passInput?.focus();
-  }, 80);
+  waxSeal?.classList.add('wax-seal-opening');
+  frontDecorative?.classList.add('envelope-front-closing');
+  setTimeout(revealInnerLetter, 270);
 }
 
 function resetEnvelopeToClosed(): void {
   isEnvelopeOpen = false;
   isSubmittingAuth = false;
+  loginView?.classList.remove('login-unlock-zoom');
+  mixtapeView?.classList.remove('mixtape-unfold-enter');
   envelopeCard?.classList.add('ambient-envelope');
-  frontDecorative?.classList.remove('hidden');
+  waxSeal?.classList.remove('wax-seal-opening');
+  frontDecorative?.classList.remove('hidden', 'envelope-front-closing');
+  frontDecorative?.classList.add('envelope-front-enter');
+  setTimeout(() => {
+    frontDecorative?.classList.remove('envelope-front-enter');
+  }, 450);
   if (letterCard) {
     letterCard.classList.add('hidden');
     letterCard.classList.remove('flex', 'letter-extracted');
   }
   if (envelopeHeading) {
-    envelopeHeading.innerHTML = 'Tienes un correo sin abrir <span>💌</span>';
+    envelopeHeading.textContent = 'Tienes un correo sin abrir';
   }
   if (subInstruction) {
-    subInstruction.textContent = 'Toca el sobre o el sello de lacre para abrir e ingresar tu clave';
+    subInstruction.textContent = 'Toca el sobre o el sello de para abrir el sobre';
   }
   if (passInput) {
     passInput.value = '';
@@ -175,7 +198,7 @@ async function handleLoginSubmit(event: Event): Promise<void> {
       btnUnlockText.textContent = 'Abriendo carta... 🎧';
     }
 
-    await loadAndRenderMixtape();
+    await loadAndRenderMixtape(true);
   } catch {
     isSubmittingAuth = false;
     if (btnUnlock) {
@@ -202,7 +225,7 @@ async function handleLogout(): Promise<void> {
       mixtapeView.classList.add('hidden');
     }
     loginView?.classList.remove('hidden');
-    document.title = 'Acceso Secreto • Para ti';
+    document.title = 'Playlist #1 • Para ti';
     resetEnvelopeToClosed();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
@@ -253,18 +276,23 @@ function bindMixtapeInteractions(): void {
   });
 }
 
-async function loadAndRenderMixtape(): Promise<void> {
+async function loadAndRenderMixtape(animateUnlock = false): Promise<void> {
   if (!mixtapeView || !loginView) {
     return;
   }
 
-  loginView.classList.add('hidden');
-  mixtapeView.classList.remove('hidden');
-  mixtapeView.innerHTML = renderLoadingMixtapeState();
-  document.title = 'Para Ti: Mixtape de Recuerdos';
+  document.title = 'Playlist #1 • Para ti';
+
+  if (animateUnlock) {
+    loginView.classList.add('login-unlock-zoom');
+  } else {
+    loginView.classList.add('hidden');
+    mixtapeView.classList.remove('hidden');
+    mixtapeView.innerHTML = renderLoadingMixtapeState();
+  }
 
   try {
-    const response = await fetch('/api/mixtape', {
+    const fetchPromise = fetch('/api/mixtape', {
       method: 'GET',
       credentials: 'same-origin',
       headers: {
@@ -272,14 +300,20 @@ async function loadAndRenderMixtape(): Promise<void> {
       },
     });
 
+    if (animateUnlock) {
+      await new Promise((resolve) => setTimeout(resolve, 520));
+    }
+
+    const response = await fetchPromise;
+
     if (response.status === 401) {
       // Sesión expirada o inválida: regresar a la pantalla de acceso
       mixtapeView.innerHTML = '';
       mixtapeView.classList.add('hidden');
-      loginView.classList.remove('hidden');
-      document.title = 'Acceso Secreto • Para ti';
+      loginView.classList.remove('hidden', 'login-unlock-zoom');
+      document.title = 'Playlist #1 • Para ti';
       resetEnvelopeToClosed();
-      openEnvelope();
+      openEnvelope(true);
       showLoginError('Tu sesión expiró. Ingresa nuevamente la clave secreta.');
       return;
     }
@@ -289,10 +323,19 @@ async function loadAndRenderMixtape(): Promise<void> {
     }
 
     const data = (await response.json()) as MixtapeResponse;
+    loginView.classList.add('hidden');
+    loginView.classList.remove('login-unlock-zoom');
+    mixtapeView.classList.remove('hidden');
     mixtapeView.innerHTML = renderMixtapeScrapbook(data, currentTab);
+    mixtapeView.classList.remove('mixtape-unfold-enter');
+    void mixtapeView.offsetWidth;
+    mixtapeView.classList.add('mixtape-unfold-enter');
     bindMixtapeInteractions();
     window.scrollTo({ top: 0, behavior: 'auto' });
   } catch {
+    loginView.classList.add('hidden');
+    loginView.classList.remove('login-unlock-zoom');
+    mixtapeView.classList.remove('hidden');
     mixtapeView.innerHTML = `
       <div class="min-h-screen bg-surface flex flex-col items-center justify-center p-6 text-center">
         <div class="max-w-md w-full bg-surface-container-lowest p-6 rounded-2xl shadow-md border border-[#edd6c1] space-y-4">
