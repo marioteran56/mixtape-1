@@ -334,9 +334,13 @@ async function loadAndRenderMixtape(animateUnlock = false): Promise<void> {
     loginView.classList.remove('login-unlock-zoom');
     mixtapeView.classList.remove('hidden');
     mixtapeView.innerHTML = renderMixtapeScrapbook(data, currentTab);
-    mixtapeView.classList.remove('mixtape-unfold-enter');
-    void mixtapeView.offsetWidth;
-    mixtapeView.classList.add('mixtape-unfold-enter');
+    const mainCanvas = mixtapeView.querySelector('main');
+    if (mainCanvas) {
+      mainCanvas.classList.add('mixtape-unfold-enter');
+      setTimeout(() => {
+        mainCanvas.classList.remove('mixtape-unfold-enter');
+      }, 720);
+    }
     bindMixtapeInteractions();
     window.scrollTo({ top: 0, behavior: 'auto' });
   } catch {
