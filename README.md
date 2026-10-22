@@ -1,6 +1,6 @@
-# Playlist #1 • Carta Digital Privada (`Paper Mixtape`)
+# Playlist #1
 
-Aplicación web privada de carta digital y mixtape interactivo basada en el sistema de diseño **Paper Mixtape** de Google Stitch (`projects/3351798792530970780`), protegida con sesión firmada del lado servidor y sincronizada con la playlist oficial de Spotify (`0EJqoSBZPUYuKNj36TKNxt`).
+Aplicación web privada de dedicatorias musicales basada en el diseño de Google Stitch (`projects/3351798792530970780`), protegida con sesión firmada del lado servidor y sincronizada con la playlist oficial de Spotify (`0EJqoSBZPUYuKNj36TKNxt`).
 
 ---
 
@@ -9,23 +9,23 @@ Aplicación web privada de carta digital y mixtape interactivo basada en el sist
 El proyecto utiliza **Vite + TypeScript + Tailwind CSS v4** para el frontend y **Cloudflare Pages Functions** (`functions/`) para la autenticación y entrega protegida del contenido.
 
 - **Seguridad Real del Lado Servidor:**
-  - `index.html` y el bundle público (`dist/`) solo contienen el sobre postal cerrado (`#loginView`) y un contenedor vacío (`#mixtapeView`).
-  - La carta privada, las 30 canciones y sus dedicatorias viven exclusivamente en el servidor ([`src/server/editorial-content.ts`](./src/server/editorial-content.ts) y [`src/server/playlist-catalog.json`](./src/server/playlist-catalog.json)) y solo se entregan a través de `GET /api/mixtape` tras validar una cookie `HttpOnly` firmada con `HMAC-SHA256` ([`src/server/auth.ts`](./src/server/auth.ts)).
+  - `index.html` y el bundle público (`dist/`) solo contienen el sobre postal cerrado (`#loginView`) y un contenedor vacío para la vista autenticada.
+  - La introducción, las 30 canciones y sus dedicatorias viven exclusivamente en el servidor ([`src/server/editorial-content.ts`](./src/server/editorial-content.ts) y [`src/server/playlist-catalog.json`](./src/server/playlist-catalog.json)) y solo se entregan tras validar una cookie `HttpOnly` firmada con `HMAC-SHA256` ([`src/server/auth.ts`](./src/server/auth.ts)).
   - El test [`tests/security-bundle.test.ts`](./tests/security-bundle.test.ts) verifica en cada compilación que ningún fragmento privado ni mapa de código (`.map`) se filtre al navegador.
 - **Sincronización Manual de Spotify sin Llaves ni Variables de Entorno (`npm run sync:playlist`):**
   - El comando `npm run sync:playlist` ejecuta [`scripts/sync-playlist.ts`](./scripts/sync-playlist.ts), que consulta la playlist pública de Spotify y sus portadas oficiales `1:1` vía oEmbed.
   - Actualiza [`src/server/playlist-catalog.json`](./src/server/playlist-catalog.json) respetando estrictamente el orden de las canciones en la playlist (`1` a `30`) **sin sobrescribir** las dedicatorias configuradas en [`src/server/editorial-content.ts`](./src/server/editorial-content.ts).
 - **Sobre Postal Interactivo y Animaciones:**
   - Portada personalizada (**Para: Camila**, **Remitente: Mario**) con notas decorativas en el fondo (*"♪ I got a girl crush"*, *"No hay nada como ella..."*).
-  - **Transición de apertura del sobre:** al tocar el sobre o el sello de lacre, el sello se rompe con animación y emerge suavemente la tarjeta interior para ingresar la **Clave Secreta**.
-  - **Transición de desbloqueo con zoom:** al validar la clave secreta, el sobre realiza un acercamiento hacia el lector mientras la carta y las dedicatorias se despliegan en pantalla.
+  - **Transición de apertura del sobre:** al tocar el sobre o el sello de lacre, el sello se abre con animación y emerge suavemente la tarjeta interior para ingresar la **Clave Secreta**.
+  - **Transición de desbloqueo con zoom:** al validar la clave secreta, el sobre realiza un acercamiento hacia el lector mientras el contenido y las dedicatorias se despliegan en pantalla.
 - **Navegación Superior e Inferior Reacomodada:**
   - **Cabecera superior fija:** cinta *washi* con la leyenda **`Para ti`**, contador de pistas (`30 pistas`) y botón directo a la playlist en Spotify.
   - **Barra inferior flotante (4 columnas):** navegación suave por orden de lectura (**`Intro`** → **`Dedicadas`** → **`Último mensaje`**) junto al botón **`Cerrar sobre`** perfectamente integrado.
 
 ---
 
-## 2. Diseños y Plantillas de Canción (`src/client/render-mixtape.ts`)
+## 2. Diseños y Plantillas de Canción
 
 Las 30 canciones se presentan bajo el encabezado **`Mis dedicatorias`** respetando su orden exacto en la playlist y alternando entre **9 plantillas editoriales** con animaciones continuas en los discos de vinilo y carretes de casete:
 
@@ -51,9 +51,9 @@ Las 30 canciones se presentan bajo el encabezado **`Mis dedicatorias`** respetan
    ```
 
 2. **Configurar la clave secreta local (`.dev.vars`):**
-   El archivo `.dev.vars` define la contraseña local de acceso (por defecto `mixtape28`):
+   El archivo `.dev.vars` define la contraseña local de acceso:
    ```ini
-   SITE_PASSWORD=mixtape28
+   SITE_PASSWORD=tu_clave_secreta
    SESSION_SECRET=reemplaza-con-una-cadena-aleatoria-de-al-menos-32-caracteres-seguros
    ```
    > El plugin local en [`vite.config.ts`](./vite.config.ts) lee `.dev.vars` en tiempo real en cada petición, por lo que cualquier cambio de contraseña se aplica al instante.
@@ -70,11 +70,11 @@ Las 30 canciones se presentan bajo el encabezado **`Mis dedicatorias`** respetan
 
 ---
 
-## 4. Cómo Editar la Carta y las Dedicatorias
+## 4. Cómo Editar la Introducción y las Dedicatorias
 
 Todo el contenido personal se edita en un único archivo del servidor:
 - [`src/server/editorial-content.ts`](./src/server/editorial-content.ts)
-  - **`PRIVATE_LETTER_CONTENT`:** Textos de la carta de introducción (`title`, `subtitle`, `paragraphs`, `signOffLabel`, `signature`) y del último mensaje de despedida (`closingTitle`, `closingBody`, `closingHighlight`, `footerStamp`).
+  - **`PRIVATE_LETTER_CONTENT`:** Textos de la introducción (`title`, `subtitle`, `paragraphs`, `signOffLabel`, `signature`) y del último mensaje de despedida (`closingTitle`, `closingBody`, `closingHighlight`, `footerStamp`).
   - **`EDITORIAL_TRACK_ENTRIES`:** Arreglo con las 30 canciones enlazadas por su `trackId` de Spotify (`template`, `washiLabel`, `memoryTag`, `noteTitle`, `quote`, `dedication`, `footerTag`).
 
 ---
@@ -101,7 +101,7 @@ npm run build
 
 No necesitas configurar llaves de Spotify en producción ya que el catálogo sincronizado viaja del lado servidor junto con las Pages Functions. Solo necesitas configurar tus 2 secretos de acceso:
 
-### variables requeridas en Cloudflare Pages (**Settings → Environment variables**)
+### Variables requeridas en Cloudflare Pages (**Settings → Environment variables**)
 
 | Variable | Tipo | Descripción |
 | :--- | :--- | :--- |
