@@ -19,6 +19,13 @@ let isEnvelopeOpen = false;
 let isSubmittingAuth = false;
 let currentTab: NavigationTab = 'carta';
 
+function apiUrl(endpointPath: string): string {
+  const isSubpath =
+    window.location.pathname === '/playlist-1' ||
+    window.location.pathname.startsWith('/playlist-1/');
+  return isSubpath ? `/playlist-1${endpointPath}` : endpointPath;
+}
+
 const loginView = document.getElementById('loginView') as HTMLElement | null;
 const mixtapeView = document.getElementById('mixtapeView') as HTMLElement | null;
 const envelopeCard = document.getElementById('envelopeCard') as HTMLElement | null;
@@ -156,7 +163,7 @@ async function handleLoginSubmit(event: Event): Promise<void> {
   }
 
   try {
-    const response = await fetch('/api/auth/login', {
+    const response = await fetch(apiUrl('/api/auth/login'), {
       method: 'POST',
       credentials: 'same-origin',
       headers: {
@@ -213,7 +220,7 @@ async function handleLoginSubmit(event: Event): Promise<void> {
 
 async function handleLogout(): Promise<void> {
   try {
-    await fetch('/api/auth/logout', {
+    await fetch(apiUrl('/api/auth/logout'), {
       method: 'POST',
       credentials: 'same-origin',
     });
@@ -292,7 +299,7 @@ async function loadAndRenderMixtape(animateUnlock = false): Promise<void> {
   }
 
   try {
-    const fetchPromise = fetch('/api/mixtape', {
+    const fetchPromise = fetch(apiUrl('/api/mixtape'), {
       method: 'GET',
       credentials: 'same-origin',
       headers: {
@@ -370,7 +377,7 @@ async function loadAndRenderMixtape(animateUnlock = false): Promise<void> {
 
 async function checkInitialSession(): Promise<void> {
   try {
-    const response = await fetch('/api/auth/session', {
+    const response = await fetch(apiUrl('/api/auth/session'), {
       method: 'GET',
       credentials: 'same-origin',
       headers: { Accept: 'application/json' },

@@ -176,6 +176,7 @@ function cloudflarePagesFunctionsDevPlugin(mode: string): Plugin {
 }
 
 export default defineConfig(({ mode }) => ({
+  base: './',
   plugins: [tailwindcss(), cloudflarePagesFunctionsDevPlugin(mode)],
   build: {
     outDir: 'dist',

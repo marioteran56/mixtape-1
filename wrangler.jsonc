@@ -1,18 +1,22 @@
 {
-  // Configuración de Cloudflare (compatible con `npx wrangler deploy` en Workers Builds)
-  // IMPORTANTE: No guardes secretos aquí (`SITE_PASSWORD`, `SESSION_SECRET`).
-  // Configúralos en el panel de Cloudflare > Settings > Variables and Secrets.
+  // Configuración de Cloudflare (compatible con `npx wrangler deploy`)
+  // Desactiva *.workers.dev y publica únicamente en cartas.marioteran.dev/playlist-1*
   "name": "playlist-1",
   "main": "src/worker.ts",
   "compatibility_date": "2025-03-01",
+  "workers_dev": false,
+  "preview_urls": false,
+  "routes": [
+    {
+      "pattern": "cartas.marioteran.dev/playlist-1*",
+      "zone_name": "marioteran.dev"
+    }
+  ],
   "assets": {
     "directory": "./dist",
     "binding": "ASSETS",
     "not_found_handling": "single-page-application",
-    "run_worker_first": [
-      "/api/*",
-      "/carta"
-    ]
+    "run_worker_first": true
   },
   "vars": {
     "SPOTIFY_MARKET": "MX",
