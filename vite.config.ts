@@ -2,11 +2,6 @@ import fs from 'node:fs';
 import path from 'node:path';
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig, loadEnv, type Plugin } from 'vite';
-import { onRequest as middlewareOnRequest } from './functions/_middleware';
-import { onRequest as loginOnRequest } from './functions/api/auth/login';
-import { onRequest as logoutOnRequest } from './functions/api/auth/logout';
-import { onRequest as sessionOnRequest } from './functions/api/auth/session';
-import { onRequest as mixtapeOnRequest } from './functions/api/mixtape';
 import type { EnvBindings } from './src/shared/types';
 
 function loadDevVarsFile(rootDir: string): Record<string, string> {
@@ -89,6 +84,52 @@ function cloudflarePagesFunctionsDevPlugin(mode: string): Plugin {
       viteEnv = loadEnv(mode, config.root, '');
     },
     configureServer(server) {
+      // Supervisor en vivo para cambios en src/server/**, functions/** y .dev.vars
+      const watchDirs = [
+        path.join(rootDir, 'src/server'),
+        path.join(rootDir, 'functions'),
+        path.join(rootDir, '.dev.vars'),
+      ];
+      server.watcher.add(watchDirs);
+
+      const invalidateAllServerModules = () => {
+        server.moduleGraph.invalidateAll();
+        const ssrEnv = (
+          server as unknown as {
+            environments?: {
+              ssr?: { moduleGraph?: { invalidateAll?: () => void } };
+            };
+          }
+        ).environments?.ssr;
+        ssrEnv?.moduleGraph?.invalidateAll?.();
+      };
+
+      const notifyServerContentChange = (filePath: string) => {
+        const normalized = path.normalize(filePath);
+        const isServerOrFunctionFile =
+          normalized.includes(path.normalize('src/server/')) ||
+          normalized.includes(path.normalize('functions/')) ||
+          normalized.endsWith('.dev.vars');
+
+        if (!isServerOrFunctionFile) {
+          return;
+        }
+
+        invalidateAllServerModules();
+
+        server.ws.send({
+          type: 'custom',
+          event: 'mixtape:server-updated',
+          data: {
+            file: path.relative(rootDir, normalized),
+            timestamp: Date.now(),
+          },
+        });
+      };
+
+      server.watcher.on('change', notifyServerContentChange);
+      server.watcher.on('add', notifyServerContentChange);
+
       server.middlewares.use(async (req, res, next) => {
         const rawUrl = req.url || '/';
         const pathname = rawUrl.split('?')[0];
@@ -131,6 +172,32 @@ function cloudflarePagesFunctionsDevPlugin(mode: string): Plugin {
           });
 
           const envBindings = getEnvBindings();
+
+          // Invalidar caché SSR en cada petición de /api/mixtape para garantizar lectura fresca del disco
+          if (pathname === '/api/mixtape') {
+            invalidateAllServerModules();
+          }
+
+          // Cargar handlers mediante ssrLoadModule para reflejar cambios en caliente sin reiniciar Vite
+          type PagesHandler = (ctx: {
+            request: Request;
+            env: EnvBindings;
+            next?: () => Promise<Response>;
+          }) => Promise<Response>;
+
+          const [
+            { onRequest: middlewareOnRequest },
+            { onRequest: loginOnRequest },
+            { onRequest: logoutOnRequest },
+            { onRequest: sessionOnRequest },
+            { onRequest: mixtapeOnRequest },
+          ] = (await Promise.all([
+            server.ssrLoadModule('/functions/_middleware.ts'),
+            server.ssrLoadModule('/functions/api/auth/login.ts'),
+            server.ssrLoadModule('/functions/api/auth/logout.ts'),
+            server.ssrLoadModule('/functions/api/auth/session.ts'),
+            server.ssrLoadModule('/functions/api/mixtape.ts'),
+          ])) as Array<{ onRequest: PagesHandler }>;
 
           const dispatchRoute = async (): Promise<Response> => {
             if (pathname === '/api/auth/login') {

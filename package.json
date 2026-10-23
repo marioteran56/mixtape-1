@@ -1,11 +1,12 @@
 {
-  "name": "playlist-1",
+  "name": "mixtape-1",
   "version": "1.0.0",
   "private": true,
-  "description": "Carta digital privada y mixtape interactivo basado en el sistema de diseño Paper Mixtape de Google Stitch y Spotify Web API",
+  "description": "Mixtape interactivo privado y dedicatorias musicales basadas en el sistema de diseño Paper Mixtape de Google Stitch y Spotify",
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "sync:mixtape": "node scripts/sync-playlist.ts",
     "sync:playlist": "node scripts/sync-playlist.ts",
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",

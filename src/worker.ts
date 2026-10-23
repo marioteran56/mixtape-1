@@ -1,7 +1,7 @@
 /**
  * Punto de entrada para Cloudflare Workers con Static Assets (`npx wrangler deploy`).
  * Soporta tanto acceso en raíz (`/`) en desarrollo como bajo la ruta exclusiva
- * `/playlist-1` (`https://cartas.marioteran.dev/playlist-1`).
+ * `/mixtape-1` (`https://cartas.marioteran.dev/mixtape-1`).
  */
 
 import { onRequest as middlewareOnRequest } from '../functions/_middleware';
@@ -17,20 +17,20 @@ export interface WorkerEnv extends EnvBindings {
   };
 }
 
-const SUBPATH_PREFIX = '/playlist-1';
+const SUBPATH_PREFIX = '/mixtape-1';
 
 export default {
   async fetch(request: Request, env: WorkerEnv): Promise<Response> {
     const originalUrl = new URL(request.url);
 
-    // Si accede a /playlist-1 sin barra final, redirigir a /playlist-1/ para que
-    // los assets relativos (./assets/...) resuelvan dentro de /playlist-1/
+    // Si accede a /mixtape-1 sin barra final, redirigir a /mixtape-1/ para que
+    // los assets relativos (./assets/...) resuelvan dentro de /mixtape-1/
     if (originalUrl.pathname === SUBPATH_PREFIX) {
       const redirectUrl = new URL(`${SUBPATH_PREFIX}/${originalUrl.search}`, originalUrl.origin);
       return Response.redirect(redirectUrl.toString(), 301);
     }
 
-    // Normalizar la ruta interna quitando el prefijo /playlist-1 cuando esté presente
+    // Normalizar la ruta interna quitando el prefijo /mixtape-1 cuando esté presente
     const hasSubpath =
       originalUrl.pathname === SUBPATH_PREFIX ||
       originalUrl.pathname.startsWith(`${SUBPATH_PREFIX}/`);

@@ -35,21 +35,24 @@ export const PRIVATE_LETTER_CONTENT: PrivateLetterContent = {
   subtitle: 'Un par de canciones que me hacen recordarte y me gustaría dedicarte',
   stampLabel: 'PAR AVION',
   paragraphs: [
-    '“No quería pasarte solo un link de Spotify y decir que ese era el detalle, una playlist... Hice esto para poder dedicarte cada canción dentro de este mixtape que hice para ti, por que cada canción que ves listada hace que piense en tí de alguna u otra forma, o simplemente tienen alguna frase que me gustaría dedicarte. Escucha este mixtape en tu tiempo libre, o bien, cuando me extrañes como yo lo hago todos los días.”',
+    '“No quería pasarte solo un link de Spotify y decir que ese era el detalle... Hice esto para poder dedicarte cada canción dentro de este mixtape que hice para ti, porque cada canción que ves listada hace que piense en ti de alguna u otra forma, o simplemente tiene alguna frase que me gustaría dedicarte. Escucha este mixtape en tu tiempo libre, o bien, cuando me extrañes como yo lo hago todos los días.”',
   ],
   signOffLabel: 'Con amor y dedicación',
-  signature: 'Yo pues quien mas :)',
+  signature: 'Mario :)',
   sideATitle: 'Mis dedicatorias',
   sideBTitle: '',
   closingBadge: 'Un último mensaje',
-  closingTitle: 'Ojalá te hayan gustado todas estas canciones 🫶🏻',
+  closingTitle: 'Ojalá te hayan gustado todas estas canciones',
   closingBody:
-    '“Esta es solo una pequeña muestra de las miles de canciones que me hacen pensar en tí en cientos de maneras diferentes. Espero que te hayan gustado tanto que las escuches cualquier lugar.”',
-  closingHighlight: 'Solo espero el momento en que podamos escucharlas juntos 🥺',
+    '“Esta es solo una pequeña muestra de las miles de canciones que me hacen pensar en ti de distintas maneras. Créeme que escucho de todo, y puede que después me arrepienta de no haber puesto alguna otra o de no haber cambiado una por otra. Incluso puede que algunas canciones no te gusten, o ninguna, pero el único mensaje que quiero dejar, y que espero que entiendas, es que cuando las escucho la persona en la que pienso eres tú.”\n\n“Sé que todas estas palabras no tienen el mismo efecto cuando son a distancia, solo espero que llegue el día en que pueda decirlas frente a ti.”',
+  closingHighlight: 'Solo espero el momento en que podamos escucharlas juntos.',
+  flightNoteBadge: 'Ruta Chihuahua — Monterrey',
+  flightNoteText:
+    '“Curiosamente, este mixtape dura más de lo que toma un vuelo de Chihuahua a Monterrey o de regreso, así que ya tengo la música perfecta para acompañarme en el camino cuando vaya a visitarte.”',
   replyUrl:
-    'https://wa.me/?text=Me%20encant%C3%B3%20much%C3%ADsimo%20el%20mixtape%20de%20canciones%20%E2%99%A1',
-  replyLabel: 'Agradecer al remitente',
-  footerStamp: 'Hecho con amor • Playlist #1',
+    'https://wa.me/526141902258?text=Estuve%20escuchando%20tu%20mixtape%2C%20y%20me%20pareci%C3%B3...',
+  replyLabel: 'Contactar al remitente',
+  footerStamp: 'Hecho con amor y música • Mixtape #1',
   isDemoContent: false,
 };
 
@@ -67,10 +70,10 @@ export const EDITORIAL_TRACK_ENTRIES: EditorialEntry[] = [
     template: 'polaroid',
     side: 'A',
     washiLabel: 'Pista 01 • Apertura ♡',
-    memoryTag: 'Para empezar el mixtape',
-    noteTitle: 'DESDE EL PRIMER ACORDE',
+    memoryTag: 'Una de mis canciones favoritas',
+    noteTitle: 'ÁNGEL DE LA MADRUGADA',
     dedication:
-      '“La primera canción de la lista porque desde el primer acorde me hace pensar en ti y en la suerte de coincidir contigo.”',
+      '“La primera canción de esta lista, porque todavía no puedo creer cómo encontré un ángel a una hora en la que no esperaba nada. Cruzaste mi camino y te quedaste para siempre tatuada en mi cabeza.”',
     isDemoContent: false,
   },
 
@@ -82,11 +85,10 @@ export const EDITORIAL_TRACK_ENTRIES: EditorialEntry[] = [
     template: 'post-it',
     side: 'A',
     washiLabel: 'Track Destacado ♡',
-    memoryTag: 'Vibes de fin de semana',
-    noteTitle: 'VIBRA / DE ESAS ROLAS',
+    noteTitle: 'LO DARÉ TODO POR TI',
     dedication:
-      '“De esas canciones que tienen una atmósfera única al instante y me acordaron de cuando platicamos el otro día. Imposible no pensar en ti cuando empieza.”',
-    footerTag: 'Para escuchar de noche',
+      '“Habla de lo vulnerable que me puedo sentir contigo, esa persona especial con la que quiero intentarlo todo, aunque a veces parezcan patadas de ahogado, solo por estar a tu lado.”',
+    footerTag: 'Apostarlo todo',
     isDemoContent: false,
   },
 
@@ -100,9 +102,9 @@ export const EDITORIAL_TRACK_ENTRIES: EditorialEntry[] = [
     washiLabel: 'Correo Aéreo • Pista 03',
     memoryTag: 'Sin cambiar ni un detalle',
     noteTitle: 'TAL Y COMO ERES',
-    quote: '“When I see your face, there’s not a thing that I would change...”',
+    quote: '“She’s so beautiful, and I tell her every day.”',
     dedication:
-      '“No hacía falta darle muchas vueltas: esta canción dice exactamente lo que pienso cada vez que sonríes.”',
+      '“Probablemente ya estás harta de que todos los días te digo una indirecta o te recalco lo hermosa que eres. Mientras no te canses de escucharlo, yo no me cansaré de decirlo.”',
     footerTag: 'Pop Clásico',
     isDemoContent: false,
   },
@@ -114,11 +116,11 @@ export const EDITORIAL_TRACK_ENTRIES: EditorialEntry[] = [
     fallbackArtists: 'Elton John',
     template: 'double-polaroid',
     side: 'A',
-    memoryTag: 'Clásico eterno',
-    noteTitle: 'UNA FRASE PARA TI',
-    quote: '“How wonderful life is while you’re in the world.”',
+    memoryTag: 'Detalles solo para ti',
+    noteTitle: 'SIMPLE, PERO PARA TI',
+    quote: '“My gift is my song, and this one’s for you.”',
     dedication:
-      '“Pocas canciones dicen algo tan sencillo y tan cierto al mismo tiempo. Si este mixtape fuera una sola frase, sería esa.”',
+      '“Es una canción muy simple, pero a la vez muy linda. Representa justo lo que son estos detalles, los hago para ti y solo para ti porque quiero que sepas lo importante que eres para mí.”',
     footerTag: 'Clásico atemporal',
     isDemoContent: false,
   },
@@ -132,9 +134,9 @@ export const EDITORIAL_TRACK_ENTRIES: EditorialEntry[] = [
     side: 'A',
     washiLabel: 'Sesión en Estudio • Londres',
     memoryTag: 'Acústico de medianoche',
-    noteTitle: 'VERSIÓN FAVORITA',
+    noteTitle: 'UNA INDIRECTA MUY DIRECTA',
     dedication:
-      '“Esta versión en estudio tiene una calma muy especial. De esas canciones para ponerse audífonos y escuchar cada detalle.”',
+      '“Creo que la indirecta es bastante obvia y no necesita mucha interpretación, con el título basta.”',
     footerTag: 'Metropolis Studios Session',
     isDemoContent: false,
   },
@@ -147,26 +149,28 @@ export const EDITORIAL_TRACK_ENTRIES: EditorialEntry[] = [
     template: 'cassette',
     side: 'A',
     washiLabel: 'C-60 HIGH FIDELITY',
-    noteTitle: 'Ni a varios cientos de kilómetros',
+    noteTitle: 'A varios cientos de kilómetros',
     dedication:
-      '“Un clásico que nunca falla cuando se trata de explicar todo lo que uno siente sin que alcancen las medidas normales.”',
-    footerTag: 'Para cantar en el carro',
+      '“Me hace pensar en todas esas noches en las que, a pesar de estar tan lejos, leo tus mensajes llenos de cariño y siento un calor en el pecho, como si estuviera a tu lado. O por lo menos, como me gustaría estarlo.”',
+    footerTag: 'Para las noches a distancia',
     isDemoContent: false,
   },
 
-  // #07 — Quién Dice (Marcos Menchaca)
+  // #07 — Quién Dice (Marcos Menchaca) — PISTA DESTACADA
   {
     trackId: '0vR9p1X1ZDbHPzVEgHfMm6',
     fallbackTitle: 'Quién Dice',
     fallbackArtists: 'Marcos Menchaca',
-    template: 'ticket',
+    template: 'double-polaroid',
     side: 'A',
-    washiLabel: 'ADMIT ONE: MIXTAPE PASS',
-    memoryTag: 'SEC: INDIE • ROW: 07',
-    noteTitle: 'Rincón acústico',
+    washiLabel: 'Pista Destacada • #07',
+    featuredBadge: 'Coincidencia Especial • Pista #07',
+    memoryTag: 'Día 26',
+    calloutText: '¿Sabías que nos conocimos un día 26?',
+    noteTitle: 'QUIÉN DICE QUE NO PODEMOS ESTAR JUNTOS',
     dedication:
-      '“Tiene esa vibra ligera, cálida y sincera que hace que cualquier tarde normal se sienta diferente.”',
-    footerTag: 'Indie / Acústico',
+      '“A pesar de que la situación no siempre esté a nuestro favor, yo me quiero aferrar a ti y a todo lo bonito que tenemos.”',
+    footerTag: 'Indie Acústico',
     isDemoContent: false,
   },
 
@@ -177,10 +181,9 @@ export const EDITORIAL_TRACK_ENTRIES: EditorialEntry[] = [
     fallbackArtists: 'Zoé',
     template: 'post-it',
     side: 'A',
-    noteTitle: 'Un clásico en vivo',
-    memoryTag: 'Nuestras charlas con música de fondo',
+    noteTitle: 'ES RARO EL AMOR',
     dedication:
-      '“Un clasicazo que me recordó nuestras pláticas sobre buena música. La versión MTV Unplugged tiene una magia única; imposible no cantarla.”',
+      '“Es raro el amor, que aparece cuando uno menos piensa. Con tan solo escuchar tu voz tan tierna me gustaría entregarte todo mi amor y cuidarte siempre.”',
     footerTag: 'Para cantarla a todo pulmón',
     isDemoContent: false,
   },
@@ -194,8 +197,9 @@ export const EDITORIAL_TRACK_ENTRIES: EditorialEntry[] = [
     side: 'A',
     washiLabel: 'ADMIT ONE: MIXTAPE PASS',
     memoryTag: 'SEC: DEDICATORIA • ROW: 09',
+    noteTitle: 'NUESTRO LUGAR ESPECIAL',
     dedication:
-      '“Para nuestro propio rincón tranquilo cuando el mundo va demasiado rápido. Siempre me da paz escuchar ese piano.”',
+      '“Habla de encontrar ese rincón que sea solo nuestro. Me encantaría tener la oportunidad de platicar más contigo, compartir experiencias nuevas y empezar algo muy bonito juntos, un lugar al que siempre queramos volver.”',
     footerTag: 'Piano Rock',
     isDemoContent: false,
   },
@@ -210,9 +214,9 @@ export const EDITORIAL_TRACK_ENTRIES: EditorialEntry[] = [
     washiLabel: 'Pista 10 • Inolvidable ♡',
     memoryTag: 'Romance clásico',
     noteTitle: 'INEVITABLE',
-    quote: '“Take my hand, take my whole life too...”',
+    quote: '“Wise men say only fools rush in, but I can’t help falling in love with you...”',
     dedication:
-      '“Hay cosas que pasan sin planearlas pero que desde el principio se sienten como si tuvieran que pasar sí o sí.”',
+      '“Dicen que los sabios no se apresuran y que no debería ir tan rápido con detalles así, pero es que contigo en verdad no puedo evitar enamorarme.”',
     isDemoContent: false,
   },
 
@@ -224,10 +228,10 @@ export const EDITORIAL_TRACK_ENTRIES: EditorialEntry[] = [
     template: 'postcard',
     side: 'A',
     washiLabel: 'Nota Postal • Pista 11',
-    memoryTag: 'Cuando te extraño',
-    noteTitle: 'PARA LOS DÍAS LARGOS',
+    memoryTag: 'Verte pronto',
+    noteTitle: 'MÁS DE CERCA',
     dedication:
-      '“La canción que mejor resume cómo cambia todo el ánimo del día cuando no estás cerca y las ganas de volver a coincidir.”',
+      '“Me hace pensar en las ganas que tengo de seguir conociéndote más de cerca, de ir a tu ciudad y poder darte este tipo de amor y detalles en persona, de una manera mucho más cercana.”',
     footerTag: 'Piano & Voz',
     isDemoContent: false,
   },
@@ -240,9 +244,9 @@ export const EDITORIAL_TRACK_ENTRIES: EditorialEntry[] = [
     template: 'cassette',
     side: 'A',
     washiLabel: 'CLÁSICO EN ESPAÑOL',
-    noteTitle: 'De principio a fin',
+    noteTitle: 'EN MI CABEZA',
     dedication:
-      '“De esas canciones que todos nos sabemos de memoria pero que cobran otro sentido cuando tienen nombre y apellido al dedicarlas.”',
+      '“Te has metido tanto en mi vida últimamente que gran parte del día lo único que hago es pensar en ti y extrañarte cuando no estás presente.”',
     footerTag: 'Rock en Español',
     isDemoContent: false,
   },
@@ -255,10 +259,10 @@ export const EDITORIAL_TRACK_ENTRIES: EditorialEntry[] = [
     template: 'double-polaroid',
     side: 'A',
     memoryTag: 'Confesión honesta',
-    noteTitle: 'CURSI PERO CIERTO',
-    quote: '“Tú haces que hasta la canción más cursi tenga todo el sentido del mundo.”',
+    noteTitle: 'DIFÍCIL DE EXPLICAR',
+    quote: '“You should feel how I feel when somebody says your name.”',
     dedication:
-      '“Me dio risa y ternura a la vez porque describe perfecto cómo uno termina haciendo un mixtape entero solo por alguien especial.”',
+      '“A pesar de que ande diciendo cosas atrevidas, cursis o románticas detrás de estas canciones, la verdad es que me cuesta mucho explicar todo lo que siento por ti en estos momentos y lo emocionado que me pongo cada vez que alguien menciona tu nombre.”',
     footerTag: 'Indie Pop',
     isDemoContent: false,
   },
@@ -272,10 +276,10 @@ export const EDITORIAL_TRACK_ENTRIES: EditorialEntry[] = [
     side: 'A',
     washiLabel: 'Edición Especial • #14',
     memoryTag: 'Sin ninguna duda',
-    noteTitle: 'ELLA ES',
-    quote: '“I was her, she was me, we were one, we were free...”',
+    noteTitle: 'SONREÍRLE A LA VIDA',
+    quote: '“If there’s somebody calling me home, she’s the one...”',
     dedication:
-      '“El título lo dice todo sin necesidad de agregarle una sola palabra más.”',
+      '“Desde que te conocí empecé a sonreírle a la vida de una manera que no tiene explicación. Sentí una conexión muy especial contigo donde puedo ser yo mismo, y me da tanto gusto poder serlo a tu lado.”',
     footerTag: 'Britpop Classic',
     isDemoContent: false,
   },
@@ -294,9 +298,8 @@ export const EDITORIAL_TRACK_ENTRIES: EditorialEntry[] = [
     washiLabel: 'Mención Honorífica #01 ★',
     memoryTag: 'Detalles que no pasan de moda',
     noteTitle: '¿Por qué es mención honorífica?',
-    quote: '“Mandarte cartas de mi puño y letra, canciones a través de mi ventana...”',
     dedication:
-      '“Merece su propia mención honorífica porque este mixtape y esta carta nacieron justo de esa idea: conservar los detalles bonitos, las cartas dedicadas y esa forma de querer a la antigua que nunca debería perderse.”',
+      '“La incluí aquí porque una vez me mencionaste que el amor a la antigua es lo mejor, y he tratado de seguir las recomendaciones de esta canción para ganarme tu corazón.”',
     footerTag: 'Mención Honorífica • Pista #15',
     isDemoContent: false,
   },
@@ -311,9 +314,9 @@ export const EDITORIAL_TRACK_ENTRIES: EditorialEntry[] = [
     washiLabel: 'Mención Honorífica #02 ★',
     memoryTag: 'El estándar de cariño verdadero',
     noteTitle: '¿Por qué es mención honorífica?',
-    quote: '“I need a man who loves me like my father loves my mom...”',
+    quote: '“And dirty little notes in Post-Its...”',
     dedication:
-      '“Está en este apartado especial porque habla del tipo de amor que vale la pena: paciente, detallista, leal y que cuida todos los días con hechos y no solo con palabras.”',
+      '“La menciono porque recuerdo que la compartiste y de ahí saqué la idea de mandarte los Post-Its en el último detalle que te hice. Pero más allá de eso, esta canción tiene muchas notas sobre lo que buscas y valoras en alguien.”',
     footerTag: 'Mención Honorífica • Pista #16',
     isDemoContent: false,
   },
@@ -354,18 +357,18 @@ export const EDITORIAL_TRACK_ENTRIES: EditorialEntry[] = [
     isDemoContent: false,
   },
 
-  // #19 — Lover (Taylor Swift)
+  // #19 — Aprovéchate (Café Tacvba)
   {
-    trackId: '1dGr1c8CrMLDpV6mPbImSI',
-    fallbackTitle: 'Lover',
-    fallbackArtists: 'Taylor Swift',
+    trackId: '2GvI8j0DaIAGvubj5NinEF',
+    fallbackTitle: 'Aprovéchate',
+    fallbackArtists: 'Café Tacvba',
     template: 'polaroid',
     side: 'B',
-    washiLabel: 'Pista 19 • Luces Cálidas ♡',
-    memoryTag: 'Atmósfera de película',
-    noteTitle: 'PARA BAILAR DESPACIO',
+    washiLabel: 'Pista 19 • Clásico Alternativo',
+    memoryTag: 'Directa y sin rodeos',
+    noteTitle: 'SIN GUARDAR NADA',
     dedication:
-      '“Tiene esa calidez de casa, de luces bajitas y de querer guardar cada momento bueno que compartimos.”',
+      '“Una joya de Café Tacvba con esa mezcla entre nostalgia y sinceridad total que hace que piense en ti apenas empieza a sonar.”',
     isDemoContent: false,
   },
 
@@ -400,18 +403,18 @@ export const EDITORIAL_TRACK_ENTRIES: EditorialEntry[] = [
     isDemoContent: false,
   },
 
-  // #22 — I Don't Want To Miss A Thing (Aerosmith)
+  // #22 — Yo No Sé Mañana (Luis Enrique)
   {
-    trackId: '5qlJg0Wbj3sslxfwiaRNpq',
-    fallbackTitle: 'I Don\'t Want To Miss A Thing - From "Armageddon" Soundtrack',
-    fallbackArtists: 'Aerosmith',
+    trackId: '54uBpRpdpMx96JAk1OyHez',
+    fallbackTitle: 'Yo No Sé Mañana',
+    fallbackArtists: 'Luis Enrique',
     template: 'cassette',
     side: 'B',
-    washiLabel: 'SOUNDTRACK CLASSIC',
-    noteTitle: 'Sin perder un segundo',
+    washiLabel: 'CLÁSICO PARA CANTAR',
+    noteTitle: 'Lo que importa es hoy',
     dedication:
-      '“Un himno gigante de los noventa para decir que cada rato platicando o compartiendo contigo vale oro.”',
-    footerTag: 'Power Ballad',
+      '“Porque más allá de lo que pase después, lo que de verdad vale la pena es disfrutar el presente y cada momento en que coincidimos.”',
+    footerTag: 'Salsa Clásica',
     isDemoContent: false,
   },
 
@@ -427,7 +430,7 @@ export const EDITORIAL_TRACK_ENTRIES: EditorialEntry[] = [
     noteTitle: 'ASÍ DE CLARO',
     quote: '“Quiero que el tiempo pase junto a ti, porque no hay nadie más...”',
     dedication:
-      '“Sencilla, a guitarra y piano, pero dice la verdad más clara de toda la playlist.”',
+      '“Sencilla, a guitarra y piano, pero dice la verdad más clara de todo el mixtape.”',
     footerTag: 'Balada Pop',
     isDemoContent: false,
   },
@@ -478,22 +481,39 @@ export const EDITORIAL_TRACK_ENTRIES: EditorialEntry[] = [
     isDemoContent: false,
   },
 
-  // #27 — Entra en Mi Vida (Sin Bandera)
+  // #27 — Te quiero (Hombres G)
   {
-    trackId: '2h0iSG7htO0V4IvuwbTBf3',
-    fallbackTitle: 'Entra en Mi Vida',
-    fallbackArtists: 'Sin Bandera',
+    trackId: '5ULNuAoAozLAc721tRcPbX',
+    fallbackTitle: 'Te quiero',
+    fallbackArtists: 'Hombres G',
     template: 'polaroid',
     side: 'B',
-    washiLabel: 'Pista 27 • Bienvenida ♡',
-    memoryTag: 'Llegaste en el mejor momento',
-    noteTitle: 'TE ABRO LA PUERTA',
+    washiLabel: 'Pista 27 • Clásico en Español',
+    memoryTag: 'De principio a fin',
+    noteTitle: 'SENCILLO Y DIRECTO',
     dedication:
-      '“Por la forma tan natural y tan bonita en que llegaste a hacer los días mucho más brillantes.”',
+      '“Un clásico de toda la vida que no necesita complicarse para decir las cosas tal cual se sienten.”',
     isDemoContent: false,
   },
 
-  // #28 — Aqui Estoy Yo (Luis Fonsi, Aleks Syntek, Noel Schajris, David Bisbal)
+  // #28 — Eres Tú (Matisse, Reik)
+  {
+    trackId: '3iVu49ZmRHsCdRA0RTGUkP',
+    fallbackTitle: 'Eres Tú',
+    fallbackArtists: 'Matisse, Reik',
+    template: 'postcard',
+    side: 'B',
+    washiLabel: 'Nota Postal • Pista 28',
+    memoryTag: 'En cualquier lugar',
+    noteTitle: 'SIEMPRE TÚ',
+    quote: '“En mis sueños, en mi boca, en mi piel siempre estás tú...”',
+    dedication:
+      '“De esas canciones que resumen en pocos minutos por qué alguien se vuelve tan especial en tu día a día.”',
+    footerTag: 'Pop Acústico',
+    isDemoContent: false,
+  },
+
+  // #29 — Aqui Estoy Yo (Luis Fonsi, Aleks Syntek, Noel Schajris, David Bisbal)
   {
     trackId: '4go2M6us50x9TQ1NvsB4vt',
     fallbackTitle: 'Aqui Estoy Yo',
@@ -504,44 +524,27 @@ export const EDITORIAL_TRACK_ENTRIES: EditorialEntry[] = [
     noteTitle: 'PROMESA EN PAPEL',
     quote: '“Aquí estoy yo para darte mi fuerza y mi aliento...”',
     dedication:
-      '“En los días buenos y también cuando necesites quién te escuche o te saque una sonrisa: aquí estoy yo.”',
+      '“En los días buenos y también cuando necesites quién te escuche o te saque una sonrisa, aquí estoy yo.”',
     footerTag: 'Cuarteto Clásico',
     isDemoContent: false,
   },
 
-  // #29 — Bless The Broken Road (Rascal Flatts)
+  // ==========================================================================
+  // #30 — CIERRE ESPECIAL DEL MIXTAPE (Rascal Flatts — Bless The Broken Road)
+  // ==========================================================================
   {
     trackId: '4YjjNHtEsTX6Af4mCTupT5',
     fallbackTitle: 'Bless The Broken Road',
     fallbackArtists: 'Rascal Flatts',
-    template: 'postcard',
-    side: 'B',
-    washiLabel: 'Ruta 29 • Destino Final',
-    memoryTag: 'Todo el camino llevaba a ti',
-    noteTitle: 'VALIÓ CADA PASO',
-    quote: '“That led me straight to you...”',
-    dedication:
-      '“Cada vuelta del camino tiene sentido cuando al final te lleva a coincidir con la persona correcta.”',
-    footerTag: 'Country Ballad',
-    isDemoContent: false,
-  },
-
-  // ==========================================================================
-  // #30 — CIERRE / EL CHISTE MALO DE LA PLAYLIST (Camila — Coleccionista de Canciones)
-  // ==========================================================================
-  {
-    trackId: '28Ct4qwkQXY2W5yyNCLuVI',
-    fallbackTitle: 'Coleccionista de Canciones',
-    fallbackArtists: 'Camila',
     template: 'collector',
     side: 'B',
-    washiLabel: 'Bonus Final • Chiste Malo Oficial 😂',
-    memoryTag: 'Título desbloqueado: 30 de 30 canciones',
-    noteTitle: 'POR QUÉ ESTÁ AL FINAL (SÍ, ES UN CHISTE MALO)',
-    quote: '“Camila — Coleccionista de Canciones (literalmente tú después de esta playlist).”',
+    washiLabel: 'Pista Final #30 • Una de mis favoritas',
+    memoryTag: 'El camino que me llevó a conocerte',
+    noteTitle: 'POR QUÉ CIERRA ESTE MIXTAPE',
+    quote: '“God blessed the broken road that led me straight to you...”',
     dedication:
-      '“Perdón por el chiste tan malo para cerrar, pero no podía dejar pasar la oportunidad: te llamas Camila y después de dedicarte las 29 canciones anteriores de esta playlist, oficialmente ya eres ‘Camila, Coleccionista de Canciones’. 😂🫶🏻”',
-    footerTag: 'Trofeo desbloqueado: Coleccionista Oficial',
+      '“Quise dejar esta canción para el final porque es de mis favoritas y tiene un significado muy grande para mí. Habla justo de cómo, a pesar de las veces en que me he sentido perdido o sin rumbo claro, aun así Dios acomodó cada paso y me guió exactamente hasta el camino en el que te conocí.”',
+    footerTag: 'Cierre especial • Todo el camino valió la pena',
     isDemoContent: false,
   },
 ];

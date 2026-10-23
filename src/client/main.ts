@@ -21,9 +21,9 @@ let currentTab: NavigationTab = 'carta';
 
 function apiUrl(endpointPath: string): string {
   const isSubpath =
-    window.location.pathname === '/playlist-1' ||
-    window.location.pathname.startsWith('/playlist-1/');
-  return isSubpath ? `/playlist-1${endpointPath}` : endpointPath;
+    window.location.pathname === '/mixtape-1' ||
+    window.location.pathname.startsWith('/mixtape-1/');
+  return isSubpath ? `/mixtape-1${endpointPath}` : endpointPath;
 }
 
 const loginView = document.getElementById('loginView') as HTMLElement | null;
@@ -232,7 +232,7 @@ async function handleLogout(): Promise<void> {
       mixtapeView.classList.add('hidden');
     }
     loginView?.classList.remove('hidden');
-    document.title = 'Playlist #1 • Para ti';
+    document.title = 'Mixtape #1 • Para ti';
     resetEnvelopeToClosed();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
@@ -288,7 +288,7 @@ async function loadAndRenderMixtape(animateUnlock = false): Promise<void> {
     return;
   }
 
-  document.title = 'Playlist #1 • Para ti';
+  document.title = 'Mixtape #1 • Para ti';
 
   if (animateUnlock) {
     loginView.classList.add('login-unlock-zoom');
@@ -318,7 +318,7 @@ async function loadAndRenderMixtape(animateUnlock = false): Promise<void> {
       mixtapeView.innerHTML = '';
       mixtapeView.classList.add('hidden');
       loginView.classList.remove('hidden', 'login-unlock-zoom');
-      document.title = 'Playlist #1 • Para ti';
+      document.title = 'Mixtape #1 • Para ti';
       resetEnvelopeToClosed();
       openEnvelope(true);
       showLoginError('Tu sesión expiró. Ingresa nuevamente la clave secreta.');
@@ -423,6 +423,79 @@ function initClient(): void {
   });
 
   void checkInitialSession();
+}
+
+/**
+ * Recarga el contenido de `/api/mixtape` en caliente (HMR) conservando la posición
+ * exacta de scroll y mostrando un indicador visual breve cuando se editan
+ * archivos del servidor durante el desarrollo local.
+ */
+async function refreshMixtapeInPlace(changedFile?: string): Promise<void> {
+  if (!mixtapeView || mixtapeView.classList.contains('hidden')) {
+    return;
+  }
+
+  const previousScrollY = window.scrollY;
+  try {
+    const response = await fetch(apiUrl(`/api/mixtape?_t=${Date.now()}`), {
+      method: 'GET',
+      credentials: 'same-origin',
+      cache: 'no-store',
+      headers: {
+        Accept: 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      return;
+    }
+
+    const data = (await response.json()) as MixtapeResponse;
+    mixtapeView.innerHTML = renderMixtapeScrapbook(data, currentTab);
+    bindMixtapeInteractions();
+    window.scrollTo({ top: previousScrollY, behavior: 'instant' as ScrollBehavior });
+
+    showLiveSupervisorToast(changedFile);
+  } catch {
+    // Ignorar errores transitorios mientras se guarda un archivo
+  }
+}
+
+function showLiveSupervisorToast(changedFile?: string): void {
+  const existing = document.getElementById('liveSupervisorToast');
+  existing?.remove();
+
+  const toast = document.createElement('div');
+  toast.id = 'liveSupervisorToast';
+  toast.className =
+    'fixed top-16 right-4 z-[60] bg-[#25190c]/95 text-[#ffeedf] px-3.5 py-2 rounded-full shadow-lg border border-[#e06d53]/60 flex items-center gap-2 font-[Plus_Jakarta_Sans] text-[11px] font-bold transition-opacity duration-300 pointer-events-none';
+  toast.innerHTML = `
+    <span class="w-2 h-2 rounded-full bg-[#bbf37c] animate-ping"></span>
+    <span>Actualizado en vivo${changedFile ? `: ${changedFile.split('/').pop()}` : ''}</span>
+  `;
+  document.body.appendChild(toast);
+
+  setTimeout(() => {
+    toast.style.opacity = '0';
+    setTimeout(() => toast.remove(), 300);
+  }, 1800);
+}
+
+const viteHot = (
+  import.meta as ImportMeta & {
+    hot?: {
+      on: (
+        event: string,
+        cb: (payload?: { file?: string; timestamp?: number }) => void
+      ) => void;
+    };
+  }
+).hot;
+
+if (viteHot) {
+  viteHot.on('mixtape:server-updated', (payload) => {
+    void refreshMixtapeInPlace(payload?.file);
+  });
 }
 
 initClient();

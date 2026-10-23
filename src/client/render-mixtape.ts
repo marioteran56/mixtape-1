@@ -131,7 +131,7 @@ function renderStatusBadges(item: MergedTrackItem): string {
 
   if (item.status === 'removed-from-playlist') {
     badges.push(
-      `<span class="bg-[#ffdad6] text-[#93000a] font-[Plus_Jakarta_Sans] text-[10px] font-bold px-2 py-0.5 rounded-full">Retirada de la playlist activa</span>`
+      `<span class="bg-[#ffdad6] text-[#93000a] font-[Plus_Jakarta_Sans] text-[10px] font-bold px-2 py-0.5 rounded-full">Retirada del mixtape activo</span>`
     );
   }
 
@@ -177,9 +177,8 @@ function renderPolaroidCard(item: MergedTrackItem): string {
           ${renderUncroppedAlbumArt(item)}
         </div>
 
-        ${
-          editorial.memoryTag
-            ? `<div class="flex flex-wrap items-center justify-between gap-2 px-1">
+        ${editorial.memoryTag
+      ? `<div class="flex flex-wrap items-center justify-between gap-2 px-1">
                 <span class="inline-flex items-center gap-1.5 bg-surface-container-lowest px-2.5 py-1 rounded-full shadow-2xs border border-[#edd6c1]">
                   <span class="material-symbols-outlined text-primary text-[14px]">auto_awesome</span>
                   <span class="font-[Plus_Jakarta_Sans] text-[10px] font-bold text-on-surface uppercase tracking-wide">${escapeHtml(editorial.memoryTag)}</span>
@@ -188,8 +187,8 @@ function renderPolaroidCard(item: MergedTrackItem): string {
                   ${spotifyLogoSvg('w-3.5 h-3.5 text-[#1DB954]')} Spotify
                 </span>
               </div>`
-            : ''
-        }
+      : ''
+    }
 
         <!-- Handwritten Title Under Photo -->
         <div class="px-1 pt-0.5 flex items-baseline justify-between gap-2">
@@ -303,14 +302,13 @@ function renderPostItCard(item: MergedTrackItem): string {
           </p>
           ${renderStatusBadges(item)}
 
-          ${
-            editorial.memoryTag
-              ? `<div class="inline-flex items-center gap-1.5 bg-surface-container-lowest/90 text-on-surface px-2.5 py-1 rounded-full font-[Plus_Jakarta_Sans] font-semibold text-[10px] my-2 shadow-2xs border border-[#edd6c1]">
+          ${editorial.memoryTag
+      ? `<div class="inline-flex items-center gap-1.5 bg-surface-container-lowest/90 text-on-surface px-2.5 py-1 rounded-full font-[Plus_Jakarta_Sans] font-semibold text-[10px] my-2 shadow-2xs border border-[#edd6c1]">
                   <span class="material-symbols-outlined text-primary text-[13px]">location_on</span>
                   <span>${escapeHtml(editorial.memoryTag)}</span>
                 </div>`
-              : ''
-          }
+      : ''
+    }
 
           <p class="font-[Literata] text-[13px] text-on-surface italic mt-1 leading-relaxed">
             ${escapeHtml(noteText)}
@@ -536,17 +534,45 @@ function renderDoublePolaroidCard(item: MergedTrackItem): string {
   const dedicationText =
     editorial.dedication ||
     'Para escuchar con calma cuando quieras desconectar un momento.';
+  const isFeatured = Boolean(
+    editorial.featuredBadge || editorial.calloutText || editorial.secondaryNoteText
+  );
 
   return `
     <article
       data-template="double-polaroid"
       data-category="recuerdos notas"
       data-track-id="${escapeHtml(item.trackId)}"
-      class="relative mt-2 bg-surface-container-low/80 pt-6 px-4 pb-4 sm:px-5 sm:pb-5 rounded-xl shadow-[0_8px_20px_-3px_rgba(87,72,56,0.12)] hover:rotate-0 transition-transform duration-300 border border-[#edd6c1]"
+      class="relative mt-2 ${isFeatured
+      ? 'bg-gradient-to-br from-[#fffdf9] via-[#fff7ee] to-[#ffefe0] pt-7 px-4 pb-5 sm:px-6 sm:pb-6 rounded-2xl shadow-[0_12px_28px_-4px_rgba(158,60,38,0.18)] border-2 border-[#e06d53]/80'
+      : 'bg-surface-container-low/80 pt-6 px-4 pb-4 sm:px-5 sm:pb-5 rounded-xl shadow-[0_8px_20px_-3px_rgba(87,72,56,0.12)] border border-[#edd6c1]'
+    } hover:rotate-0 transition-transform duration-300"
     >
-      <!-- Cintas Washi Superiores Separadas -->
-      <div class="absolute -top-2.5 left-8 w-16 h-4 bg-tertiary-fixed/90 -rotate-2 rounded-[2px] shadow-2xs z-20 pointer-events-none"></div>
-      <div class="absolute -top-2.5 right-8 w-16 h-4 bg-secondary-fixed/90 rotate-2 rounded-[2px] shadow-2xs z-20 pointer-events-none"></div>
+      ${isFeatured
+      ? `<!-- Cinta Washi Destacada Superior -->
+            <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-4 h-6 bg-[#f7dfa8] text-[#5c3d08] border border-[#dfc07b] -rotate-1 rounded-[3px] shadow-xs z-20 flex items-center gap-1.5 pointer-events-none">
+              <span class="material-symbols-outlined text-[14px]" style="font-size: 14px; font-variation-settings: 'FILL' 1;">stars</span>
+              <span class="font-[Plus_Jakarta_Sans] text-[10px] font-bold uppercase tracking-wider whitespace-nowrap">
+                ${escapeHtml(editorial.washiLabel)}
+              </span>
+            </div>`
+      : `<!-- Cintas Washi Superiores Separadas -->
+            <div class="absolute -top-2.5 left-8 w-16 h-4 bg-tertiary-fixed/90 -rotate-2 rounded-[2px] shadow-2xs z-20 pointer-events-none"></div>
+            <div class="absolute -top-2.5 right-8 w-16 h-4 bg-secondary-fixed/90 rotate-2 rounded-[2px] shadow-2xs z-20 pointer-events-none"></div>`
+    }
+
+      ${editorial.featuredBadge
+      ? `<div class="flex flex-wrap items-center justify-between gap-2 pb-3 mb-4 border-b border-dashed border-[#ddc0ba]">
+              <span class="inline-flex items-center gap-1.5 text-primary font-[Plus_Jakarta_Sans] text-[11px] font-bold uppercase tracking-wider">
+                <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">stars</span>
+                <span>${escapeHtml(editorial.featuredBadge)}</span>
+              </span>
+              <span class="bg-surface-container-lowest text-on-surface font-[Plus_Jakarta_Sans] text-[10px] font-bold px-2.5 py-0.5 rounded-full border border-[#ddc0ba]">
+                Pista #${item.displayNumber.toString().padStart(2, '0')} • ${escapeHtml(spotify.durationFormatted)}
+              </span>
+            </div>`
+      : ''
+    }
 
       <!-- Composición Collage: Polaroid a la izquierda + Sticky Note inclinada a la derecha -->
       <div class="flex flex-col sm:flex-row items-center sm:items-stretch gap-4">
@@ -586,21 +612,42 @@ function renderDoublePolaroidCard(item: MergedTrackItem): string {
                 ${renderStatusBadges(item)}
               </div>
 
-              <span class="bg-tertiary-fixed text-on-tertiary-fixed font-[Plus_Jakarta_Sans] font-bold text-[10px] px-2.5 py-0.5 rounded-full shrink-0">
-                ${escapeHtml(editorial.memoryTag || 'Cita especial')}
+              <span class="bg-tertiary-fixed text-on-tertiary-fixed font-[Plus_Jakarta_Sans] font-bold text-[10px] px-2.5 py-0.5 rounded-full shrink-0 inline-flex items-center gap-1">
+                ${isFeatured ? '<span class="material-symbols-outlined text-[12px]" style="font-size: 12px; font-variation-settings: \'FILL\' 1;">favorite</span>' : ''}
+                <span>${escapeHtml(editorial.memoryTag || 'Cita especial')}</span>
               </span>
             </div>
 
-            ${
-              quoteText
-                ? `<!-- Frase / Cita en recuadro tipo marcapáginas -->
+            ${editorial.calloutText
+      ? `<!-- Recuadro de Dato / Pregunta Destacada -->
+                  <div class="my-2 px-3 py-2 bg-surface-container-lowest rounded-lg border border-[#e06d53]/40 shadow-2xs flex items-center gap-2.5">
+                    <div class="w-7 h-7 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                      <span class="material-symbols-outlined text-[15px]">calendar_month</span>
+                    </div>
+                    <div class="min-w-0">
+                      ${editorial.calloutTitle
+        ? `<span class="font-[Plus_Jakarta_Sans] text-[9px] font-bold uppercase tracking-widest text-primary block">
+                              ${escapeHtml(editorial.calloutTitle)}
+                            </span>`
+        : ''
+      }
+                      <p class="font-[Literata] text-[13px] sm:text-[14px] font-medium text-on-surface italic leading-snug">
+                        ${escapeHtml(editorial.calloutText)}
+                      </p>
+                    </div>
+                  </div>`
+      : ''
+    }
+
+            ${quoteText
+      ? `<!-- Frase / Cita en recuadro tipo marcapáginas -->
                   <blockquote class="my-2.5 pl-3 py-1.5 pr-2.5 bg-surface-container-lowest/85 border-l-3 border-secondary rounded-r-md shadow-2xs">
                     <p class="font-[Literata] text-[13px] text-secondary font-medium italic leading-snug">
                       ${escapeHtml(quoteText)}
                     </p>
                   </blockquote>`
-                : ''
-            }
+      : ''
+    }
 
             <!-- Dedicatoria personal en la misma Sticky Note -->
             <div class="mt-2">
@@ -612,6 +659,20 @@ function renderDoublePolaroidCard(item: MergedTrackItem): string {
                 ${escapeHtml(dedicationText)}
               </p>
             </div>
+
+            ${editorial.secondaryNoteText
+      ? `<!-- Bloque de Texto Alterno Separado -->
+                  <div class="mt-3 p-3 bg-surface-container-lowest/95 rounded-lg border border-[#ddc0ba] shadow-2xs">
+                    <span class="font-[Plus_Jakarta_Sans] text-[10px] font-bold uppercase text-secondary tracking-wider inline-flex items-center gap-1 mb-1">
+                      <span class="material-symbols-outlined text-[13px]" style="font-variation-settings: 'FILL' 1;">favorite</span>
+                      <span>${escapeHtml(editorial.secondaryNoteTitle || 'Nota adicional')}</span>
+                    </span>
+                    <p class="font-[Literata] text-[13px] text-on-surface italic leading-relaxed">
+                      ${escapeHtml(editorial.secondaryNoteText)}
+                    </p>
+                  </div>`
+      : ''
+    }
           </div>
 
           <!-- Pie de la Sticky Note con enlace a Spotify -->
@@ -690,13 +751,12 @@ function renderPostcardCard(item: MergedTrackItem): string {
             </p>
             ${renderStatusBadges(item)}
 
-            ${
-              editorial.quote
-                ? `<p class="mt-2 font-[Literata] text-[12px] text-secondary font-medium italic bg-secondary-fixed/30 px-2.5 py-1.5 rounded-md border-l-2 border-secondary">
+            ${editorial.quote
+      ? `<p class="mt-2 font-[Literata] text-[12px] text-secondary font-medium italic bg-secondary-fixed/30 px-2.5 py-1.5 rounded-md border-l-2 border-secondary">
                     ${escapeHtml(editorial.quote)}
                   </p>`
-                : ''
-            }
+      : ''
+    }
 
             <div class="mt-2.5">
               <span class="font-[Plus_Jakarta_Sans] text-[10px] font-bold uppercase text-primary tracking-wider block mb-0.5">
@@ -785,13 +845,12 @@ function renderVinylSleeveCard(item: MergedTrackItem): string {
           </p>
           ${renderStatusBadges(item)}
 
-          ${
-            editorial.quote
-              ? `<p class="mt-2 font-[Literata] text-[12px] text-secondary italic">
+          ${editorial.quote
+      ? `<p class="mt-2 font-[Literata] text-[12px] text-secondary italic">
                   ${escapeHtml(editorial.quote)}
                 </p>`
-              : ''
-          }
+      : ''
+    }
 
           <div class="mt-2.5 bg-surface-container-lowest/90 p-3 rounded-lg border border-[#edd6c1] shadow-2xs">
             <span class="font-[Plus_Jakarta_Sans] text-[10px] font-bold uppercase text-primary tracking-wider block mb-0.5">
@@ -879,15 +938,14 @@ function renderHonorableMentionCard(item: MergedTrackItem): string {
           </p>
           ${renderStatusBadges(item)}
 
-          ${
-            editorial.quote
-              ? `<blockquote class="mt-2.5 pl-3 py-1 pr-2 bg-surface-container-lowest/90 border-l-3 border-[#d49a35] rounded-r-md">
+          ${editorial.quote
+      ? `<blockquote class="mt-2.5 pl-3 py-1 pr-2 bg-surface-container-lowest/90 border-l-3 border-[#d49a35] rounded-r-md">
                   <p class="font-[Literata] text-[12px] text-[#694506] italic">
                     ${escapeHtml(editorial.quote)}
                   </p>
                 </blockquote>`
-              : ''
-          }
+      : ''
+    }
 
           <!-- Espacio dedicado para decir por qué es Mención Honorífica -->
           <div class="mt-2.5 bg-surface-container-lowest p-3.5 rounded-lg border border-[#e5c489]/90 shadow-2xs">
@@ -921,34 +979,35 @@ function renderHonorableMentionCard(item: MergedTrackItem): string {
 }
 
 /**
- * PLANTILLA 9: `collector` ("Certificado / Chiste Final — Camila, Coleccionista de Canciones")
+ * PLANTILLA 9: `collector` ("Tarjeta de Cierre Especial / Favorita Personal — Pista #30")
  */
 function renderCollectorCard(item: MergedTrackItem): string {
   const { spotify, editorial } = item;
-  const jokeText =
+  const closingDedicationText =
     editorial.dedication ||
-    'Referencia obligatoria al final de la playlist.';
+    'Canción elegida especialmente para cerrar este mixtape.';
 
   return `
     <article
       data-template="collector"
       data-category="mixtape notas"
       data-track-id="${escapeHtml(item.trackId)}"
-      class="relative mt-3 bg-gradient-to-br from-[#fff9ee] via-[#fff2e2] to-[#ffe6d4] pt-7 px-4 pb-5 sm:px-6 rounded-2xl shadow-[0_10px_26px_-4px_rgba(158,60,38,0.18)] border-2 border-dashed border-[#e06d53]"
+      class="relative mt-3 bg-gradient-to-br from-[#fffdf8] via-[#fff5ea] to-[#ffead8] pt-7 px-4 pb-5 sm:px-6 rounded-2xl shadow-[0_12px_28px_-4px_rgba(158,60,38,0.18)] border-2 border-[#e06d53]"
     >
-      <!-- Washi Tape Superior de Bonus / Chiste -->
-      <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-4 h-6 bg-secondary-fixed text-on-secondary-fixed rotate-1 rounded-[3px] shadow-xs z-10 flex items-center gap-1.5 pointer-events-none border border-[#ffafd3]">
+      <!-- Washi Tape Superior de Cierre Especial -->
+      <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-4 h-6 bg-[#f7dfa8] text-[#5c3d08] rotate-1 rounded-[3px] shadow-xs z-10 flex items-center gap-1.5 pointer-events-none border border-[#dfc07b]">
+        <span class="material-symbols-outlined text-[13px]" style="font-size: 13px; font-variation-settings: 'FILL' 1;">stars</span>
         <span class="font-[Plus_Jakarta_Sans] text-[10px] font-bold uppercase tracking-wider whitespace-nowrap">
-          ${escapeHtml(editorial.washiLabel || 'Pista #30 • El Chiste Final 😂')}
+          ${escapeHtml(editorial.washiLabel || 'Pista Final #30 • Cierre Especial')}
         </span>
       </div>
 
-      <!-- Encabezado tipo Certificado de Coleccionista -->
+      <!-- Encabezado de Pista Final -->
       <div class="flex flex-wrap items-center justify-between gap-2 pb-3 mb-4 border-b border-[#edd6c1]">
         <div class="flex items-center gap-2">
-          <span class="material-symbols-outlined text-primary text-[18px]" style="font-variation-settings: 'FILL' 1;">emoji_events</span>
+          <span class="material-symbols-outlined text-primary text-[18px]">explore</span>
           <span class="font-[Plus_Jakarta_Sans] text-[11px] font-bold uppercase tracking-wider text-primary">
-            ${escapeHtml(editorial.memoryTag || 'Logro desbloqueado al llegar a la pista #30')}
+            ${escapeHtml(editorial.memoryTag || 'El cierre especial de este mixtape')}
           </span>
         </div>
         <span class="bg-surface-container-lowest text-on-surface font-[Plus_Jakarta_Sans] text-[10px] font-bold px-2.5 py-0.5 rounded-full border border-[#ddc0ba]">
@@ -957,18 +1016,18 @@ function renderCollectorCard(item: MergedTrackItem): string {
       </div>
 
       <div class="flex flex-col sm:flex-row gap-4 items-center sm:items-start">
-        <!-- Portada 1:1 de Camila + Vinilo Giratorio -->
+        <!-- Portada 1:1 + Vinilo Giratorio -->
         <div class="w-36 shrink-0 bg-surface-container-lowest p-2.5 rounded-xl shadow-md -rotate-1 border border-[#edd6c1] flex flex-col items-center gap-2">
           ${renderUncroppedAlbumArt(item)}
           <div class="flex items-center gap-1.5">
-            ${renderSpinningVinylDisc('w-5 h-5', '#a43073')}
-            <span class="font-[Caveat] text-[15px] font-bold text-secondary">
-              ¡30 de 30 canciones!
+            ${renderSpinningVinylDisc('w-5 h-5', '#9e3c26')}
+            <span class="font-[Caveat] text-[15px] font-bold text-[#57423d]">
+              Pista Final • #${item.displayNumber}
             </span>
           </div>
         </div>
 
-        <!-- Explicación del chiste malo -->
+        <!-- Significado especial de la canción final -->
         <div class="flex-1 min-w-0 w-full">
           <h3 class="font-[Epilogue] text-[19px] font-bold text-on-surface leading-snug">
             <a href="${escapeHtml(spotify.spotifyUrl)}" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors">
@@ -980,32 +1039,31 @@ function renderCollectorCard(item: MergedTrackItem): string {
           </p>
           ${renderStatusBadges(item)}
 
-          ${
-            editorial.quote
-              ? `<div class="mt-2.5 bg-surface-container-lowest/90 px-3 py-2 rounded-lg border border-[#edd6c1] shadow-2xs">
+          ${editorial.quote
+      ? `<div class="mt-2.5 bg-surface-container-lowest/90 px-3 py-2 rounded-lg border-l-3 border-primary shadow-2xs">
                   <p class="font-[Literata] text-[12px] text-on-surface font-medium italic">
                     ${escapeHtml(editorial.quote)}
                   </p>
                 </div>`
-              : ''
-          }
+      : ''
+    }
 
           <div class="mt-2.5 bg-[#fef9dc] p-3.5 rounded-xl border border-[#e6d79c] shadow-2xs lined-note-bg">
             <p class="font-[Plus_Jakarta_Sans] text-[10px] font-bold uppercase tracking-wider text-primary mb-1 flex items-center gap-1">
-              <span class="material-symbols-outlined text-[13px]" style="font-size: 13px;">sentiment_very_satisfied</span>
-              <span>${escapeHtml(editorial.noteTitle || 'REFERENCIA FINAL')}</span>
+              <span class="material-symbols-outlined text-[13px]" style="font-size: 13px; font-variation-settings: 'FILL' 1;">favorite</span>
+              <span>${escapeHtml(editorial.noteTitle || 'POR QUÉ CIERRA ESTE MIXTAPE')}</span>
             </p>
             <p class="font-[Literata] text-[13px] text-on-surface italic leading-relaxed">
-              ${escapeHtml(jokeText)}
+              ${escapeHtml(closingDedicationText)}
             </p>
           </div>
         </div>
       </div>
 
       <div class="mt-4 pt-3 border-t border-[#edd6c1] flex flex-wrap items-center justify-between gap-2">
-        <span class="font-[Plus_Jakarta_Sans] text-[11px] font-bold text-secondary inline-flex items-center gap-1.5">
+        <span class="font-[Plus_Jakarta_Sans] text-[11px] font-bold text-primary inline-flex items-center gap-1.5">
           <span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">verified</span>
-          <span>${escapeHtml(editorial.footerTag || 'Coleccionista Oficial de Canciones')}</span>
+          <span>${escapeHtml(editorial.footerTag || 'Cierre especial del mixtape')}</span>
         </span>
         <a
           class="bg-primary hover:bg-primary-container text-on-primary px-4 py-1.5 rounded-full font-[Plus_Jakarta_Sans] text-[11px] font-bold inline-flex items-center gap-1.5 shadow-2xs transition-colors"
@@ -1032,7 +1090,7 @@ function renderMinimalCard(item: MergedTrackItem): string {
     editorial.dedication ||
     editorial.quote ||
     (isUnconfigured
-      ? 'Parte de nuestra playlist en Spotify.'
+      ? 'Parte de nuestro mixtape en Spotify.'
       : '“Bonus track con pura buena energía para el día.”');
 
   return `
@@ -1040,22 +1098,20 @@ function renderMinimalCard(item: MergedTrackItem): string {
       data-template="minimal"
       data-category="mixtape"
       data-track-id="${escapeHtml(item.trackId)}"
-      class="relative mt-2 ${
-        isUnconfigured ? 'bg-surface-container-low/95' : 'bg-surface-container'
-      } pt-5 px-4 pb-4 rounded-xl shadow-[0_6px_16px_-3px_rgba(87,72,56,0.10)] hover:rotate-0 transition-transform duration-300 border border-[#ddc0ba]"
+      class="relative mt-2 ${isUnconfigured ? 'bg-surface-container-low/95' : 'bg-surface-container'
+    } pt-5 px-4 pb-4 rounded-xl shadow-[0_6px_16px_-3px_rgba(87,72,56,0.10)] hover:rotate-0 transition-transform duration-300 border border-[#ddc0ba]"
     >
-      <div class="absolute -top-2.5 right-5 px-3 h-5 ${
-        isUnconfigured
-          ? 'bg-surface-container-highest text-on-surface-variant'
-          : 'bg-secondary-fixed/95 text-on-secondary-fixed'
-      } rotate-1 rounded-[2px] shadow-2xs z-10 flex items-center justify-center pointer-events-none">
+      <div class="absolute -top-2.5 right-5 px-3 h-5 ${isUnconfigured
+      ? 'bg-surface-container-highest text-on-surface-variant'
+      : 'bg-secondary-fixed/95 text-on-secondary-fixed'
+    } rotate-1 rounded-[2px] shadow-2xs z-10 flex items-center justify-center pointer-events-none">
         <span class="font-[Plus_Jakarta_Sans] text-[9px] font-bold uppercase tracking-wider whitespace-nowrap">
           ${escapeHtml(
-            editorial.washiLabel ||
-              (isUnconfigured
-                ? `Pista #${item.displayNumber.toString().padStart(2, '0')} • Mixtape`
-                : 'Bonus Track Alegre ★')
-          )}
+      editorial.washiLabel ||
+      (isUnconfigured
+        ? `Pista #${item.displayNumber.toString().padStart(2, '0')} • Mixtape`
+        : 'Bonus Track Alegre ★')
+    )}
         </span>
       </div>
 
@@ -1182,10 +1238,10 @@ export function renderMixtapeScrapbook(
         <section class="bg-surface-container-lowest p-6 rounded-xl border border-dashed border-[#ddc0ba] text-center space-y-3 my-2">
           <span class="material-symbols-outlined text-primary text-[32px]">queue_music</span>
           <h3 class="font-[Epilogue] text-[18px] font-semibold text-on-surface">
-            La playlist está vacía por ahora
+            El mixtape está vacío por ahora
           </h3>
           <p class="font-[Literata] text-[13px] text-on-surface-variant italic max-w-md mx-auto">
-            Puedes abrir la playlist directamente en Spotify con el botón superior o revisar las dedicatorias guardadas más abajo.
+            Puedes abrir el mixtape directamente en Spotify con el botón superior o revisar las dedicatorias guardadas más abajo.
           </p>
         </section>
       `
@@ -1205,7 +1261,7 @@ export function renderMixtapeScrapbook(
           </div>
         </div>
 
-        <!-- Contador + Acceso rápido a la playlist de Spotify a la derecha -->
+        <!-- Contador + Acceso rápido al mixtape de Spotify a la derecha -->
         <div class="flex items-center gap-2 shrink-0">
           <span class="font-[Plus_Jakarta_Sans] text-[11px] font-semibold text-on-surface-variant bg-surface-container-low px-2.5 py-1 rounded-full border border-[#edd6c1]">
             ${playlistStatus.totalTracks} pistas
@@ -1215,10 +1271,10 @@ export function renderMixtapeScrapbook(
             target="_blank"
             rel="noopener noreferrer"
             class="inline-flex items-center gap-1.5 bg-surface-container-lowest hover:bg-surface-container-high px-3 py-1 rounded-full font-[Plus_Jakarta_Sans] text-[11px] font-bold text-on-surface border border-[#ddc0ba] shadow-2xs transition-colors"
-            title="Abrir playlist completa en Spotify"
+            title="Abrir mixtape completo en Spotify"
           >
             ${spotifyLogoSvg('w-3.5 h-3.5 text-[#1DB954]')}
-            <span>Playlist</span>
+            <span>Mixtape</span>
           </a>
         </div>
       </div>
@@ -1267,11 +1323,11 @@ export function renderMixtapeScrapbook(
           <div class="bg-surface-container-lowest/95 rounded-lg p-4 sm:p-5 shadow-2xs relative overflow-hidden mb-4 border border-[#edd6c1]/80">
             <div class="space-y-3 relative z-10">
               ${letter.paragraphs
-                .map(
-                  (p) =>
-                    `<p class="font-[Literata] text-[15px] text-on-surface leading-relaxed">${escapeHtml(p)}</p>`
-                )
-                .join('')}
+      .map(
+        (p) =>
+          `<p class="font-[Literata] text-[15px] text-on-surface leading-relaxed">${escapeHtml(p)}</p>`
+      )
+      .join('')}
             </div>
 
             <div class="mt-4 pt-2.5 border-t border-dashed border-[#edd6c1] flex items-center justify-between text-on-surface-variant">
@@ -1300,7 +1356,7 @@ export function renderMixtapeScrapbook(
               target="_blank"
             >
               ${spotifyLogoSvg('w-4 h-4')}
-              <span>Escuchar Playlist en Spotify</span>
+              <span>Escuchar Mixtape en Spotify</span>
             </a>
           </div>
         </section>
@@ -1308,9 +1364,8 @@ export function renderMixtapeScrapbook(
         ${emptyPlaylistHtml}
 
         <!-- 2. PRIMERA SECCIÓN DE CANCIONES (#01 a #14) -->
-        ${
-          firstPartTracks.length > 0
-            ? `
+        ${firstPartTracks.length > 0
+      ? `
               <div id="section-mixtape" class="scroll-mt-18 flex items-center justify-center gap-3 my-1">
                 <div class="h-[1px] w-12 bg-outline-variant"></div>
                 <span class="font-[Plus_Jakarta_Sans] text-[11px] font-bold uppercase tracking-widest text-on-surface-variant bg-surface-container-high px-3.5 py-1 rounded-[3px] shadow-2xs">
@@ -1322,13 +1377,12 @@ export function renderMixtapeScrapbook(
                 ${firstPartTracks.map((track) => renderTrackCard(track)).join('')}
               </div>
             `
-            : ''
-        }
+      : ''
+    }
 
         <!-- APARTADO ESPECIAL: MENCIONES HONORÍFICAS (CANCIONES #15 Y #16 SEGUIDAS) -->
-        ${
-          honorableMentionTracks.length > 0
-            ? `
+        ${honorableMentionTracks.length > 0
+      ? `
               <section
                 id="section-honorificas"
                 class="relative my-3 bg-gradient-to-b from-[#fffbf2] to-[#fff5e4] p-4 sm:p-5 rounded-2xl border-2 border-dashed border-[#dfc07b] shadow-[0_10px_24px_-4px_rgba(140,90,8,0.12)]"
@@ -1351,24 +1405,22 @@ export function renderMixtapeScrapbook(
                 </div>
               </section>
             `
-            : ''
-        }
+      : ''
+    }
 
         <!-- 3. CONTINUACIÓN DE DEDICATORIAS (#17 a #30) -->
-        ${
-          secondPartTracks.length > 0
-            ? `
+        ${secondPartTracks.length > 0
+      ? `
               <div class="flex flex-col gap-6">
                 ${secondPartTracks.map((track) => renderTrackCard(track)).join('')}
               </div>
             `
-            : ''
-        }
+      : ''
+    }
 
         <!-- ARCHIVO DE DEDICATORIAS DE CANCIONES RETIRADAS DE LA PLAYLIST -->
-        ${
-          removedConfiguredTracks.length > 0
-            ? `
+        ${removedConfiguredTracks.length > 0
+      ? `
               <div class="flex items-center justify-center gap-2 my-2">
                 <div class="h-[1px] w-10 bg-outline-variant"></div>
                 <span class="font-[Plus_Jakarta_Sans] text-[10px] font-bold uppercase tracking-widest text-on-surface-variant bg-surface-container px-3 py-1 rounded-[2px] shadow-2xs">
@@ -1380,8 +1432,8 @@ export function renderMixtapeScrapbook(
                 ${removedConfiguredTracks.map((track) => renderTrackCard(track)).join('')}
               </div>
             `
-            : ''
-        }
+      : ''
+    }
 
         <!-- 4. CARTA / NOTA FINAL DE DESPEDIDA -->
         <section
@@ -1389,37 +1441,68 @@ export function renderMixtapeScrapbook(
           class="scroll-mt-18 relative mt-3 bg-surface-container-lowest pt-7 px-5 pb-5 sm:px-6 sm:pb-6 rounded-xl shadow-[0_12px_28px_-4px_rgba(87,72,56,0.15)] mb-4 border border-[#edd6c1]"
         >
           <!-- Top Washi Mint Center -->
-          <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-4 h-5 bg-tertiary-fixed/95 rotate-1 rounded-[2px] shadow-2xs z-10 flex items-center justify-center pointer-events-none">
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-4 h-5 bg-tertiary-fixed/95 rotate-1 rounded-[2px] shadow-2xs z-10 flex items-center gap-1.5 justify-center pointer-events-none">
+            <span class="material-symbols-outlined text-[12px] text-on-tertiary-fixed" style="font-size: 12px;">music_note</span>
             <span class="font-[Plus_Jakarta_Sans] text-[9px] font-bold uppercase tracking-wider text-on-tertiary-fixed whitespace-nowrap">
-              Hasta la última canción ♡
+              Hasta la última canción
             </span>
           </div>
 
           <div class="text-center mb-4">
-            <span class="font-[Plus_Jakarta_Sans] text-[11px] font-bold uppercase tracking-widest text-primary">
-              ${escapeHtml(letter.closingBadge)}
+            <span class="font-[Plus_Jakarta_Sans] text-[11px] font-bold uppercase tracking-widest text-primary inline-flex items-center gap-1">
+              <span class="material-symbols-outlined text-[14px]">mail</span>
+              <span>${escapeHtml(letter.closingBadge)}</span>
             </span>
             <h2 class="font-[Epilogue] text-[22px] font-semibold text-on-surface mt-1">
               ${escapeHtml(letter.closingTitle)}
             </h2>
           </div>
 
-          <div class="bg-surface-container-low p-4 rounded-lg shadow-inner mb-4 border border-[#edd6c1]/70">
-            <p class="font-[Literata] text-[15px] text-on-surface leading-relaxed text-center sm:text-left italic">
-              ${escapeHtml(letter.closingBody)}
-            </p>
-            <div class="mt-3 flex flex-col items-center sm:items-end justify-center">
-              <span class="font-[Epilogue] text-[16px] text-secondary font-bold mt-0.5 text-center sm:text-right">
+          <div class="bg-surface-container-low p-4 sm:p-5 rounded-lg shadow-inner mb-4 border border-[#edd6c1]/70 space-y-3">
+            ${(letter.closingParagraphs && letter.closingParagraphs.length > 0
+      ? letter.closingParagraphs
+      : letter.closingBody.split(/\n\s*\n/).filter(Boolean)
+    )
+      .map(
+        (p) =>
+          `<p class="font-[Literata] text-[14px] sm:text-[15px] text-on-surface leading-relaxed text-left italic">${escapeHtml(p)}</p>`
+      )
+      .join('')}
+            <div class="pt-2.5 border-t border-dashed border-[#edd6c1] flex items-center justify-center sm:justify-end gap-1.5 text-secondary">
+              <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">favorite</span>
+              <span class="font-[Epilogue] text-[15px] sm:text-[16px] font-bold text-center sm:text-right">
                 ${escapeHtml(letter.closingHighlight)}
               </span>
             </div>
           </div>
 
+          ${letter.flightNoteText
+      ? `<!-- Nota Aparte de Vuelo con Iconos de Avión -->
+                <div class="mb-4 bg-[#fffdf8] p-4 rounded-xl border border-dashed border-[#ddc0ba] shadow-2xs relative overflow-hidden">
+                  <div class="flex flex-wrap items-center justify-between gap-2 pb-2.5 mb-2.5 border-b border-dashed border-[#edd6c1]">
+                    <div class="inline-flex items-center gap-1.5 text-primary">
+                      <span class="material-symbols-outlined text-[18px]">flight_takeoff</span>
+                      <span class="font-[Plus_Jakarta_Sans] text-[10px] font-bold uppercase tracking-widest">
+                        ${escapeHtml(letter.flightNoteBadge || 'Nota de Viaje')}
+                      </span>
+                    </div>
+                    <div class="inline-flex items-center gap-1.5 bg-surface-container-low px-2.5 py-0.5 rounded-full border border-[#edd6c1] text-on-surface-variant font-[Plus_Jakarta_Sans] text-[10px] font-bold">
+                      <span>CUU</span>
+                      <span class="material-symbols-outlined text-[13px] text-primary" style="font-size: 13px;">flight</span>
+                      <span>MTY</span>
+                    </div>
+                  </div>
+                  <p class="font-[Literata] text-[13px] sm:text-[14px] text-on-surface italic leading-relaxed">
+                    ${escapeHtml(letter.flightNoteText)}
+                  </p>
+                </div>`
+      : ''
+    }
+
           <!-- Action Buttons -->
           <div class="flex flex-col sm:flex-row gap-2.5 items-stretch justify-center">
-            ${
-              letter.replyUrl
-                ? `<a
+            ${letter.replyUrl
+      ? `<a
                     class="bg-primary hover:bg-primary-container text-on-primary font-[Plus_Jakarta_Sans] text-[12px] font-bold px-4 py-3 rounded-full inline-flex items-center justify-center gap-2 shadow-[0_3px_0_#822714] active:translate-y-0.5 active:shadow-none transition-all"
                     href="${escapeHtml(letter.replyUrl)}"
                     rel="noopener noreferrer"
@@ -1428,8 +1511,8 @@ export function renderMixtapeScrapbook(
                     <span class="material-symbols-outlined text-[18px]">chat</span>
                     <span>${escapeHtml(letter.replyLabel)}</span>
                   </a>`
-                : ''
-            }
+      : ''
+    }
             <a
               class="bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-[Plus_Jakarta_Sans] text-[12px] font-bold px-4 py-3 rounded-full inline-flex items-center justify-center gap-2 shadow-2xs transition-colors"
               href="${escapeHtml(playlistStatus.playlistUrl)}"
@@ -1444,14 +1527,12 @@ export function renderMixtapeScrapbook(
           <!-- Decorative Stamp Footer -->
           <div class="mt-5 pt-2 flex flex-wrap items-center justify-center gap-2 text-outline text-[12px] font-[Literata]">
             <span>${escapeHtml(letter.footerStamp)}</span>
-            <span>•</span>
-            <span>Datos y portadas provistos por Spotify</span>
           </div>
         </section>
       </div>
     </main>
 
-    <!-- BARRA INFERIOR FLOTANTE ESTILO PAPELERÍA (Reacomodada en orden de lectura: Intro → Dedicadas → Último mensaje → Cerrar sobre) -->
+    <!-- BARRA INFERIOR FLOTANTE ESTILO PAPELERÍA (Reacomodada en orden de lectura: Intro → Dedicatorias → Despedida → Cerrar sobre) -->
     <nav
       aria-label="Navegación de la carta y mixtape"
       class="fixed bottom-3 inset-x-0 z-50 px-3 sm:px-4 pointer-events-none"
@@ -1461,11 +1542,10 @@ export function renderMixtapeScrapbook(
           type="button"
           data-nav-tab="carta"
           aria-current="${activeTab === 'carta' ? 'page' : 'false'}"
-          class="min-w-0 flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1.5 py-1.5 px-1.5 sm:px-2.5 rounded-xl font-[Plus_Jakarta_Sans] text-[10px] sm:text-[11px] font-bold transition-all cursor-pointer ${
-            activeTab === 'carta'
-              ? 'bg-surface-container-high text-primary shadow-2xs'
-              : 'text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface'
-          }"
+          class="min-w-0 flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1.5 py-1.5 px-1.5 sm:px-2.5 rounded-xl font-[Plus_Jakarta_Sans] text-[10px] sm:text-[11px] font-bold transition-all cursor-pointer ${activeTab === 'carta'
+      ? 'bg-surface-container-high text-primary shadow-2xs'
+      : 'text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface'
+    }"
         >
           <span class="material-symbols-outlined text-[17px]">mark_email_read</span>
           <span class="truncate">Intro</span>
@@ -1475,28 +1555,26 @@ export function renderMixtapeScrapbook(
           type="button"
           data-nav-tab="notas"
           aria-current="${activeTab === 'notas' ? 'page' : 'false'}"
-          class="min-w-0 flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1.5 py-1.5 px-1.5 sm:px-2.5 rounded-xl font-[Plus_Jakarta_Sans] text-[10px] sm:text-[11px] font-bold transition-all cursor-pointer ${
-            activeTab === 'notas'
-              ? 'bg-surface-container-high text-primary shadow-2xs'
-              : 'text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface'
-          }"
+          class="min-w-0 flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1.5 py-1.5 px-1.5 sm:px-2.5 rounded-xl font-[Plus_Jakarta_Sans] text-[10px] sm:text-[11px] font-bold transition-all cursor-pointer ${activeTab === 'notas'
+      ? 'bg-surface-container-high text-primary shadow-2xs'
+      : 'text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface'
+    }"
         >
           <span class="material-symbols-outlined text-[17px]">sticky_note_2</span>
-          <span class="truncate">Dedicadas</span>
+          <span class="truncate">Dedicatorias</span>
         </button>
 
         <button
           type="button"
           data-nav-tab="mixtape"
           aria-current="${activeTab === 'mixtape' ? 'page' : 'false'}"
-          class="min-w-0 flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1.5 py-1.5 px-1.5 sm:px-2.5 rounded-xl font-[Plus_Jakarta_Sans] text-[10px] sm:text-[11px] font-bold transition-all cursor-pointer ${
-            activeTab === 'mixtape'
-              ? 'bg-surface-container-high text-primary shadow-2xs'
-              : 'text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface'
-          }"
+          class="min-w-0 flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1.5 py-1.5 px-1.5 sm:px-2.5 rounded-xl font-[Plus_Jakarta_Sans] text-[10px] sm:text-[11px] font-bold transition-all cursor-pointer ${activeTab === 'mixtape'
+      ? 'bg-surface-container-high text-primary shadow-2xs'
+      : 'text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface'
+    }"
         >
           <span class="material-symbols-outlined text-[17px]">favorite</span>
-          <span class="truncate">Último mensaje</span>
+          <span class="truncate">Despedida</span>
         </button>
 
         <button

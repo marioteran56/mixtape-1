@@ -3,7 +3,7 @@
   "playlistName": "Playlist #1",
   "playlistUrl": "https://open.spotify.com/playlist/0EJqoSBZPUYuKNj36TKNxt",
   "ownerName": "Mario Teran",
-  "syncedAt": "2026-10-22T05:09:52.495Z",
+  "syncedAt": "2026-10-23T03:54:05.115Z",
   "tracks": [
     {
       "trackId": "2rYjkYQWpn66nf5Ihk7SHJ",
@@ -333,20 +333,20 @@
       "isAvailable": true
     },
     {
-      "trackId": "1dGr1c8CrMLDpV6mPbImSI",
-      "uri": "spotify:track:1dGr1c8CrMLDpV6mPbImSI",
-      "title": "Lover",
-      "artists": "Taylor Swift",
+      "trackId": "2GvI8j0DaIAGvubj5NinEF",
+      "uri": "spotify:track:2GvI8j0DaIAGvubj5NinEF",
+      "title": "Aprovéchate",
+      "artists": "Café Tacvba",
       "artistList": [
         {
-          "name": "Taylor Swift"
+          "name": "Café Tacvba"
         }
       ],
       "albumName": "",
-      "albumArtUrl": "https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e02e787cffec20aa2a396a61647",
-      "durationMs": 221306,
-      "durationFormatted": "3:41",
-      "spotifyUrl": "https://open.spotify.com/track/1dGr1c8CrMLDpV6mPbImSI",
+      "albumArtUrl": "https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e0216e5769c36966cb9a60600d6",
+      "durationMs": 254173,
+      "durationFormatted": "4:14",
+      "spotifyUrl": "https://open.spotify.com/track/2GvI8j0DaIAGvubj5NinEF",
       "playlistOrder": 19,
       "isAvailable": true
     },
@@ -387,20 +387,20 @@
       "isAvailable": true
     },
     {
-      "trackId": "5qlJg0Wbj3sslxfwiaRNpq",
-      "uri": "spotify:track:5qlJg0Wbj3sslxfwiaRNpq",
-      "title": "I Don't Want To Miss A Thing - From \"Armageddon\" Soundtrack",
-      "artists": "Aerosmith",
+      "trackId": "54uBpRpdpMx96JAk1OyHez",
+      "uri": "spotify:track:54uBpRpdpMx96JAk1OyHez",
+      "title": "Yo No Sé Mañana",
+      "artists": "Luis Enrique",
       "artistList": [
         {
-          "name": "Aerosmith"
+          "name": "Luis Enrique"
         }
       ],
       "albumName": "",
-      "albumArtUrl": "https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e02f039d2a6afcfab0827bb9bc0",
-      "durationMs": 299723,
-      "durationFormatted": "5:00",
-      "spotifyUrl": "https://open.spotify.com/track/5qlJg0Wbj3sslxfwiaRNpq",
+      "albumArtUrl": "https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e02d8f9838b575e0b66b429e4b5",
+      "durationMs": 259853,
+      "durationFormatted": "4:20",
+      "spotifyUrl": "https://open.spotify.com/track/54uBpRpdpMx96JAk1OyHez",
       "playlistOrder": 22,
       "isAvailable": true
     },
@@ -477,21 +477,42 @@
       "isAvailable": true
     },
     {
-      "trackId": "2h0iSG7htO0V4IvuwbTBf3",
-      "uri": "spotify:track:2h0iSG7htO0V4IvuwbTBf3",
-      "title": "Entra en Mi Vida",
-      "artists": "Sin Bandera",
+      "trackId": "5ULNuAoAozLAc721tRcPbX",
+      "uri": "spotify:track:5ULNuAoAozLAc721tRcPbX",
+      "title": "Te quiero",
+      "artists": "Hombres G",
       "artistList": [
         {
-          "name": "Sin Bandera"
+          "name": "Hombres G"
         }
       ],
       "albumName": "",
-      "albumArtUrl": "https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e02a1f3d1bb9473eb66a7b426cd",
-      "durationMs": 248760,
-      "durationFormatted": "4:09",
-      "spotifyUrl": "https://open.spotify.com/track/2h0iSG7htO0V4IvuwbTBf3",
+      "albumArtUrl": "https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e02d05dadebbef07e6f55971e74",
+      "durationMs": 225080,
+      "durationFormatted": "3:45",
+      "spotifyUrl": "https://open.spotify.com/track/5ULNuAoAozLAc721tRcPbX",
       "playlistOrder": 27,
+      "isAvailable": true
+    },
+    {
+      "trackId": "3iVu49ZmRHsCdRA0RTGUkP",
+      "uri": "spotify:track:3iVu49ZmRHsCdRA0RTGUkP",
+      "title": "Eres Tú",
+      "artists": "Matisse, Reik",
+      "artistList": [
+        {
+          "name": "Matisse"
+        },
+        {
+          "name": "Reik"
+        }
+      ],
+      "albumName": "",
+      "albumArtUrl": "https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e0241c2bb197129c4dece5fb2d9",
+      "durationMs": 218232,
+      "durationFormatted": "3:38",
+      "spotifyUrl": "https://open.spotify.com/track/3iVu49ZmRHsCdRA0RTGUkP",
+      "playlistOrder": 28,
       "isAvailable": true
     },
     {
@@ -518,7 +539,7 @@
       "durationMs": 251520,
       "durationFormatted": "4:12",
       "spotifyUrl": "https://open.spotify.com/track/4go2M6us50x9TQ1NvsB4vt",
-      "playlistOrder": 28,
+      "playlistOrder": 29,
       "isAvailable": true
     },
     {
@@ -536,24 +557,6 @@
       "durationMs": 226680,
       "durationFormatted": "3:47",
       "spotifyUrl": "https://open.spotify.com/track/4YjjNHtEsTX6Af4mCTupT5",
-      "playlistOrder": 29,
-      "isAvailable": true
-    },
-    {
-      "trackId": "28Ct4qwkQXY2W5yyNCLuVI",
-      "uri": "spotify:track:28Ct4qwkQXY2W5yyNCLuVI",
-      "title": "Coleccionista de Canciones",
-      "artists": "Camila",
-      "artistList": [
-        {
-          "name": "Camila"
-        }
-      ],
-      "albumName": "",
-      "albumArtUrl": "https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e027e0721f90f91d37de250788f",
-      "durationMs": 306986,
-      "durationFormatted": "5:07",
-      "spotifyUrl": "https://open.spotify.com/track/28Ct4qwkQXY2W5yyNCLuVI",
       "playlistOrder": 30,
       "isAvailable": true
     }

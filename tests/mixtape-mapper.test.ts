@@ -1,5 +1,9 @@
 import { describe, expect, it } from 'vitest';
 import { renderTrackCard } from '../src/client/render-mixtape';
+import {
+  EDITORIAL_TRACK_ENTRIES,
+  SYNCED_PLAYLIST_CATALOG,
+} from '../src/server/editorial-content';
 import { mergeTracksWithEditorial, resolveStitchTemplate } from '../src/server/mixtape-service';
 import type { EditorialEntry, SpotifyTrackMetadata } from '../src/shared/types';
 
@@ -150,5 +154,17 @@ describe('Mapeo Editorial de Canciones y Plantillas de Stitch', () => {
       expect(html).toContain('https://open.spotify.com/track/track-');
       expect(html).toContain('Spotify');
     }
+  });
+
+  it('sincroniza las 30 canciones del catálogo actual con las 30 entradas editoriales sin pistas faltantes ni sobrantes', () => {
+    const result = mergeTracksWithEditorial(
+      SYNCED_PLAYLIST_CATALOG.tracks,
+      EDITORIAL_TRACK_ENTRIES
+    );
+
+    expect(result.tracks).toHaveLength(30);
+    expect(result.configuredTracksCount).toBe(30);
+    expect(result.unconfiguredTracksCount).toBe(0);
+    expect(result.removedConfiguredTracks).toHaveLength(0);
   });
 });

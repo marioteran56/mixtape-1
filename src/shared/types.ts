@@ -108,6 +108,16 @@ export interface EditorialEntry {
   memoryTag?: string;
   /** Nota al pie de la tarjeta (ej. "Para cantarla a todo pulmón", "Nuestra favorita", "Acústico / Indie") */
   footerTag?: string;
+  /** Insignia especial destacada (ej. para resaltar una pista clave de la lista) */
+  featuredBadge?: string;
+  /** Título de recuadro destacado / dato curioso dentro de la tarjeta */
+  calloutTitle?: string;
+  /** Texto de recuadro destacado / pregunta o fecha especial dentro de la tarjeta */
+  calloutText?: string;
+  /** Título de nota secundaria o texto alterno dentro de la tarjeta */
+  secondaryNoteTitle?: string;
+  /** Texto de nota secundaria o pensamiento alterno dentro de la tarjeta */
+  secondaryNoteText?: string;
   /** Lado del cassette al que pertenece ("A" | "B") */
   side?: 'A' | 'B';
   /** Orden editorial opcional si se desea destacar o referenciar */
@@ -148,6 +158,11 @@ export interface MergedTrackItem {
     washiLabel: string;
     memoryTag?: string;
     footerTag?: string;
+    featuredBadge?: string;
+    calloutTitle?: string;
+    calloutText?: string;
+    secondaryNoteTitle?: string;
+    secondaryNoteText?: string;
     side: 'A' | 'B';
     isDemoContent: boolean;
   };
@@ -169,7 +184,10 @@ export interface PrivateLetterContent {
   closingBadge: string;
   closingTitle: string;
   closingBody: string;
+  closingParagraphs?: string[];
   closingHighlight: string;
+  flightNoteBadge?: string;
+  flightNoteText?: string;
   replyUrl?: string;
   replyLabel: string;
   footerStamp: string;
