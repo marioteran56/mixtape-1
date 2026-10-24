@@ -1,14 +1,14 @@
 {
   // Configuración de Cloudflare (compatible con `npx wrangler deploy`)
-  // Desactiva *.workers.dev y publica únicamente en cartas.marioteran.dev/mixtape-1*
-  "name": "mixtape-1",
+  // Desactiva *.workers.dev y publica únicamente en mixtape.marioteran.dev/thinking-about-you*
+  "name": "thinking-about-you",
   "main": "src/worker.ts",
   "compatibility_date": "2025-03-01",
   "workers_dev": false,
   "preview_urls": false,
   "routes": [
     {
-      "pattern": "cartas.marioteran.dev/mixtape-1*",
+      "pattern": "mixtape.marioteran.dev/thinking-about-you*",
       "zone_name": "marioteran.dev"
     }
   ],

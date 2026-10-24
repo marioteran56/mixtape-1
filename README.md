@@ -1,4 +1,4 @@
-# Mixtape #1
+# Thinking About You
 
 Aplicación web privada de mixtape interactivo y dedicatorias musicales basada en el sistema de diseño **Paper Mixtape** de Google Stitch (`projects/3351798792530970780`), protegida con sesión firmada del lado servidor y sincronizada con las canciones oficiales de Spotify (`0EJqoSBZPUYuKNj36TKNxt`).
 
@@ -19,7 +19,7 @@ El proyecto utiliza **Vite + TypeScript + Tailwind CSS v4** para el frontend y *
   - El comando `npm run sync:mixtape` (o `npm run sync:playlist`) ejecuta [`scripts/sync-playlist.ts`](./scripts/sync-playlist.ts), que consulta las pistas en Spotify y sus portadas oficiales `1:1` vía oEmbed.
   - Actualiza [`src/server/playlist-catalog.json`](./src/server/playlist-catalog.json) respetando estrictamente el orden de las 30 canciones **sin sobrescribir** las dedicatorias configuradas en [`src/server/editorial-content.ts`](./src/server/editorial-content.ts).
 - **Sobre Postal Interactivo, Favicon y Navegación Fija:**
-  - Portada personalizada (**Mixtape #1**, **Para: Camila**, **REMITENTE: MARIO**) con favicon propio ([`public/favicon.svg`](./public/favicon.svg)).
+  - Portada personalizada (**Thinking About You**, **Para: Camila**, **REMITENTE: MARIO**) con favicon propio ([`public/favicon.svg`](./public/favicon.svg)).
   - **Cabecera superior fija:** cinta *washi* con la leyenda **`Para ti`**, contador de pistas (`30 pistas`) y botón directo **`Mixtape`** hacia Spotify.
   - **Barra inferior flotante fija (4 columnas):** navegación suave por orden de lectura (**`Intro`** → **`Dedicatorias`** → **`Despedida`**) junto al botón **`Cerrar sobre`**.
 
@@ -96,9 +96,9 @@ npm run build
 
 ---
 
-## 6. Despliegue en Cloudflare (`cartas.marioteran.dev/mixtape-1`)
+## 6. Despliegue en Cloudflare (`mixtape.marioteran.dev/thinking-about-you`)
 
-El archivo [`wrangler.jsonc`](./wrangler.jsonc) y el Worker [`src/worker.ts`](./src/worker.ts) están configurados para publicar exclusivamente bajo la ruta **`cartas.marioteran.dev/mixtape-1*`** (con `workers_dev: false` y `preview_urls: false`).
+El archivo [`wrangler.jsonc`](./wrangler.jsonc) y el Worker [`src/worker.ts`](./src/worker.ts) están configurados para publicar exclusivamente bajo la ruta **`mixtape.marioteran.dev/thinking-about-you*`** (con `workers_dev: false` y `preview_urls: false`).
 
 Solo necesitas configurar tus 2 secretos de acceso en Cloudflare (**Settings → Variables and Secrets**):
 

@@ -52,7 +52,7 @@ export const PRIVATE_LETTER_CONTENT: PrivateLetterContent = {
   replyUrl:
     'https://wa.me/526141902258?text=Estuve%20escuchando%20tu%20mixtape%2C%20y%20me%20pareci%C3%B3...',
   replyLabel: 'Contactar al remitente',
-  footerStamp: 'Hecho con amor y música • Mixtape #1',
+  footerStamp: 'Hecho con amor y música • Mixtape',
   isDemoContent: false,
 };
 
@@ -70,10 +70,10 @@ export const EDITORIAL_TRACK_ENTRIES: EditorialEntry[] = [
     template: 'polaroid',
     side: 'A',
     washiLabel: 'Pista 01 • Apertura ♡',
-    memoryTag: 'Una de mis canciones favoritas',
+    memoryTag: 'De mis canciones favoritas',
     noteTitle: 'ÁNGEL DE LA MADRUGADA',
     dedication:
-      '“La primera canción de esta lista, porque todavía no puedo creer cómo encontré un ángel a una hora en la que no esperaba nada. Cruzaste mi camino y te quedaste para siempre tatuada en mi cabeza.”',
+      '“Todavía no puedo creer cómo me encontré con un ángel esa noche. Apareciste en mi vida cuando menos lo esperaba, y aunque todavía no sé qué nos tenga preparado el destino, me alegra muchísimo que nuestros caminos se hayan cruzado.”',
     isDemoContent: false,
   },
 
@@ -85,9 +85,9 @@ export const EDITORIAL_TRACK_ENTRIES: EditorialEntry[] = [
     template: 'post-it',
     side: 'A',
     washiLabel: 'Track Destacado ♡',
-    noteTitle: 'LO DARÉ TODO POR TI',
+    noteTitle: 'APAPÁCHAME LA VIDA ENTERA',
     dedication:
-      '“Habla de lo vulnerable que me puedo sentir contigo, esa persona especial con la que quiero intentarlo todo, aunque a veces parezcan patadas de ahogado, solo por estar a tu lado.”',
+      '“Contigo puedo sentirme vulnerable y a la vez tan fuerte. Te convertiste en alguien muy especial para mi, alguien con quien quiero intentarlo todo para que funcione, y aunque pueda parecer que estoy dando patadas de ahogado, haría todo por estar contigo.”',
     footerTag: 'Apostarlo todo',
     isDemoContent: false,
   },
@@ -116,11 +116,11 @@ export const EDITORIAL_TRACK_ENTRIES: EditorialEntry[] = [
     fallbackArtists: 'Elton John',
     template: 'double-polaroid',
     side: 'A',
-    memoryTag: 'Detalles solo para ti',
-    noteTitle: 'SIMPLE, PERO PARA TI',
+    memoryTag: 'Gracias por existir ♡',
+    noteTitle: 'NO ES MUCHO, PERO ES PARA TI',
     quote: '“My gift is my song, and this one’s for you.”',
     dedication:
-      '“Es una canción muy simple, pero a la vez muy linda. Representa justo lo que son estos detalles, los hago para ti y solo para ti porque quiero que sepas lo importante que eres para mí.”',
+      '“Es una canción muy simple, pero a la vez muy bonita. Representa justo lo que son estos detalles, los hago por ti y solo para ti porque quiero que sepas lo importante que eres para mí y lo maravillosa que es la vida cuando estás en ella.”',
     footerTag: 'Clásico atemporal',
     isDemoContent: false,
   },
@@ -128,15 +128,15 @@ export const EDITORIAL_TRACK_ENTRIES: EditorialEntry[] = [
   // #05 — Girl Crush - Recorded at Metropolis Studios, London (Harry Styles)
   {
     trackId: '4YutJsNwBBInE8vemufpQ8',
-    fallbackTitle: 'Girl Crush - Recorded at Metropolis Studios, London',
+    fallbackTitle: 'Girl Crush',
     fallbackArtists: 'Harry Styles',
     template: 'vinyl-sleeve',
     side: 'A',
-    washiLabel: 'Sesión en Estudio • Londres',
+    washiLabel: 'Spotify Singles',
     memoryTag: 'Acústico de medianoche',
-    noteTitle: 'UNA INDIRECTA MUY DIRECTA',
+    noteTitle: 'UNA PEQUEÑA INDIRECTA',
     dedication:
-      '“Creo que la indirecta es bastante obvia y no necesita mucha interpretación, con el título basta.”',
+      '“Creo que es bastante obvio lo que quiero decir con esta canción, con el título basta.”',
     footerTag: 'Metropolis Studios Session',
     isDemoContent: false,
   },
@@ -151,8 +151,8 @@ export const EDITORIAL_TRACK_ENTRIES: EditorialEntry[] = [
     washiLabel: 'C-60 HIGH FIDELITY',
     noteTitle: 'A varios cientos de kilómetros',
     dedication:
-      '“Me hace pensar en todas esas noches en las que, a pesar de estar tan lejos, leo tus mensajes llenos de cariño y siento un calor en el pecho, como si estuviera a tu lado. O por lo menos, como me gustaría estarlo.”',
-    footerTag: 'Para las noches a distancia',
+      '“Creo que hay mejores canciones de Sin Bandera, pero esta me hace pensar en todas esas noches en las que, a pesar de estar tan lejos, leo tus mensajes llenos de cariño y siento como si acariciaras mi pecho. Siento que de alguna manera estás presente, pero como me gustaría que en verdad lo estuvieras...”',
+    footerTag: 'Que esta distancia no sea un impedimento',
     isDemoContent: false,
   },
 
@@ -164,12 +164,12 @@ export const EDITORIAL_TRACK_ENTRIES: EditorialEntry[] = [
     template: 'double-polaroid',
     side: 'A',
     washiLabel: 'Pista Destacada • #07',
-    featuredBadge: 'Coincidencia Especial • Pista #07',
+    featuredBadge: 'Una bonita coincidencia',
     memoryTag: 'Día 26',
     calloutText: '¿Sabías que nos conocimos un día 26?',
     noteTitle: 'QUIÉN DICE QUE NO PODEMOS ESTAR JUNTOS',
     dedication:
-      '“A pesar de que la situación no siempre esté a nuestro favor, yo me quiero aferrar a ti y a todo lo bonito que tenemos.”',
+      '“A pesar de que la situación no parece estar a nuestro favor, yo me aferraré a ti y a todo lo bonito que estamos creando, y eso que es solo el comienzo.”',
     footerTag: 'Indie Acústico',
     isDemoContent: false,
   },
@@ -177,14 +177,14 @@ export const EDITORIAL_TRACK_ENTRIES: EditorialEntry[] = [
   // #08 — Labios Rotos - En Vivo Desde México / 2010 (Zoé)
   {
     trackId: '1nULBrlzWatdcjA2ZctIMv',
-    fallbackTitle: 'Labios Rotos - En Vivo Desde México / 2010',
+    fallbackTitle: 'Labios Rotos',
     fallbackArtists: 'Zoé',
     template: 'post-it',
     side: 'A',
     noteTitle: 'ES RARO EL AMOR',
     dedication:
-      '“Es raro el amor, que aparece cuando uno menos piensa. Con tan solo escuchar tu voz tan tierna me gustaría entregarte todo mi amor y cuidarte siempre.”',
-    footerTag: 'Para cantarla a todo pulmón',
+      '“El amor se manifiesta de maneras misteriosas. En mi caso, bastó con escuchar tu tierna voz para saber que eres la persona a la que quiero dedicarle todo mi tiempo y energía.”', // TODO
+    footerTag: 'Si me lo permites, cuidaré de ti',
     isDemoContent: false,
   },
 
@@ -197,9 +197,9 @@ export const EDITORIAL_TRACK_ENTRIES: EditorialEntry[] = [
     side: 'A',
     washiLabel: 'ADMIT ONE: MIXTAPE PASS',
     memoryTag: 'SEC: DEDICATORIA • ROW: 09',
-    noteTitle: 'NUESTRO LUGAR ESPECIAL',
+    noteTitle: 'UN LUGAR ESPECIAL',
     dedication:
-      '“Habla de encontrar ese rincón que sea solo nuestro. Me encantaría tener la oportunidad de platicar más contigo, compartir experiencias nuevas y empezar algo muy bonito juntos, un lugar al que siempre queramos volver.”',
+      '“Me encantaría tener la oportunidad de comenzar algo juntos y compartir nuevas experiencias. Me gustaría encontrar un lugar al que siempre queramos volver, un lugar que sea solo nuestro.”',
     footerTag: 'Piano Rock',
     isDemoContent: false,
   },
@@ -212,11 +212,11 @@ export const EDITORIAL_TRACK_ENTRIES: EditorialEntry[] = [
     template: 'polaroid',
     side: 'A',
     washiLabel: 'Pista 10 • Inolvidable ♡',
-    memoryTag: 'Romance clásico',
-    noteTitle: 'INEVITABLE',
+    memoryTag: 'Un clásico de amor',
+    noteTitle: 'HASTA QUE ME QUEDE SIN MAS IDEAS',
     quote: '“Wise men say only fools rush in, but I can’t help falling in love with you...”',
     dedication:
-      '“Dicen que los sabios no se apresuran y que no debería ir tan rápido con detalles así, pero es que contigo en verdad no puedo evitar enamorarme.”',
+      '“Mis amigos me dicen que no debería ir tan rápido haciendo este tipo de detalles, pero es que contigo no puedo evitarlo, no paro de enamorarme cada día más de ti.”',
     isDemoContent: false,
   },
 
@@ -231,7 +231,7 @@ export const EDITORIAL_TRACK_ENTRIES: EditorialEntry[] = [
     memoryTag: 'Verte pronto',
     noteTitle: 'MÁS DE CERCA',
     dedication:
-      '“Me hace pensar en las ganas que tengo de seguir conociéndote más de cerca, de ir a tu ciudad y poder darte este tipo de amor y detalles en persona, de una manera mucho más cercana.”',
+      '“Tengo tantas ganas de verte, deseguir conociéndote, de hacerte reir, de ir a visitarte a tu ciudad y poder darte este tipo de detalles en persona.”',
     footerTag: 'Piano & Voz',
     isDemoContent: false,
   },
@@ -538,13 +538,13 @@ export const EDITORIAL_TRACK_ENTRIES: EditorialEntry[] = [
     fallbackArtists: 'Rascal Flatts',
     template: 'collector',
     side: 'B',
-    washiLabel: 'Pista Final #30 • Una de mis favoritas',
+    washiLabel: 'Pista Final #30 • Otra de mis favoritas',
     memoryTag: 'El camino que me llevó a conocerte',
     noteTitle: 'POR QUÉ CIERRA ESTE MIXTAPE',
     quote: '“God blessed the broken road that led me straight to you...”',
     dedication:
-      '“Quise dejar esta canción para el final porque es de mis favoritas y tiene un significado muy grande para mí. Habla justo de cómo, a pesar de las veces en que me he sentido perdido o sin rumbo claro, aun así Dios acomodó cada paso y me guió exactamente hasta el camino en el que te conocí.”',
-    footerTag: 'Cierre especial • Todo el camino valió la pena',
+      '“Dejé esta canción para el final porque es otra de mis favoritas y tiene un gran significado para mí. A pesar de las veces en que me he sentido perdido, que no llego a ningún lado, Dios acomodó cada paso en mi camino para guiarme hasta el camino en el que te conocí.”',
+    footerTag: 'Todo el camino valió la pena',
     isDemoContent: false,
   },
 ];

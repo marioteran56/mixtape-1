@@ -173,7 +173,7 @@ async function fetchPlaylistFromPublicEmbed(playlistId: string): Promise<{
       .filter((t): t is NonNullable<typeof t> => t !== null);
 
     return {
-      playlistName: entity.name || entity.title || 'Playlist #1',
+      playlistName: entity.name || entity.title || 'Thinking About You',
       ownerName: entity.subtitle || 'Mario Teran',
       tracks,
     };

@@ -21,9 +21,9 @@ let currentTab: NavigationTab = 'carta';
 
 function apiUrl(endpointPath: string): string {
   const isSubpath =
-    window.location.pathname === '/mixtape-1' ||
-    window.location.pathname.startsWith('/mixtape-1/');
-  return isSubpath ? `/mixtape-1${endpointPath}` : endpointPath;
+    window.location.pathname === '/thinking-about-you' ||
+    window.location.pathname.startsWith('/thinking-about-you/');
+  return isSubpath ? `/thinking-about-you${endpointPath}` : endpointPath;
 }
 
 const loginView = document.getElementById('loginView') as HTMLElement | null;
@@ -232,7 +232,7 @@ async function handleLogout(): Promise<void> {
       mixtapeView.classList.add('hidden');
     }
     loginView?.classList.remove('hidden');
-    document.title = 'Mixtape #1 • Para ti';
+    document.title = 'Mixtape • Para ti';
     resetEnvelopeToClosed();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
@@ -288,7 +288,7 @@ async function loadAndRenderMixtape(animateUnlock = false): Promise<void> {
     return;
   }
 
-  document.title = 'Mixtape #1 • Para ti';
+  document.title = 'Mixtape • Para ti';
 
   if (animateUnlock) {
     loginView.classList.add('login-unlock-zoom');
@@ -318,7 +318,7 @@ async function loadAndRenderMixtape(animateUnlock = false): Promise<void> {
       mixtapeView.innerHTML = '';
       mixtapeView.classList.add('hidden');
       loginView.classList.remove('hidden', 'login-unlock-zoom');
-      document.title = 'Mixtape #1 • Para ti';
+      document.title = 'Mixtape • Para ti';
       resetEnvelopeToClosed();
       openEnvelope(true);
       showLoginError('Tu sesión expiró. Ingresa nuevamente la clave secreta.');
