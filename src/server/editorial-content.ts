@@ -21,13 +21,12 @@ import type {
 import rawCatalog from './playlist-catalog.json';
 
 /**
- * ID de la playlist en el proyecto Stitch ("Pensando en ti…" — Mario Teran).
+ * ID de la playlist en el proyecto ("canciones que me hacen pensar en ti" — Mario Teran).
  */
 export const DEFAULT_STITCH_PLAYLIST_ID = '0EJqoSBZPUYuKNj36TKNxt';
 
 /**
- * Contenido de la carta de introducción y despedida extraído literalmente
- * de la pantalla de Stitch `projects/3351798792530970780/screens/5883e91f37bb4aabaf7a59ffae1247d7`.
+ * Contenido de la carta de introducción y despedida.
  */
 export const PRIVATE_LETTER_CONTENT: PrivateLetterContent = {
   badgeTop: 'UN DETALLE PARA TI',
@@ -62,6 +61,10 @@ export const PRIVATE_LETTER_CONTENT: PrivateLetterContent = {
  * estrictamente el orden de la playlist (1 a 30).
  */
 export const EDITORIAL_TRACK_ENTRIES: EditorialEntry[] = [
+  // ==========================================================================
+  // LADO A: CANCIONES 01 A 15
+  // ==========================================================================
+
   // #01 — Ángel (Elefante)
   {
     trackId: '2rYjkYQWpn66nf5Ihk7SHJ',
@@ -141,18 +144,19 @@ export const EDITORIAL_TRACK_ENTRIES: EditorialEntry[] = [
     isDemoContent: false,
   },
 
-  // #06 — Kilómetros (Sin Bandera)
+  // #06 — Aprender A Quererte (Morat)
   {
-    trackId: '0AcFsf9FGjL1Al2RBQ1Crq',
-    fallbackTitle: 'Kilómetros',
-    fallbackArtists: 'Sin Bandera',
+    trackId: '3zNcn4BaVfKORyx3uDfruW',
+    fallbackTitle: 'Aprender A Quererte',
+    fallbackArtists: 'Morat',
     template: 'cassette',
     side: 'A',
     washiLabel: 'C-60 HIGH FIDELITY',
-    noteTitle: 'A varios cientos de kilómetros',
+    memoryTag: 'Conocerte cada día más',
+    noteTitle: 'MI MATERIA FAVORITA',
     dedication:
-      '“Creo que hay mejores canciones de Sin Bandera, pero esta me hace pensar en todas esas noches en las que, a pesar de estar tan lejos, leo tus mensajes llenos de cariño y siento como si acariciaras mi pecho. Siento que de alguna manera estás presente, pero como me gustaría que en verdad lo estuvieras...”',
-    footerTag: 'Que esta distancia no sea un impedimento',
+      '“Porque aprender qué te hace reír, qué música te gusta y cómo ves el mundo es de mis cosas favoritas.”',
+    footerTag: 'Folk Pop',
     isDemoContent: false,
   },
 
@@ -174,17 +178,20 @@ export const EDITORIAL_TRACK_ENTRIES: EditorialEntry[] = [
     isDemoContent: false,
   },
 
-  // #08 — Labios Rotos - En Vivo Desde México / 2010 (Zoé)
+  // #08 — this is what falling in love feels like (JVKE)
   {
-    trackId: '1nULBrlzWatdcjA2ZctIMv',
-    fallbackTitle: 'Labios Rotos',
-    fallbackArtists: 'Zoé',
+    trackId: '2PWTZV5znjLtZC5T1EVJvL',
+    fallbackTitle: 'this is what falling in love feels like',
+    fallbackArtists: 'JVKE',
     template: 'post-it',
     side: 'A',
-    noteTitle: 'ES RARO EL AMOR',
+    washiLabel: 'Pista 08 • Dulce',
+    memoryTag: 'Lo que siento por ti',
+    noteTitle: 'ASÍ SE SIENTE',
+    quote: '“I feel like sun on my skin, this is what falling in love feels like...”',
     dedication:
-      '“El amor se manifiesta de maneras misteriosas. En mi caso, bastó con escuchar tu tierna voz para saber que eres la persona a la que quiero dedicarle todo mi tiempo y energía.”', // TODO
-    footerTag: 'Si me lo permites, cuidaré de ti',
+      '“Justo así se siente cuando pienso en ti, como un rayo de sol que alegra cualquier momento del día. Contigo todo ha sido tan espontáneo y bonito que no puedo evitar sentir mariposas cada vez que hablamos.”',
+    footerTag: 'Golden Hour',
     isDemoContent: false,
   },
 
@@ -220,14 +227,31 @@ export const EDITORIAL_TRACK_ENTRIES: EditorialEntry[] = [
     isDemoContent: false,
   },
 
-  // #11 — Si No Estás (Íñigo Quintero)
+  // #11 — Entra en Mi Vida (Sin Bandera)
+  {
+    trackId: '2h0iSG7htO0V4IvuwbTBf3',
+    fallbackTitle: 'Entra en Mi Vida',
+    fallbackArtists: 'Sin Bandera',
+    template: 'cassette',
+    side: 'A',
+    washiLabel: 'C-60 HIGH FIDELITY',
+    memoryTag: 'Abrirte la puerta',
+    noteTitle: 'ENTRASTE EN MI VIDA',
+    quote: '“Entra en mi vida, te abro la puerta...”',
+    dedication:
+      '“Llegaste de la manera más inesperada y en muy poco tiempo te volviste alguien indispensable para mí. Te abrí la puerta sin dudarlo ni un segundo, y ahora solo quiero que te quedes en ella.”',
+    footerTag: 'Balada en Español',
+    isDemoContent: false,
+  },
+
+  // #12 — Si No Estás (Íñigo Quintero)
   {
     trackId: '2HafqoJbgXdtjwCOvNEF14',
     fallbackTitle: 'Si No Estás',
     fallbackArtists: 'Íñigo Quintero',
     template: 'postcard',
     side: 'A',
-    washiLabel: 'Nota Postal • Pista 11',
+    washiLabel: 'Nota Postal • Pista 12',
     memoryTag: 'Verte pronto',
     noteTitle: 'MÁS DE CERCA',
     dedication:
@@ -236,7 +260,7 @@ export const EDITORIAL_TRACK_ENTRIES: EditorialEntry[] = [
     isDemoContent: false,
   },
 
-  // #12 — Vivir Sin Aire (Maná)
+  // #13 — Vivir Sin Aire (Maná)
   {
     trackId: '3G9RQLOSjsXVUDyQSv2PQR',
     fallbackTitle: 'Vivir Sin Aire',
@@ -251,7 +275,7 @@ export const EDITORIAL_TRACK_ENTRIES: EditorialEntry[] = [
     isDemoContent: false,
   },
 
-  // #13 — stupid song (Olivia Rodrigo)
+  // #14 — stupid song (Olivia Rodrigo)
   {
     trackId: '4LfCY65LvojKjWEnU7fNN4',
     fallbackTitle: 'stupid song',
@@ -267,14 +291,14 @@ export const EDITORIAL_TRACK_ENTRIES: EditorialEntry[] = [
     isDemoContent: false,
   },
 
-  // #14 — She's The One (Robbie Williams)
+  // #15 — She's The One (Robbie Williams)
   {
     trackId: '4lO57zZGFcj7vSY4QhfVDq',
     fallbackTitle: "She's The One",
     fallbackArtists: 'Robbie Williams',
     template: 'vinyl-sleeve',
     side: 'A',
-    washiLabel: 'Edición Especial • #14',
+    washiLabel: 'Edición Especial • #15',
     memoryTag: 'Sin ninguna duda',
     noteTitle: 'SONREÍRLE A LA VIDA',
     quote: '“If there’s somebody calling me home, she’s the one...”',
@@ -285,106 +309,91 @@ export const EDITORIAL_TRACK_ENTRIES: EditorialEntry[] = [
   },
 
   // ==========================================================================
-  // APARTADO DE MENCIONES HONORÍFICAS (CANCIONES #15 Y #16 SEGUIDAS)
+  // LADO B: CANCIONES 16 A 30
   // ==========================================================================
 
-  // #15 — Amarte A La Antigua (Pedro Fernández) — MENCIÓN HONORÍFICA 1
+  // #16 — Pensando en Ti (LÚA) — APERTURA LADO B
   {
-    trackId: '7y4HLPy4f0TJpmX3rqDjHH',
-    fallbackTitle: 'Amarte A La Antigua',
-    fallbackArtists: 'Pedro Fernández',
-    template: 'honorable-mention',
-    side: 'A',
-    washiLabel: 'Mención Honorífica #01 ★',
-    memoryTag: 'Detalles que no pasan de moda',
-    noteTitle: '¿Por qué es mención honorífica?',
+    trackId: '7erD8TKGNjHhNDqKAkEhMI',
+    fallbackTitle: 'Pensando en Ti',
+    fallbackArtists: 'LÚA',
+    template: 'polaroid',
+    side: 'B',
+    washiLabel: 'Lado B • Pista 16',
+    memoryTag: 'De principio a fin',
+    noteTitle: 'PENSANDO EN TI',
+    quote: '“Y me la paso pensando en ti...”',
     dedication:
-      '“La incluí aquí porque una vez me mencionaste que el amor a la antigua es lo mejor, y he tratado de seguir las recomendaciones de esta canción para ganarme tu corazón.”',
-    footerTag: 'Mención Honorífica • Pista #15',
+      '“Esta canción resume exactamente el porqué de todo este mixtape. No importa qué esté haciendo o en qué parte del día me encuentre, de una manera u otra siempre termino pensando en ti.”',
+    footerTag: 'Acústico / Indie Pop',
     isDemoContent: false,
   },
 
-  // #16 — like my father (Jax) — MENCIÓN HONORÍFICA 2
+  // #17 — like my father (Jax) — MENCIÓN ESPECIAL
   {
     trackId: '5YVmHTAsdWnoanWXB7AwZX',
     fallbackTitle: 'like my father',
     fallbackArtists: 'Jax',
     template: 'honorable-mention',
-    side: 'A',
-    washiLabel: 'Mención Honorífica #02 ★',
+    side: 'B',
+    washiLabel: 'Mención Especial ★',
     memoryTag: 'El estándar de cariño verdadero',
     noteTitle: '¿Por qué es mención honorífica?',
     quote: '“And dirty little notes in Post-Its...”',
     dedication:
       '“La menciono porque recuerdo que la compartiste y de ahí saqué la idea de mandarte los Post-Its en el último detalle que te hice. Pero más allá de eso, esta canción tiene muchas notas sobre lo que buscas y valoras en alguien.”',
-    footerTag: 'Mención Honorífica • Pista #16',
+    footerTag: 'Mención Especial • Pista #17',
     isDemoContent: false,
   },
 
-  // ==========================================================================
-  // SEGUNDA PARTE: RECUERDOS Y NOTAS (CANCIONES #17 A #29)
-  // ==========================================================================
-
-  // #17 — Vámonos a Marte (Kevin Kaarl)
+  // #18 — Muerte En Hawaii (Calle 13)
   {
-    trackId: '1qBdJHxR2qY0dFad0ZI8sj',
-    fallbackTitle: 'Vámonos a Marte',
-    fallbackArtists: 'Kevin Kaarl',
+    trackId: '3kNVYo6BJE9AENxzokM9YC',
+    fallbackTitle: 'Muerte En Hawaii',
+    fallbackArtists: 'Calle 13',
     template: 'ticket',
     side: 'B',
-    washiLabel: 'ADMIT TWO: DESTINO MARTE',
-    memoryTag: 'SEC: COSMOS • ROW: 17',
+    washiLabel: 'ADMIT TWO: AVENTURA',
+    memoryTag: 'SEC: AVENTURA • ROW: 18',
+    noteTitle: 'POR TI HARÍA DE TODO',
+    quote: '“Por ti, todo lo que hago lo hago por ti...”',
     dedication:
-      '“La melodía perfecta para desconectar del ruido del mundo e irnos a platicar donde nadie nos vaya a encontrar.”',
-    footerTag: 'Acústico / Folk',
+      '“Una canción divertida y alegre que me hace pensar en ti con una sonrisa. Por sacarte una risa o estar contigo, de verdad que cruzaría cualquier distancia y haría hasta lo imposible.”',
+    footerTag: 'Aventura / Alternativo',
     isDemoContent: false,
   },
 
-  // #18 — Motivos (Luis Miguel)
+  // #19 — Perfect (One Direction)
   {
-    trackId: '4yEJ1SNpgfK5GPx3Y0YhIU',
-    fallbackTitle: 'Motivos',
-    fallbackArtists: 'Luis Miguel',
-    template: 'postcard',
+    trackId: '3NLnwwAQbbFKcEcV8hDItk',
+    fallbackTitle: 'Perfect',
+    fallbackArtists: 'One Direction',
+    template: 'vinyl-sleeve',
     side: 'B',
-    washiLabel: 'Serenata • Pista 18',
-    memoryTag: 'Sobran las razones',
-    noteTitle: 'UN MOTIVO MÁS',
-    quote: '“Una rosa pintada de azul es un motivo...”',
+    washiLabel: 'Edición Vinilo • #19',
+    memoryTag: 'Momentos únicos',
+    noteTitle: 'SIMPLEMENTE PERFECTO',
+    quote: '“If you like having secret little rendezvous... baby, you’re perfect.”',
     dedication:
-      '“Porque contigo cualquier detalle pequeño del día se vuelve un motivo para sonreír y acordarme de ti.”',
-    footerTag: 'Bolero / Romance',
+      '“Me encanta lo natural y divertido que es coincidir contigo. No necesitamos nada complicado ni perfecto para pasarla increíble, contigo hasta las pláticas más sencillas se vuelven mis favoritas.”',
+    footerTag: 'Pop Rock',
     isDemoContent: false,
   },
 
-  // #19 — Aprovéchate (Café Tacvba)
+  // #20 — Lover (Taylor Swift)
   {
-    trackId: '2GvI8j0DaIAGvubj5NinEF',
-    fallbackTitle: 'Aprovéchate',
-    fallbackArtists: 'Café Tacvba',
-    template: 'polaroid',
-    side: 'B',
-    washiLabel: 'Pista 19 • Clásico Alternativo',
-    memoryTag: 'Directa y sin rodeos',
-    noteTitle: 'SIN GUARDAR NADA',
-    dedication:
-      '“Una joya de Café Tacvba con esa mezcla entre nostalgia y sinceridad total que hace que piense en ti apenas empieza a sonar.”',
-    isDemoContent: false,
-  },
-
-  // #20 — Sparks (Coldplay)
-  {
-    trackId: '7D0RhFcb3CrfPuTJ0obrod',
-    fallbackTitle: 'Sparks',
-    fallbackArtists: 'Coldplay',
+    trackId: '1dGr1c8CrMLDpV6mPbImSI',
+    fallbackTitle: 'Lover',
+    fallbackArtists: 'Taylor Swift',
     template: 'double-polaroid',
     side: 'B',
-    memoryTag: 'Atmósfera chill',
-    noteTitle: 'Para días tranquilos',
-    quote: '“My heart is yours, it’s you that I hold on to...”',
+    washiLabel: 'Pista 20 • Romántico',
+    memoryTag: 'Estar siempre cerca',
+    noteTitle: 'CONTIGO PARA SIEMPRE',
+    quote: '“Can I go where you go? Can we always be this close forever and ever?”',
     dedication:
-      '“Para desconectar un rato o cuando estés haciendo cosas con calma. De las canciones más bonitas y sinceras de toda la lista.”',
-    footerTag: 'Selección Acústica',
+      '“Habla de ese deseo de acompañar a la persona que quieres a donde sea y compartir cada etapa del camino. Desde que empezamos a hablar, solo tengo ganas de seguir construyendo momentos a tu lado.”',
+    footerTag: 'Pop Romántico',
     isDemoContent: false,
   },
 
@@ -418,14 +427,30 @@ export const EDITORIAL_TRACK_ENTRIES: EditorialEntry[] = [
     isDemoContent: false,
   },
 
-  // #23 — No Hay Nadie Más (Sebastian Yatra)
+  // #23 — Sparks (Coldplay)
+  {
+    trackId: '7D0RhFcb3CrfPuTJ0obrod',
+    fallbackTitle: 'Sparks',
+    fallbackArtists: 'Coldplay',
+    template: 'double-polaroid',
+    side: 'B',
+    memoryTag: 'Atmósfera chill',
+    noteTitle: 'Para días tranquilos',
+    quote: '“My heart is yours, it’s you that I hold on to...”',
+    dedication:
+      '“Para desconectar un rato o cuando estés haciendo cosas con calma. De las canciones más bonitas y sinceras de toda la lista.”',
+    footerTag: 'Selección Acústica',
+    isDemoContent: false,
+  },
+
+  // #24 — No Hay Nadie Más (Sebastian Yatra)
   {
     trackId: '3IPJg1sdqLj12kFIndaonN',
     fallbackTitle: 'No Hay Nadie Más',
     fallbackArtists: 'Sebastian Yatra',
     template: 'postcard',
     side: 'B',
-    washiLabel: 'Confesión • Pista 23',
+    washiLabel: 'Confesión • Pista 24',
     memoryTag: 'Única en el mundo',
     noteTitle: 'ASÍ DE CLARO',
     quote: '“Quiero que el tiempo pase junto a ti, porque no hay nadie más...”',
@@ -435,49 +460,34 @@ export const EDITORIAL_TRACK_ENTRIES: EditorialEntry[] = [
     isDemoContent: false,
   },
 
-  // #24 — Volare (Danny Ocean)
+  // #25 — Volare (Danny Ocean)
   {
     trackId: '7nE9H4e4uPOis5sJY39fOc',
     fallbackTitle: 'Volare',
     fallbackArtists: 'Danny Ocean',
     template: 'ticket',
     side: 'B',
-    washiLabel: 'BOARDING PASS • VUELO 24',
-    memoryTag: 'SEC: NUBES • ROW: 24',
+    washiLabel: 'BOARDING PASS • VUELO 25',
+    memoryTag: 'SEC: NUBES • ROW: 25',
     dedication:
       '“Corta, fresca y con esa sensación exacta de andar en las nubes después de hablar contigo.”',
     footerTag: 'Vibra Ligera',
     isDemoContent: false,
   },
 
-  // #25 — Aprender A Quererte (Morat)
+  // #26 — Aqui Estoy Yo (Luis Fonsi, Aleks Syntek, Noel Schajris, David Bisbal)
   {
-    trackId: '3zNcn4BaVfKORyx3uDfruW',
-    fallbackTitle: 'Aprender A Quererte',
-    fallbackArtists: 'Morat',
-    template: 'vinyl-sleeve',
+    trackId: '4go2M6us50x9TQ1NvsB4vt',
+    fallbackTitle: 'Aqui Estoy Yo',
+    fallbackArtists: 'Luis Fonsi, Aleks Syntek, Noel Schajris, David Bisbal',
+    template: 'double-polaroid',
     side: 'B',
-    washiLabel: 'Edición Vinilo • #25',
-    memoryTag: 'Conocerte cada día más',
-    noteTitle: 'MI MATERIA FAVORITA',
+    memoryTag: 'Cuenta conmigo siempre',
+    noteTitle: 'PROMESA EN PAPEL',
+    quote: '“Aquí estoy yo para darte mi fuerza y mi aliento...”',
     dedication:
-      '“Porque aprender qué te hace reír, qué música te gusta y cómo ves el mundo es de mis cosas favoritas.”',
-    footerTag: 'Folk Pop',
-    isDemoContent: false,
-  },
-
-  // #26 — Bajo El Agua (Manuel Medrano)
-  {
-    trackId: '5QSYWruQQ7kBCHScI4xJ9g',
-    fallbackTitle: 'Bajo El Agua',
-    fallbackArtists: 'Manuel Medrano',
-    template: 'cassette',
-    side: 'B',
-    washiLabel: 'C-60 HIGH FIDELITY',
-    noteTitle: 'Momento relax',
-    dedication:
-      '“Para escuchar tranqui en una tarde despejada. Me dio la vibra exacta de ti desde la primera vez que la puse en la lista.”',
-    footerTag: 'Nuestra favorita',
+      '“En los días buenos y también cuando necesites quién te escuche o te saque una sonrisa, aquí estoy yo.”',
+    footerTag: 'Cuarteto Clásico',
     isDemoContent: false,
   },
 
@@ -496,14 +506,29 @@ export const EDITORIAL_TRACK_ENTRIES: EditorialEntry[] = [
     isDemoContent: false,
   },
 
-  // #28 — Eres Tú (Matisse, Reik)
+  // #28 — Bajo El Agua (Manuel Medrano)
+  {
+    trackId: '5QSYWruQQ7kBCHScI4xJ9g',
+    fallbackTitle: 'Bajo El Agua',
+    fallbackArtists: 'Manuel Medrano',
+    template: 'cassette',
+    side: 'B',
+    washiLabel: 'C-60 HIGH FIDELITY',
+    noteTitle: 'Momento relax',
+    dedication:
+      '“Para escuchar tranqui en una tarde despejada. Me dio la vibra exacta de ti desde la primera vez que la puse en la lista.”',
+    footerTag: 'Nuestra favorita',
+    isDemoContent: false,
+  },
+
+  // #29 — Eres Tú (Matisse, Reik)
   {
     trackId: '3iVu49ZmRHsCdRA0RTGUkP',
     fallbackTitle: 'Eres Tú',
     fallbackArtists: 'Matisse, Reik',
     template: 'postcard',
     side: 'B',
-    washiLabel: 'Nota Postal • Pista 28',
+    washiLabel: 'Nota Postal • Pista 29',
     memoryTag: 'En cualquier lugar',
     noteTitle: 'SIEMPRE TÚ',
     quote: '“En mis sueños, en mi boca, en mi piel siempre estás tú...”',
@@ -513,25 +538,7 @@ export const EDITORIAL_TRACK_ENTRIES: EditorialEntry[] = [
     isDemoContent: false,
   },
 
-  // #29 — Aqui Estoy Yo (Luis Fonsi, Aleks Syntek, Noel Schajris, David Bisbal)
-  {
-    trackId: '4go2M6us50x9TQ1NvsB4vt',
-    fallbackTitle: 'Aqui Estoy Yo',
-    fallbackArtists: 'Luis Fonsi, Aleks Syntek, Noel Schajris, David Bisbal',
-    template: 'double-polaroid',
-    side: 'B',
-    memoryTag: 'Cuenta conmigo siempre',
-    noteTitle: 'PROMESA EN PAPEL',
-    quote: '“Aquí estoy yo para darte mi fuerza y mi aliento...”',
-    dedication:
-      '“En los días buenos y también cuando necesites quién te escuche o te saque una sonrisa, aquí estoy yo.”',
-    footerTag: 'Cuarteto Clásico',
-    isDemoContent: false,
-  },
-
-  // ==========================================================================
   // #30 — CIERRE ESPECIAL DEL MIXTAPE (Rascal Flatts — Bless The Broken Road)
-  // ==========================================================================
   {
     trackId: '4YjjNHtEsTX6Af4mCTupT5',
     fallbackTitle: 'Bless The Broken Road',
@@ -563,7 +570,7 @@ export const SYNCED_PLAYLIST_CATALOG: {
   tracks: SpotifyTrackMetadata[];
 } = {
   playlistId: rawCatalog.playlistId || DEFAULT_STITCH_PLAYLIST_ID,
-  playlistName: rawCatalog.playlistName || 'Pensando en ti…',
+  playlistName: rawCatalog.playlistName || 'canciones que me hacen pensar en ti',
   playlistUrl:
     rawCatalog.playlistUrl || `https://open.spotify.com/playlist/${DEFAULT_STITCH_PLAYLIST_ID}`,
   ownerName: rawCatalog.ownerName || 'Mario Teran',
